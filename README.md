@@ -1,4 +1,4 @@
-# esphome-ha-interface-panel
+# ESPHome HomeAssistant Interface Panel
 
 An ESPHome-based touch screen panel to install in your house to interface with HomeAssistant.
 This project is based on the [esphome-modular-lvgl-buttons library][1].
@@ -17,13 +17,14 @@ TODO ADD PHOTO
 
 | Chip        | Type / Function            | What it does (short)                                   |
 |-------------|----------------------------|--------------------------------------------------------|
-| AXS15231B   | Display Controller/Driver  | Drives LCD/TFT displays (and often touch panels)       | ????
-| GT911       | Capacitive touch Ctrl      | Controller                                             | ????
-| QMI8658     | IMU sensor                 | 6-axis motion sensing (accelerometer + gyroscope)      | OK
-| PCF85063    | Real-Time Clock (RTC)      | Keeps date/time with ultra-low power                   | ????
-| AXP2101     | Power Management IC (PMIC) | Battery charging, power regulation, power sequencing   | OK
-| ES8311      | Audio Codec                | Audio ADC/DAC for mic input and speaker/headphone out  | OK
-| W25Q128JVSIQ | External SPI flash memory | 16MB NOR-Flash Memory                                  | OK
+| AXS15231B   | Display Controller/Driver  | Drives LCD/TFT displays (and often touch panels)       | 
+| GT911       | Capacitive touch Ctrl      | Controller                                             | 
+| QMI8658     | IMU sensor                 | 6-axis motion sensing (accelerometer + gyroscope)      |
+| PCF85063    | Real-Time Clock (RTC)      | Keeps date/time with ultra-low power                   |
+| AXP2101     | Power Management IC (PMIC) | Battery charging, power regulation, power sequencing   |
+| ES8311      | Audio Codec                | Audio ADC/DAC for mic input and speaker/headphone out  |
+| W25Q128JVSIQ | External SPI flash memory | 16MB NOR-Flash Memory                                  |
+| TCA9554     | Port Expander              | Provides extra connections to e.g. LCD and Touch lines |
 
 Block diagram:
 

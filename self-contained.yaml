@@ -1,0 +1,200 @@
+#
+# ESPHome HomeAssistant Interface Panel
+# https://github.com/f18m/esphome-ha-interface-panel
+#
+#
+# This is a SELF-CONTAINED configuration file for ESPHome. 
+# It includes all necessary configuration for the Waveshare ESP32-S3-Touch-LCD-3.5B device, 
+# without relying on external packages. 
+# This can be used as a way to test and debug the device without the complexity of the package system.
+#
+
+esphome:
+  name: waveshare-esp32-s3-touch
+  friendly_name: WaveShare ESP32-S3 Touch LCD 3.5B
+  platformio_options:
+    board_build.arduino.memory_type: qio_opi
+    board_build.flash_mode: qio
+
+# Enable PSRAM
+psram:
+  mode: octal
+  speed: 80MHz
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  flash_size: 16MB
+  framework:
+    type: esp-idf
+
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Waveshare-ESP32-S3-3.5B Fallback"
+    password: !secret wifi_ap_password
+
+captive_portal:
+
+# QSPI configuration for AXS15231B display controller
+spi:
+  - id: quad_spi
+    type: quad
+    clk_pin: GPIO5      # LCD_SCLK
+    data_pins:
+      - GPIO1           # LCD_DATA0
+      - GPIO2           # LCD_DATA1
+      - GPIO3           # LCD_DATA2
+      - GPIO4           # LCD_DATA3
+
+# Display configuration for AXS15231B
+display:
+  - platform: qspi_dbi
+    model: AXS15231
+    id: my_display
+    data_rate: 40MHz
+    spi_mode: mode0
+    dimensions:
+      width: 320
+      height: 480
+      offset_width: 0
+      offset_height: 0
+    color_order: rgb
+    brightness: 255
+    cs_pin: GPIO12      # LCD_CS
+    # reset_pin:
+    #   pca9554: tca9554_gpio_expander
+    #   number: 1         # LCD_RST on pin P1 of TCA9554
+    #   mode: OUTPUT
+    #   inverted: false
+    update_interval: 16ms
+    #auto_clear_enabled: true
+    lambda: |-
+      // Clear the display with black background
+      it.fill(Color(0, 0, 0));
+      
+      // Display "Hello World" at the top
+      it.print(it.get_width() / 2, 40, 
+               id(my_font), Color(255, 255, 255), TextAlign::CENTER, "Hello World");
+      
+      // Display touch instructions
+      it.print(it.get_width() / 2, 100, 
+               id(small_font), Color(200, 200, 200), TextAlign::CENTER, "Touch the screen to test");
+      
+      // Display touch coordinates if available
+      auto touches = id(my_touchscreen).get_touches();
+      if (!touches.empty()) {
+        auto touch = touches[0];
+        it.printf(it.get_width() / 2, 200, 
+                  id(medium_font), Color(0, 255, 0), TextAlign::CENTER, 
+                  "Touch X: %d", touch.x);
+        it.printf(it.get_width() / 2, 250, 
+                  id(medium_font), Color(0, 255, 0), TextAlign::CENTER, 
+                  "Touch Y: %d", touch.y);
+        
+        // Draw a circle at touch point
+        it.filled_circle(touch.x, touch.y, 10, Color(255, 0, 0));
+      } else {
+        it.print(it.get_width() / 2, 225, 
+                 id(medium_font), Color(100, 100, 100), TextAlign::CENTER, 
+                 "No touch detected");
+      }
+
+# Font configuration
+font:
+  - file: "gfonts://Roboto"
+    id: my_font
+    size: 40
+  - file: "gfonts://Roboto"
+    id: medium_font
+    size: 30
+  - file: "gfonts://Roboto"
+    id: small_font
+    size: 20
+
+# Backlight control (LCD_BL)
+output:
+  - platform: ledc
+    pin: GPIO6
+    id: backlight_pwm
+    frequency: 5kHz
+
+light:
+  - platform: monochromatic
+    output: backlight_pwm
+    name: "Display Backlight"
+    id: back_light
+    restore_mode: ALWAYS_ON
+
+# I2C configuration for AXS15231B touch controller
+i2c:
+  - id: touch_i2c
+    sda: GPIO8        # TP_SDA / ESP_SDA
+    scl: GPIO7        # TP_SCL / ESP_SCL
+    scan: true
+    frequency: 400kHz
+  # [01:52:22.437][C][i2c.idf:114]: Results from bus scan:
+  # [01:52:22.438][C][i2c.idf:120]: Found device at address 0x18
+  # [01:52:22.440][C][i2c.idf:120]: Found device at address 0x20 -- GPIO expander TCA9554PWR
+  # [01:52:22.441][C][i2c.idf:120]: Found device at address 0x34
+  # [01:52:22.442][C][i2c.idf:120]: Found device at address 0x3B  -- AXS15231B touch controller
+  # [01:52:22.443][C][i2c.idf:120]: Found device at address 0x51
+  # [01:52:22.444][C][i2c.idf:120]: Found device at address 0x6B
+
+
+# external_components:
+#   - source:
+#       type: git
+#       url: https://github.com/lk-ek/esphome-tca9555
+#       ref: main
+#     components: ["tca9555", "gpio_expander"]
+
+# TCA9554PWR GPIO Expander, very similar to the PCA9554
+pca9554:
+  - id: tca9554_gpio_expander
+    address: 0x20     # Default I2C address for TCA9554
+    i2c_id: touch_i2c
+
+# tca9555:
+#   - id: exp0
+#     address: 0x20
+#     i2c_id: touch_i2c
+
+# Touchscreen configuration for AXS15231B
+touchscreen:
+  - platform: axs15231
+    display: my_display
+    id: my_touchscreen
+    i2c_id: touch_i2c
+    update_interval: 10ms    # Poll touchscreen every 10ms (100 Hz)
+    # interrupt_pin:
+    #   #pca9554: tca9554_gpio_expander
+    #   number: 2           # TP_INT on pin P2 of TCA9554
+    #   mode: INPUT
+    #   inverted: false
+    #   tca9555: exp0
+    on_update:
+      - lambda: |-
+            for (auto touch: touches)  {
+                if (touch.state <= 2) {
+                  ESP_LOGI("Touch points:", "id=%d x=%d, y=%d", touch.id, touch.x, touch.y);
+                }
+            }
+            // Trigger immediate display update when touch detected
+            id(my_display).update();

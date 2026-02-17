@@ -2,6 +2,10 @@
 # ESPHome HomeAssistant Interface Panel
 # https://github.com/f18m/esphome-ha-interface-panel
 #
+#
+# This is the main configuration file for ESPHome. 
+# It uses the package system to include code from the "esphome-modular-lvgl-buttons" repository.
+#
 
 # Substitution variables used through the codebase
 substitutions:

@@ -1,4 +1,13 @@
-# Substitution variables used through the codebase
+#
+# ESPHome HomeAssistant Interface Panel
+# https://github.com/f18m/esphome-ha-interface-panel
+#
+#
+# This is the DEVELOPMENT configuration file for ESPHome. 
+# It uses the package system to include code from the "esphome-modular-lvgl-buttons" repository.
+# It uses a local SDL hardware configuration to test on a regular computer all UI changes before
+# deploying to the real device. This allows for much faster development and iteration.
+
 
 external_components:
   - source: github://pr#12312
