@@ -17,14 +17,13 @@ TODO ADD PHOTO
 
 | Chip        | Type / Function            | What it does (short)                                   |
 |-------------|----------------------------|--------------------------------------------------------|
-| AXS15231B   | Display Controller/Driver  | Drives LCD/TFT displays (and often touch panels)       | 
-| GT911       | Capacitive touch Ctrl      | Controller                                             | 
-| QMI8658     | IMU sensor                 | 6-axis motion sensing (accelerometer + gyroscope)      |
-| PCF85063    | Real-Time Clock (RTC)      | Keeps date/time with ultra-low power                   |
-| AXP2101     | Power Management IC (PMIC) | Battery charging, power regulation, power sequencing   |
-| ES8311      | Audio Codec                | Audio ADC/DAC for mic input and speaker/headphone out  |
-| W25Q128JVSIQ | External SPI flash memory | 16MB NOR-Flash Memory                                  |
-| TCA9554     | Port Expander              | Provides extra connections to e.g. LCD and Touch lines |
+| [AXS15231B](docs/AXS15231B_Datasheet_V0.5.pdf)   | Display Driver and Touch Panel Controller  | Drives LCD/TFT displays and touch panels       | 
+| [QMI8658](docs/QMI8658C.pdf)     | IMU sensor                 | 6-axis motion sensing (accelerometer + gyroscope)      |
+| [PCF85063](docs/PCF85063A.pdf)    | Real-Time Clock (RTC)      | Keeps date/time with ultra-low power                   |
+| [AXP2101](docs/X-power-AXP2101_SWcharge_V1.0.pdf)     | Power Management IC (PMIC) | Battery charging, power regulation, power sequencing   |
+| [ES8311](docs/ES8311.DS.pdf)      | Audio Codec                | Audio ADC/DAC for mic input and speaker/headphone out  |
+| [W25Q128JVSIQ](docs/W25Q128JV.pdf) | External SPI flash memory | 16MB NOR-Flash Memory                                  |
+| [TCA9554](docs/TCA9554.pdf)     | Port Expander              | Provides extra connections to e.g. LCD and Touch lines |
 
 Block diagram:
 
@@ -36,10 +35,8 @@ flowchart LR
 
     FLASH[SPI Flash<br/>W25Qxx]
 
-    LCDDRV[AXS15231B<br/>LCD Controller]
+    LCDDRV[AXS15231B<br/>LCD and Touch Controller]
     LCD[LCD Panel<br/>Backlight]
-
-    TOUCH[GT911<br/>Touch Controller]
 
     AUDIO[ES8311<br/>Audio Codec]
     AMP[NS4150B<br/>Audio Amplifier]
@@ -70,7 +67,7 @@ flowchart LR
     ESP -->|SPI / QSPI| LCDDRV
     LCDDRV --> LCD
 
-    ESP -->|I²C| TOUCH
+    ESP -->|I²C| LCDDRV
     ESP -->|I²C| IMU
     ESP -->|I²C| RTC
     ESP -->|I²C| IOX

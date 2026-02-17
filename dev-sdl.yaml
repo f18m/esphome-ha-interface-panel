@@ -109,7 +109,7 @@ packages:
       row: 0
       column: 3
       text: 00:00
-      #click_page: info_screen
+      click_page: info_screen
       
   # Add a button that goes to a different page
   button_3: !include
