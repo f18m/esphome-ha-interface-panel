@@ -1,0 +1,3 @@
+[submodule "esphome-modular-lvgl-buttons"]
+	path = esphome-modular-lvgl-buttons
+	url = https://github.com/agillis/esphome-modular-lvgl-buttons.git
