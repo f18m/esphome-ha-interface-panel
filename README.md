@@ -118,6 +118,29 @@ I contributed to the [esphome-modular-lvgl-buttons library][1] the support for t
 hardware board and this repository contains a working `main.yaml` ESPHome configuration file that can be used to generate the actual firmware binary and flash it on the board.
 
 
+## Integration with the wall box
+
+In my country (Italy), the typical wall box is the so-called 503 model, with dimensions roughly equal to:
+
+* width: 96mm
+* height: 70mm
+* depth: 48mm
+
+These play well with the Waveshare 3.5'' board which has dimensions:
+
+* width: 95mm
+* height: 59mm
+* depth: 14mm
+
+Moreover the board has a connector on the back which supports injecting the 5V power
+from a convenient power supply installed on the back of the panel:
+
+<img src="./docs/waveshare-connector-layout.png">
+
+Measurements of power usage: TODO
+
+Power supply chosen: TODO
+
 ## Photos
 
 TO BE WRITTEN
