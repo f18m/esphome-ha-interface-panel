@@ -7,12 +7,16 @@ This project is based on the [esphome-modular-lvgl-buttons library][1].
 
 Check the [esphome-modular-lvgl-buttons library][1] project for a list of supported (touch)screens.
 
-I'm currently using the [WaveShare ESP32-S3-Touch-LCD-3.5B](https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-3.5B)
+To use this project you should have an ESP32-powered board with an LCD screen of roughly 3.5 inches.
+I'm currently using the [WaveShare ESP32-S3-Touch-LCD-3.5B][2].
+Alternatives include the `Guition`  and `Sunton` devices.
 
 TODO ADD PHOTO
 
 
 ## Hardware Details
+
+The [WaveShare ESP32-S3-Touch-LCD-3.5B][2] board is equipped with:
 
 
 | Chip        | Type / Function            | What it does (short)                                   |
@@ -80,30 +84,38 @@ flowchart LR
 
 Mapping between ESP chip and the AXS15231B controller:
 
-```
-LCD_CS      GPIO12
-LCD_SCLK    GPIO5
-LCD_DATA0   GPIO1
-LCD_DATA1   GPIO2
-LCD_DATA2   GPIO3
-LCD_DATA3   GPIO4
-LCD_BL      GPIO6
-```
+| Signal    | GPIO |
+|-----------|------|
+| LCD_CS    | GPIO12 |
+| LCD_SCLK  | GPIO5 |
+| LCD_DATA0 | GPIO1 |
+| LCD_DATA1 | GPIO2 |
+| LCD_DATA2 | GPIO3 |
+| LCD_DATA3 | GPIO4 |
+| LCD_BL    | GPIO6 |
 
 and for the Touchscreen interface (TP interface):
 
-```
-TP_SCL      GPIO7
-TP_SDA      GPIO8
-TP_INT      Accessible via GPIO expander TCA9554PWR
-```
+| Signal | Connection |
+|--------|------------|
+| TP_SCL | GPIO7 |
+| TP_SDA | GPIO8 |
+| TP_INT | Accessible via GPIO expander TCA9554PWR |
 
 The GPIO expander (ESP) TCA9554PWR is connected to the ESP32 chip using the I2C bus:
 
-```
-ESP_SCL      GPIO7
-ESP_SDA      GPIO8
-```
+| Signal  | GPIO |
+|---------|------|
+| ESP_SCL | GPIO7 |
+| ESP_SDA | GPIO8 |
+
+I measured the board power consumption to be roughly:
+
+* 160mA at startup
+* 110mA in idle
+
+powering the board at 5V through the back-of-the-board connector.
+This shows an amazing <1W power consumption!
 
 
 ## Software
@@ -118,9 +130,9 @@ I contributed to the [esphome-modular-lvgl-buttons library][1] the support for t
 hardware board and this repository contains a working `main.yaml` ESPHome configuration file that can be used to generate the actual firmware binary and flash it on the board.
 
 
-## Integration with the wall box
+## Installation within the electrical/wall box
 
-In my country (Italy), the typical wall box is the so-called 503 model, with dimensions roughly equal to:
+In my country (Italy), the typical wall box is the so-called 503 model, with dimensions of usable space roughly equal to:
 
 * width: 96mm
 * height: 70mm
@@ -137,9 +149,8 @@ from a convenient power supply installed on the back of the panel:
 
 <img src="./docs/waveshare-connector-layout.png">
 
-Measurements of power usage: TODO
 
-Power supply chosen: TODO
+
 
 ## Photos
 
@@ -157,3 +168,4 @@ A few links to other similar projects:
  
 
 [1]: https://github.com/agillis/esphome-modular-lvgl-buttons
+[2]: https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-3.5B
