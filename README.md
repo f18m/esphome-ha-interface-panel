@@ -118,7 +118,7 @@ powering the board at 5V through the back-of-the-board connector.
 This shows an amazing <1W power consumption!
 
 
-## Software
+## Software/Firmware
 
 There are 2 ways to develop software for Waveshare devices, as suggested by Waveshare:
 
@@ -127,12 +127,19 @@ There are 2 ways to develop software for Waveshare devices, as suggested by Wave
 
 However I've chosen a third way: using **ESPHome**.
 I contributed to the [esphome-modular-lvgl-buttons library][1] the support for the Waveshare
-hardware board and this repository contains a working `main.yaml` ESPHome configuration file that can be used to generate the actual firmware binary and flash it on the board.
+hardware board and this repository contains a working [main.yaml](./main.yaml) ESPHome configuration file that can be used to generate the actual firmware binary and flash it on the board.
+
+In addition this repository provides 2 more ESPHome configuration files:
+
+* [dev-sdl.yaml](./dev-sdl.yaml): this is a friendly version of [main.yaml](./main.yaml) that 
+allows for quick iteration on your computer, using the SDL backend of ESPHome (so you can test UI changes without re-flashing all the times the real device).
+
+* [self-contained.yaml](./self-contained.yaml): this is a self-contained ESPHome firmware that does NOT use the [esphome-modular-lvgl-buttons library][1]. I used this as early experiment to interface the Waveshare panel with ESPHome.
 
 
 ## Installation within the electrical/wall box
 
-In my country (Italy), the typical wall box is the so-called 503 model, with dimensions of usable space roughly equal to:
+In my country (Italy), the typical wall box is the so-called `503` model, with dimensions of inner usable space roughly equal to:
 
 * width: 96mm
 * height: 70mm
@@ -150,6 +157,13 @@ from a convenient power supply installed on the back of the panel:
 <img src="./docs/waveshare-connector-layout.png">
 
 
+So I designed an [adapter plate](./wall-box-adapter/waveshare-503wallbox-adapter.scad) with [OpenSCAD](https://openscad.org/):
+
+<img src="./wall-box-adapter/preview.jpeg">
+
+This can be 3D-printed. The LCD panel and its electronics are designed to be press-fit 
+within an hollow box (no screws). Behind the hollow box there
+are screw holes to mount the plate on the 503 wall box. 
 
 
 ## Photos
@@ -158,7 +172,7 @@ TO BE WRITTEN
 
 ## How to Develop
 
-TO BE WRITTEN
+
 
 ## Links
 
