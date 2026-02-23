@@ -159,7 +159,7 @@ from a convenient power supply installed on the back of the panel:
 
 So I designed an [adapter plate](./wall-box-adapter/waveshare-503wallbox-adapter.scad) with [OpenSCAD](https://openscad.org/):
 
-<img src="./wall-box-adapter/preview.jpeg">
+<img src="./wall-box-adapter/preview.png">
 
 This can be 3D-printed. The LCD panel and its electronics are designed to be press-fit 
 within an hollow box (no screws). Behind the hollow box there
