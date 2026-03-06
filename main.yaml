@@ -36,6 +36,29 @@ substitutions:
   screen_height: 320
   screen_width: 480
 
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret encryption_key
+
+ota:
+  - platform: esphome
+    password: !secret ota_password
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Waveshare-ESP32-S3-3.5B Fallback"
+    password: !secret wifi_ap_password
+
+captive_portal:
+
+
+
 esphome:
   name: "waveshare-esp32-s3-touch-v2"
   friendly_name: "Waveshare ESP32-S3-Touch-LCD-3.5B"
@@ -55,7 +78,7 @@ script:
       - lvgl.label.update:
           id: time_label
           text: !lambda 'return id(system_time).now().strftime("%l:%M %P");'
-          
+
 packages:
   # Generic configuration for ESP32 screens
   # SDL has no Wi-Fi
@@ -75,15 +98,11 @@ packages:
   # Use this theme for debugging
   # theme_style: !include esphome-modular-lvgl-buttons/common/theme_style_debug.yaml
   # Include if your touch screen has a backlight. Also sets the time from HA
-  backlight: !include esphome-modular-lvgl-buttons/common/backlight_time.yaml
-  
+  ##backlight: !include esphome-modular-lvgl-buttons/common/backlight_time.yaml
+  backlight: !include my-backlight.yaml
+
   # Harware description file
-
-  # FIXME changed to SDL for testing
   hardware: !include esphome-modular-lvgl-buttons/hardware/waveshare-esp32-s3-touch-lcd-3.5b.yaml
-  #hardware: !include esphome-modular-lvgl-buttons/hardware/SDL-lvgl.yaml
-
-
 
   # Basic boot screen with ESPHome logo and device diagnostic info
   loading_screen: !include esphome-modular-lvgl-buttons/pages/loading_480px.yaml
@@ -93,37 +112,37 @@ packages:
   # This section will add buttons and page to your screen using the ESPHome package system. 
   # Each package has all the code required for the button or page (LVGL, sensors, etc)
 
-  # Add a button the controls a light in HA  
-  button_1: !include
-    file: esphome-modular-lvgl-buttons/buttons/switch_button.yaml
-    vars:
-      uid: button_1
-      row: 0
-      column: 0
-      text: Light
-      icon: $mdi_lightbulb
-      entity_id: "switch.presa_soffitta_luci_libreria"
+  # # Add a button the controls a light in HA  
+  # button_1: !include
+  #   file: esphome-modular-lvgl-buttons/buttons/switch_button.yaml
+  #   vars:
+  #     uid: button_1
+  #     row: 0
+  #     column: 0
+  #     text: Light
+  #     icon: $mdi_lightbulb
+  #     entity_id: "switch.presa_soffitta_luci_libreria"
 
-  # Add a button that displays the time
-  button_2: !include
-    file: esphome-modular-lvgl-buttons/buttons/time_button.yaml
-    vars:
-      uid: button_2
-      row: 0
-      column: 1
-      text: 00:00
-      click_page: info_screen
+  # # Add a button that displays the time
+  # button_2: !include
+  #   file: esphome-modular-lvgl-buttons/buttons/time_button.yaml
+  #   vars:
+  #     uid: button_2
+  #     row: 0
+  #     column: 1
+  #     text: 00:00
+  #     click_page: info_screen
       
-  # Add a button that goes to a different page
-  button_3: !include
-    file: esphome-modular-lvgl-buttons/buttons/page_button.yaml
-    vars:
-      uid: button_3
-      row: 1
-      column: 0
-      text: Info screen
-      icon: $mdi_information_box
-      click_page: info_screen      
+  # # Add a button that goes to a different page
+  # button_3: !include
+  #   file: esphome-modular-lvgl-buttons/buttons/page_button.yaml
+  #   vars:
+  #     uid: button_3
+  #     row: 1
+  #     column: 0
+  #     text: Info screen
+  #     icon: $mdi_information_box
+  #     click_page: info_screen      
 
   # # Add a dimmer light
   # button_4: !include
@@ -143,35 +162,26 @@ packages:
   #     light_entity: "light.athom_rgb_light_d93662_rgb_light_strip"
   #     widget_name: "button_4"
 
-
-# This is the main LVGL section. We start with a simple grid.
-lvgl:
-  buffer_size: 100%
-  pages:
-    - id: main_page
-      layout: 4x4
-      styles: page_style
-      <<: !include esphome-modular-lvgl-buttons/widgets/swipe_navigation.yaml
-      widgets:
-          # You can use the package section above to add prebuilt button types or build your own custom button from scratch here.
-          - container:
-              id: button_12
-              grid_cell_x_align: stretch
-              grid_cell_y_align: stretch
-              grid_cell_row_pos: 3
-              grid_cell_column_pos: 3
-              #grid_cell_row_span: 1
-              #grid_cell_column_span: 1
-              outline_width: 1   # debug code - This is for visualizing boundries remove for production
-              outline_color: red # debug code - This is for visualizing boundries remove for production
-              widgets:
-                - label:
-                    text_font: $text_font
-                    align: center
-                    text_color: white
-                    text: "Cell 3,3"
   
+
+#
+# SENSORS
+#
+
+sensor:
+  - platform: homeassistant
+    id: temperatura_riscaldamento_notturno_stanze
+    entity_id: input_number.temperatura_riscaldamento_notturno_stanze
+    #attribute: temperature
+    on_value:
+      - lvgl.spinbox.update:
+          id: spinbox_temp_notturna
+          value: !lambda return x;
+
+#
+# FONTS
 # If you want to use other icons add them to the list here
+#
 font:
   # http://materialdesignicons.com/cdn/7.4.47/
   - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
@@ -199,4 +209,89 @@ font:
       $mdi_string_lights,  # mdi-string-lights - decorative string lights
       $mdi_track_light,  # mdi-track-light - track lighting
       $mdi_white_balance_sunny,  # mdi-white-balance-sunny - color temp/sun icon
+      $mdi_radiator,
+      $mdi_radiator_off,
     ]
+
+lvgl:
+  pages:
+    - id: main_page
+      bg_color: 0x0D1117
+      widgets:
+        - tabview:
+            id: lv_tabview_6
+            x: 0
+            y: 0
+            width: 477
+            height: 317
+            bg_color: 0x1F2937
+            tabs:
+              - name: Room Heating
+                widgets:
+                  - spinbox:
+                      id: widget_1772662347038_vagqmuym6
+                      x: 180
+                      y: 69
+                      width: 70
+                      height: 30
+                      value: 15.2
+                      range_from: 15
+                      range_to: 25
+                      digits: 3
+                      decimal_places: 1
+                      text_color: 0x000000
+                      bg_color: 0xFFFFFF
+                      border_width: 1
+                      border_color: 0xCCCCCC
+                  - obj:
+                      id: temp_card
+                      x: 11
+                      y: 6
+                      width: 250
+                      height: 260
+                      bg_color: 0x1C2128
+                      border_color: 0xFF6B6B
+                      border_width: 2
+                      radius: 10
+                  - spinbox:
+                      id: spinbox_temp_notturna
+                      x: 181
+                      y: 28
+                      width: 70
+                      height: 30
+                      value: 15
+                      range_from: 15
+                      range_to: 25
+                      digits: 3
+                      decimal_places: 1
+                      text_color: 0x000000
+                      bg_color: 0xFFFFFF
+                      border_width: 1
+                      border_color: 0xCCCCCC
+                  - label:
+                      id: widget_1772662250765_aiaqx0xyc
+                      x: 19
+                      y: 68
+                      width: 150
+                      height: 30
+                      text: "Temp Mattina Presto"
+                      text_color: 0xFF6B6B
+                  - label:
+                      id: temp_label
+                      x: 19
+                      y: 26
+                      width: 150
+                      height: 30
+                      text: "Temp Notturna"
+                      text_color: 0xFF6B6B
+                  - label:
+                      id: time_label
+                      x: 301
+                      y: 239
+                      width: 150
+                      height: 30
+                      text: "12:00"
+                      text_color: 0xFF6B6B
+              - name: Covers
+              - name: Info
+
