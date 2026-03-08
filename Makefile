@@ -16,6 +16,14 @@ flash-self-contained:
 	@echo "Flashing the self-contained ESPHome device..."
 	esphome run $(OPTIONS) self-contained.yaml
 
+
+# test with SDL emulator in local
+
 test-local:
 	@echo "Running local tests (without flashing)..."
 	esphome run --no-logs dev-sdl.yaml 
+
+test-validate:
+	@echo "Validating the configuration files..."
+	#esphome config main.yaml
+	esphome config dev-sdl.yaml >dev-sdl.yaml.validated

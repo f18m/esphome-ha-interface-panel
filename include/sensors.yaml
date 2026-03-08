@@ -1,0 +1,16 @@
+
+
+#
+# SENSORS
+#
+
+sensor:
+  - platform: homeassistant
+    id: temperatura_riscaldamento_notturno_stanze_pt
+    entity_id: input_number.temperatura_riscaldamento_notturno_stanze_pt
+    #attribute: temperature
+    on_value:
+      - lvgl.spinbox.update:
+          id: spinbox_temperature_pt
+          value: !lambda return x;
+

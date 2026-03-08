@@ -43,22 +43,37 @@ api:
   encryption:
     key: !secret encryption_key
 
-ota:
-  - platform: esphome
-    password: !secret ota_password
+  # logic related to the API connection status icon 
+  #  https://esphome.io/cookbook/lvgl/#api-connection-status-icon
+  on_client_connected:
+    - if:
+        condition:
+          lambda: 'return (0 == client_info.find("Home Assistant "));'
+        then:
+          - lvgl.widget.show: wifi_label
+  on_client_disconnected:
+    - if:
+        condition:
+          lambda: 'return (0 == client_info.find("Home Assistant "));'
+        then:
+          - lvgl.widget.hide: wifi_label
+# SDL does not support OTA
+# ota:
+#   - platform: esphome
+#     password: !secret ota_password
 
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
+# SDL does not support wifi
+# wifi:
+#   ssid: !secret wifi_ssid
+#   password: !secret wifi_password
 
-  # Enable fallback hotspot (captive portal) in case wifi connection fails
-  ap:
-    ssid: "Waveshare-ESP32-S3-3.5B Fallback"
-    password: !secret wifi_ap_password
+#   # Enable fallback hotspot (captive portal) in case wifi connection fails
+#   ap:
+#     ssid: "Waveshare-ESP32-S3-3.5B Fallback"
+#     password: !secret wifi_ap_password
 
-captive_portal:
-
-
+# SDL does hot support captive portal
+#captive_portal:
 
 esphome:
   name: sdl-480px-test
@@ -108,344 +123,8 @@ packages:
   # info screen - WiFi login, IP address, MAC address etc
   info_screen: !include esphome-modular-lvgl-buttons/pages/info.yaml
 
-  # This section will add buttons and page to your screen using the ESPHome package system. 
-  # Each package has all the code required for the button or page (LVGL, sensors, etc)
-  # All these buttons will be added to the main page but you can change that in each button/page yaml file.
-
-  # # Add a button the controls a light in HA  
-  # button_1: !include
-  #   file: esphome-modular-lvgl-buttons/buttons/switch_button.yaml
-  #   vars:
-  #     uid: button_1
-  #     row: 0
-  #     column: 0
-  #     text: Bagno P1
-  #     icon: $mdi_radiator
-  #     entity_id: "switch.floorheating_p1_relay_bagno"
-
-  # # Add a button that displays the time
-  # button_2: !include
-  #   file: esphome-modular-lvgl-buttons/buttons/time_button.yaml
-  #   vars:
-  #     uid: button_2
-  #     row: 0
-  #     column: 3
-  #     text: 00:00
-  #     click_page: info_screen
-      
-  # # Add a button that goes to a different page
-  # button_3: !include
-  #   file: esphome-modular-lvgl-buttons/buttons/page_button.yaml
-  #   vars:
-  #     uid: button_3
-  #     row: 1
-  #     column: 0
-  #     text: Info screen
-  #     icon: $mdi_information_box
-  #     click_page: info_screen      
-
-
-#
-# SENSORS
-#
-
-sensor:
-  - platform: homeassistant
-    id: temperatura_riscaldamento_notturno_stanze
-    entity_id: input_number.temperatura_riscaldamento_notturno_stanze
-    #attribute: temperature
-    on_value:
-      - lvgl.spinbox.update:
-          id: spinbox_temp_notturna
-          value: !lambda return x;
-
-#
-# FONTS
-# If you want to use other icons add them to the list here
-#
-font:
-  # http://materialdesignicons.com/cdn/7.4.47/
-  - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
-    id: mdi_icons_40
-    size: 40
-    bpp: 8
-    glyphs: [
-      $mdi_bed,  # mdi-bed - bedroom icon
-      $mdi_brightness_6,  # mdi-brightness-6 - brightness slider icon
-      $mdi_bulkhead_light,  # mdi-bulkhead-light - bulkhead fixture
-      $mdi_ceiling_fan_light,  # mdi-ceiling-fan-light - ceiling fan with light
-      $mdi_ceiling_light,  # mdi-ceiling-light - ceiling fixture
-      $mdi_chevron_down,  # mdi-chevron-down - close/collapse button
-      $mdi_chevron_up,  # mdi-chevron-up - back/expand button
-      $mdi_circle_opacity,  # mdi-circle-opacity - saturation slider icon
-      $mdi_coach_lamp,  # mdi-coach-lamp - outdoor coach light
-      $mdi_eyedropper,  # mdi-eyedropper - spectrum mode toggle
-      $mdi_floor_lamp,  # mdi-floor-lamp - floor lamp
-      $mdi_grid,  # mdi-grid - grid mode toggle
-      $mdi_home,  # mdi-home - home/back navigation
-      $mdi_information_box,  # mdi-information-box - info screen
-      $mdi_lamp,  # mdi-lamp - table lamp
-      $mdi_led_strip,  # mdi-led-strip - LED strip light
-      $mdi_lightbulb,  # mdi-lightbulb - generic bulb icon
-      $mdi_string_lights,  # mdi-string-lights - decorative string lights
-      $mdi_track_light,  # mdi-track-light - track lighting
-      $mdi_white_balance_sunny,  # mdi-white-balance-sunny - color temp/sun icon
-      $mdi_radiator,
-      $mdi_radiator_off,
-    ]
-
-# # This is the main LVGL section. We start with a simple grid.
-# lvgl:
-#   displays:
-#     - my_display
-#   pages:
-#     - id: main_page
-#       layout: 
-#         # see https://esphome.io/components/lvgl/layouts/#grid
-#         type: grid
-#         grid_rows: [ FR(1), FR(1), FR(1) ] 
-#         grid_columns: [ FR(1), FR(1), FR(1), FR(1) ]
-#       styles: page_style
-#       #<<: !include esphome-modular-lvgl-buttons/widgets/swipe_navigation.yaml
-#       on_swipe_right:
-#           - lambda: 'lv_indev_wait_release(lv_indev_get_act());'
-#           - logger.log: "Swipe right"
-#           - lvgl.page.next:
-#               animation: OUT_RIGHT
-#               time: 300ms
-#       on_swipe_left:
-#           - lambda: 'lv_indev_wait_release(lv_indev_get_act());'
-#           - logger.log: "Swipe left"
-#           - lvgl.page.previous:
-#               animation: OUT_LEFT
-#               time: 300ms
-#       widgets:
-#           # You can use the package section above to add prebuilt button types or build your own custom button from scratch here.
-#           # - container:
-#           #     id: main_page_title
-#           #     grid_cell_x_align: stretch
-#           #     grid_cell_y_align: stretch
-#           #     grid_cell_row_pos: 0
-#           #     grid_cell_column_pos: 0
-#           #     grid_cell_row_span: 3
-#           #     grid_cell_column_span: 3
-#           #     outline_width: 1   # debug code - This is for visualizing boundries remove for production
-#           #     outline_color: red # debug code - This is for visualizing boundries remove for production
-#           #     widgets:
-#         - label:
-#             grid_cell_row_pos: 0
-#             grid_cell_column_pos: 0
-#             outline_width: 1
-#             text_font: $text_font
-#             align: center
-#             text_color: white
-#             text: "MAIN PAGE"
-            
-#         - button:
-#             grid_cell_row_pos: 0
-#             grid_cell_column_pos: 3
-#             #grid_cell_column_span: 1
-#             outline_width: 1
-#             id: button_time
-#             bg_opa: TRANSP
-#             widgets:
-#               - label:
-#                   id: time_label
-#                   styles: time_style
-#                   text: '12:00 pm'
-#             on_short_click:
-#                 then:
-#                   lvgl.page.show: info_screen
-#         - buttonmatrix:
-#             grid_cell_row_pos: 2
-#             grid_cell_column_pos: 0
-#             grid_cell_column_span: 4
-#             outline_width: 1
-#             align: bottom #bottom_mid
-#             styles: header_footer
-#             pad_all: 0
-#             id: main_page_navbar
-#             items:
-#               styles: header_footer
-#             rows:
-#               - buttons:
-#                 - id: main_page_prev
-#                   text: "\uF053 INFO"
-#                   on_press:
-#                     then:
-#                       lvgl.page.previous:
-#                 - id: main_page_next
-#                   text: "\uF054 COVERS"
-#                   on_press:
-#                     then:
-#                       lvgl.page.next:
-
-#     - id: cover_page
-#       layout: 3x4
-#       styles: page_style
-#       #<<: !include esphome-modular-lvgl-buttons/widgets/swipe_navigation.yaml
-#       # Swipe navigation
-#       on_swipe_right:
-#           - lambda: 'lv_indev_wait_release(lv_indev_get_act());'
-#           - logger.log: "Swipe right -- denied"
-#           #- lvgl.page.next:
-#           #    animation: OUT_RIGHT
-#           #    time: 300ms
-#       on_swipe_left:
-#           - lambda: 'lv_indev_wait_release(lv_indev_get_act());'
-#           - logger.log: "Swipe left"
-#           - lvgl.page.previous:
-#               animation: OUT_LEFT
-#               time: 300ms
-#       widgets:
-#           # You can use the package section above to add prebuilt button types or build your own custom button from scratch here.
-#           - container:
-#               id: cover_page_title
-#               grid_cell_x_align: stretch
-#               grid_cell_y_align: stretch
-#               grid_cell_row_pos: 0
-#               grid_cell_column_pos: 1
-#               grid_cell_row_span: 1
-#               grid_cell_column_span: 2
-#               outline_width: 1   # debug code - This is for visualizing boundries remove for production
-#               outline_color: red # debug code - This is for visualizing boundries remove for production
-#               widgets:
-#                 - label:
-#                     text_font: $text_font
-#                     align: center
-#                     text_color: white
-#                     text: "COVERS PAGE"
-#                 - buttonmatrix:
-#                     align: bottom_mid
-#                     styles: header_footer
-#                     pad_all: 0
-#                     outline_width: 0
-#                     id: cover_page_navbar
-#                     items:
-#                       styles: header_footer
-#                     rows:
-#                       - buttons:
-#                         - id: cover_page_prev
-#                           text: "\uF053"
-#                           on_press:
-#                             then:
-#                               lvgl.page.previous:
-#                         - id: cover_page_home
-#                           text: "\uF015"
-#                           on_press:
-#                             then:
-#                               lvgl.page.show: main_page
-#                         - id: cover_page_next
-#                           text: ""
-lvgl:
-  pages:
-    - id: main_page
-      bg_color: 0x0D1117
-      widgets:
-        - tabview:
-            id: lv_tabview_6
-            x: 0
-            y: 0
-            width: 477
-            height: 317
-            bg_color: 0x1F2937
-            tabs:
-              - name: Room Heating
-                widgets:
-                  - spinbox:
-                      id: widget_1772662347038_vagqmuym6
-                      x: 180
-                      y: 69
-                      width: 70
-                      height: 30
-                      value: 15.2
-                      range_from: 15
-                      range_to: 25
-                      digits: 3
-                      decimal_places: 1
-                      text_color: 0x000000
-                      bg_color: 0xFFFFFF
-                      border_width: 1
-                      border_color: 0xCCCCCC
-                  - obj:
-                      id: temp_card
-                      x: 11
-                      y: 6
-                      width: 250
-                      height: 260
-                      bg_color: 0x1C2128
-                      border_color: 0xFF6B6B
-                      border_width: 2
-                      radius: 10
-                  - spinbox:
-                      id: spinbox_temp_notturna
-                      x: 181
-                      y: 28
-                      width: 70
-                      height: 30
-                      value: 15
-                      range_from: 15
-                      range_to: 25
-                      digits: 3
-                      decimal_places: 1
-                      text_color: 0x000000
-                      bg_color: 0xFFFFFF
-                      border_width: 1
-                      border_color: 0xCCCCCC
-                  - label:
-                      id: widget_1772662250765_aiaqx0xyc
-                      x: 19
-                      y: 68
-                      width: 150
-                      height: 30
-                      text: "Temp Mattina Presto"
-                      text_color: 0xFF6B6B
-                  - label:
-                      id: temp_label
-                      x: 19
-                      y: 26
-                      width: 150
-                      height: 30
-                      text: "Temp Notturna"
-                      text_color: 0xFF6B6B
-                  - label:
-                      id: time_label
-                      x: 301
-                      y: 239
-                      width: 150
-                      height: 30
-                      text: "12:00"
-                      text_color: 0xFF6B6B
-              - name: Covers
-              - name: Info
-
-
-  # https://esphome.io/cookbook/lvgl/#page-navigation-footer
-  # top_layer:
-  #   widgets:
-  #     - buttonmatrix:
-  #         align: bottom_mid
-  #         styles: header_footer
-  #         pad_all: 0
-  #         outline_width: 0
-  #         id: top_layer
-  #         items:
-  #           styles: header_footer
-  #         rows:
-  #           - buttons:
-  #             - id: page_prev
-  #               text: "\uF053"
-  #               on_press:
-  #                 then:
-  #                   lvgl.page.previous:
-  #             - id: page_home
-  #               text: "\uF015"
-  #               on_press:
-  #                 then:
-  #                   lvgl.page.show: main_page
-  #             - id: page_next
-  #               text: "\uF054"
-  #               on_press:
-  #                 then:
-  #                   lvgl.page.next:
+  # MAIN UI DESIGN
+  font: !include include/font.yaml
+  ui_design: !include include/ui_design.yaml
+  heating_sensors: !include include/sensors.yaml
 

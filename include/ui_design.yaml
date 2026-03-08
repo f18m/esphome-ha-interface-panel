@@ -1,0 +1,109 @@
+lvgl:
+  pages:
+    - id: main_page
+      bg_color: 0x0D1117
+      widgets:
+        - label:
+            id: time_label
+            x: 5
+            y: 5
+            width: 150
+            height: 30
+            text: "12:00"
+            text_color: 0xFF6B6B
+
+        - label:
+            id: wifi_label
+            x: 417
+            y: 0
+            width: 50
+            height: 20
+            text: "$mdi_wifi"
+            text_font: $icon_font
+            text_align: RIGHT
+
+        - tabview:
+            id: main_tabview
+            x: 0
+            y: 35
+            width: 477
+            height: 280
+            bg_color: 0x1F2937
+            tabs:
+              - name: Riscaldamento
+                widgets:
+                  - obj:
+                      id: outer_box
+                      x: 12
+                      y: 9
+                      width: 440
+                      height: 130
+                      bg_color: 0x1C2128
+                      border_color: 0xFF6B6B
+                      border_width: 2
+                      radius: 10
+                  # - spinbox:
+                  #     id: widget_1772925503418_1uwx6sbgg
+                  #     x: 310
+                  #     y: 100
+                  #     width: 70
+                  #     height: 30
+                  #     value: 15.2
+                  #     range_from: 15
+                  #     range_to: 25
+                  #     digits: 3
+                  #     decimal_places: 1
+                  #     text_color: 0x000000
+                  #     bg_color: 0xFFFFFF
+                  #     border_width: 1
+                  #     border_color: 0xCCCCCC
+                  # - spinbox:
+                  #     id: widget_1772662347038_vagqmuym6
+                  #     x: 310
+                  #     y: 60
+                  #     width: 70
+                  #     height: 30
+                  #     value: 15.2
+                  #     range_from: 15
+                  #     range_to: 25
+                  #     digits: 3
+                  #     decimal_places: 1
+                  #     text_color: 0x000000
+                  #     bg_color: 0xFFFFFF
+                  #     border_width: 1
+                  #     border_color: 0xCCCCCC
+                  # - label:
+                  #     id: widget_1772925442778_49rmu40s2
+                  #     x: 90
+                  #     y: 100
+                  #     width: 150
+                  #     height: 30
+                  #     text: "Piano Secondo"
+                  #     text_color: 0xFF6B6B
+                  # - label:
+                  #     id: widget_1772662250765_aiaqx0xyc
+                  #     x: 90
+                  #     y: 60
+                  #     width: 150
+                  #     height: 30
+                  #     text: "Piano Primo"
+                  #     text_color: 0xFF6B6B
+                  - label:
+                      id: daytime_label
+                      x: 29
+                      y: 45
+                      width: 40
+                      height: 30
+                      text: "$mdi_sun_thermometer"
+                      text_font: $icon_font
+                      text_color: 0xFF6B6B
+
+                  - obj:
+                      id: first_row_container
+                      x: 90
+                      y: 20
+                      widgets: !include { file: temperature_row.yaml, vars: { id: "pt", sensor_entity_id: "input_number.temperatura_riscaldamento_notturno_stanze_pt" } }
+                  
+
+              - name: Tapparelle
+              - name: Info
