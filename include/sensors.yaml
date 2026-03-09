@@ -5,12 +5,38 @@
 #
 
 sensor:
+  # - platform: homeassistant
+  #   id: temperatura_riscaldamento_diurno_stanze_pt
+  #   entity_id: input_number.temperatura_riscaldamento_diurno_stanze_pt
+  #   #attribute: temperature
+  #   on_value:
+  #     - lvgl.spinbox.update:
+  #         id: spinbox_temperature_pt
+  #         value: !lambda return x;
+
   - platform: homeassistant
-    id: temperatura_riscaldamento_notturno_stanze_pt
-    entity_id: input_number.temperatura_riscaldamento_notturno_stanze_pt
+    id: temperatura_riscaldamento_diurno_stanze_p1
+    entity_id: input_number.temperatura_riscaldamento_diurno_stanze_p1
     #attribute: temperature
     on_value:
       - lvgl.spinbox.update:
-          id: spinbox_temperature_pt
+          id: spinbox_temperature_diurno_p1
           value: !lambda return x;
+
+  - platform: homeassistant
+    id: temperatura_riscaldamento_notturno_stanze_p1
+    entity_id: input_number.temperatura_riscaldamento_notturno_stanze_p1
+    #attribute: temperature
+    on_value:
+      - lvgl.spinbox.update:
+          id: spinbox_temperature_notturno_p1
+          value: !lambda return x;
+  # - platform: homeassistant
+  #   id: temperatura_riscaldamento_diurno_stanze_p2
+  #   entity_id: input_number.temperatura_riscaldamento_diurno_stanze_p2
+  #   #attribute: temperature
+  #   on_value:
+  #     - lvgl.spinbox.update:
+  #         id: spinbox_temperature_p2
+  #         value: !lambda return x;
 

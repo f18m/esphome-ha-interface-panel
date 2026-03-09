@@ -14,7 +14,7 @@ lvgl:
 
         - label:
             id: wifi_label
-            x: 417
+            x: 415 # screen width is 480
             y: 0
             width: 50
             height: 20
@@ -29,81 +29,91 @@ lvgl:
             width: 477
             height: 280
             bg_color: 0x1F2937
+            scrollable: false
             tabs:
-              - name: Riscaldamento
-                widgets:
-                  - obj:
-                      id: outer_box
-                      x: 12
-                      y: 9
-                      width: 440
-                      height: 130
-                      bg_color: 0x1C2128
-                      border_color: 0xFF6B6B
-                      border_width: 2
-                      radius: 10
-                  # - spinbox:
-                  #     id: widget_1772925503418_1uwx6sbgg
-                  #     x: 310
-                  #     y: 100
-                  #     width: 70
-                  #     height: 30
-                  #     value: 15.2
-                  #     range_from: 15
-                  #     range_to: 25
-                  #     digits: 3
-                  #     decimal_places: 1
-                  #     text_color: 0x000000
-                  #     bg_color: 0xFFFFFF
-                  #     border_width: 1
-                  #     border_color: 0xCCCCCC
-                  # - spinbox:
-                  #     id: widget_1772662347038_vagqmuym6
-                  #     x: 310
-                  #     y: 60
-                  #     width: 70
-                  #     height: 30
-                  #     value: 15.2
-                  #     range_from: 15
-                  #     range_to: 25
-                  #     digits: 3
-                  #     decimal_places: 1
-                  #     text_color: 0x000000
-                  #     bg_color: 0xFFFFFF
-                  #     border_width: 1
-                  #     border_color: 0xCCCCCC
-                  # - label:
-                  #     id: widget_1772925442778_49rmu40s2
-                  #     x: 90
-                  #     y: 100
-                  #     width: 150
-                  #     height: 30
-                  #     text: "Piano Secondo"
-                  #     text_color: 0xFF6B6B
-                  # - label:
-                  #     id: widget_1772662250765_aiaqx0xyc
-                  #     x: 90
-                  #     y: 60
-                  #     width: 150
-                  #     height: 30
-                  #     text: "Piano Primo"
-                  #     text_color: 0xFF6B6B
-                  - label:
-                      id: daytime_label
-                      x: 29
-                      y: 45
-                      width: 40
-                      height: 30
-                      text: "$mdi_sun_thermometer"
-                      text_font: $icon_font
-                      text_color: 0xFF6B6B
 
-                  - obj:
-                      id: first_row_container
-                      x: 90
-                      y: 20
-                      widgets: !include { file: temperature_row.yaml, vars: { id: "pt", sensor_entity_id: "input_number.temperatura_riscaldamento_notturno_stanze_pt" } }
+              - name: Riscaldamento
+                scrollable: false
+                widgets:
+                  # - obj:
+                  #     id: outer_box
+                  #     x: 12
+                  #     y: 9
+                  #     width: 440
+                  #     height: 130
+                  #     bg_color: 0x1C2128
+                  #     border_color: 0xFF6B6B
+                  #     border_width: 2
+                  #     radius: 10
+
+                  #
+                  # DAYTIME SETTINGS
+                  # #
+
+                  # - label:
+                  #     id: daytime_label
+                  #     x: 29
+                  #     y: 45
+                  #     width: 40
+                  #     height: 30
+                  #     text: "$mdi_sun_thermometer"
+                  #     text_font: $icon_font
+                  #     text_color: 0xFF6B6B
+
+                  # - obj:
+                  #     id: first_row_container
+                  #     x: 90
+                  #     y: 20
+                  #     widgets: !include { 
+                  #       file: temperature_row.yaml, 
+                  #       vars: { 
+                  #         id: "pt", 
+                  #         floor_name: "Piano Terra", 
+                  #         sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_pt" 
+                  #       } 
+                  #     }
                   
+                  - obj:
+                      id: a
+                      x: 10
+                      y: 10
+                      scrollable: false
+                      widgets: !include { 
+                        file: temperature_row_with_icon.yaml, 
+                        vars: { 
+                          id: "diurno_p1", 
+                          icon: "$mdi_sun_thermometer",
+                          floor_name: "Giorno", 
+                          sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                        } 
+                      }
+                  - obj:
+                      id: b
+                      x: 10
+                      y: 120
+                      scrollable: false
+                      widgets: !include { 
+                        file: temperature_row_with_icon.yaml, 
+                        vars: { 
+                          id: "notturno_p1", 
+                          icon: "$mdi_coolant_temperature",
+                          floor_name: "Notte", 
+                          sensor_entity_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
+                        } 
+                      }
+                  
+                  # - obj:
+                  #     id: third_row_container
+                  #     x: 90
+                  #     y: 100
+                  #     widgets: !include { 
+                  #       file: temperature_row.yaml, 
+                  #       vars: { 
+                  #         id: "p2", 
+                  #         floor_name: "Piano Secondo", 
+                  #         sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p2" 
+                  #       } 
+                  #     }
 
               - name: Tapparelle
               - name: Info
