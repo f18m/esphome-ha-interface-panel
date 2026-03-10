@@ -1,0 +1,144 @@
+#
+# INFO TAB
+#
+
+- label:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 1
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "ESPHome Version:"
+    text_color: 0xCBD5E1
+- label:
+    id: lbl_esphome_version
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 1
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "Loading..."
+    text_color: 0xF8FAFC
+- label:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 2
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "Build Date:"
+    text_color: 0xCBD5E1
+- label:
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 2
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text:
+      format: "%s - %s"
+      args: [__DATE__, __TIME__]
+    text_color: 0xF8FAFC
+- label:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 3
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "MAC Address:"
+    text_color: 0xCBD5E1
+- label:
+    id: lbl_mac_address
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 3
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "00:00:00:00:00:00"
+    text_color: 0xF8FAFC
+- label:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 4
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "IP Address:"
+    text_color: 0xCBD5E1
+- label:
+    id: lbl_ip_address
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 4
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "0.0.0.0"
+    text_color: 0xF8FAFC
+- label:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 5
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "Connected SSID"
+    text_color: 0xCBD5E1
+- label:
+    id: lbl_connected_ssid
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 5
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "Updating..."
+    text_color: 0xF8FAFC
+- label:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 6
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "WiFi Strength"
+    text_color: 0xCBD5E1
+- label:
+    id: lbl_wifi_signal_db_percent
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 6
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "Updating..."
+    text_color: 0xF8FAFC
+- label:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 7
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "Device Name:"
+    text_color: 0xCBD5E1
+- label:
+    id: lbl_device_name
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 7
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "Updating..."
+    text_color: 0xF8FAFC
+- qrcode:
+    id: cp_login
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 8
+    grid_cell_x_align: START
+    grid_cell_y_align: CENTER
+    pad_left: 10
+    pad_top: 10
+    size: 100
+    text: "WIFI:S:mynetwork;T:WPA;P:password;;"
+- qrcode:
+    id: cp_ip_address
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 8
+    grid_cell_x_align: START
+    grid_cell_y_align: CENTER
+    pad_left: 10
+    pad_top: 10
+    size: 100
+    text: "http://192.168.4.1"
+- label:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 9
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "Captive Portal Wi-Fi"
+    text_color: 0xCBD5E1
+- label:
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 9
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "CP config page"
+    text_color: 0xF8FAFC

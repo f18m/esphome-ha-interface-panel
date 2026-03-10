@@ -14,7 +14,7 @@ api:
           - lvgl.widget.show: wifi_label
           - lvgl.label.update:
               id: wifi_label
-              text_color: 0x00FF00
+              text_color: 0x22C55E
   on_client_disconnected:
     - if:
         condition:
@@ -23,4 +23,4 @@ api:
           - lvgl.widget.show: wifi_label
           - lvgl.label.update:
               id: wifi_label
-              text_color: 0xFF0000
+              text_color: 0xEF4444

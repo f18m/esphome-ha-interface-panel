@@ -3,7 +3,7 @@
 #
 
 - label:
-    id: label_floor_${id}
+    id: lbl_floor_${id}
     x: 0
     y: 0
     width: 170

@@ -1,0 +1,156 @@
+lvgl:
+  pages:
+    - id: main_page
+      bg_color: 0x0F172A
+      widgets:
+        - label:
+            id: time_label
+            x: 5
+            y: 5
+            width: 200
+            height: 30
+            text: "10/03/2026 12:00"
+            text_color: 0xF8FAFC
+
+        - label:
+            id: wifi_label
+            x: 415 # screen width is 480
+            y: 0
+            width: 50
+            height: 20
+            text: "$mdi_wifi"
+            text_font: $icon_font
+            text_align: RIGHT
+            text_color: 0x94A3B8
+
+        - tabview:
+            id: main_tabview
+            x: 0
+            y: 35
+            width: 480
+            height: 280
+            bg_color: 0x1E293B
+            scrollable: false
+            tab_style:
+              #border_color: 0x00FF00
+              #border_width: 6
+              height: 50
+              bg_color: 0x1E293B
+              items:
+                #text_color: 0x0000FF
+                height: 50
+                bg_color: 0x334155
+                text_color: 0xCBD5E1
+            tabs:
+              - name: Stanze
+                scrollable: false
+                widgets:
+                  - obj:
+                      x: 0
+                      y: 0
+                      scrollable: false
+                      layout: horizontal
+                      widgets:
+                        - !include { 
+                            file: lvgl_room_status_box.yaml, 
+                            vars: { 
+                              id: "bagno_p1", 
+                              room_name: "Bagno", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
+                        - !include { 
+                            file: lvgl_room_status_box.yaml, 
+                            vars: { 
+                              id: "cam_gialla", 
+                              room_name: "Cam. Gialla", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
+                        - !include { 
+                            file: lvgl_room_status_box.yaml, 
+                            vars: { 
+                              id: "cam_arancione", 
+                              room_name: "Cam. Arancio", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
+                        - !include { 
+                            file: lvgl_room_status_box.yaml, 
+                            vars: { 
+                              id: "cam_verde", 
+                              room_name: "Cam. Verde", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
+
+
+              - name: Riscaldamento
+                scrollable: false
+                widgets:
+                  - obj:
+                      x: 0
+                      y: 0
+                      scrollable: false
+                      layout:
+                        type: flex
+                        flex_flow: column
+                        #flex_align_main: space_evenly
+                        flex_align_main: start
+                        flex_align_track: center
+                        flex_align_cross: center
+                      widgets:
+                        - !include { 
+                            file: lvgl_set_temperature_row_with_icon.yaml, 
+                            vars: { 
+                              id: "diurno_p1", 
+                              icon: "$mdi_sun_thermometer",
+                              floor_name: "Giorno", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
+                        - !include { 
+                            file: lvgl_set_temperature_row_with_icon.yaml, 
+                            vars: { 
+                              id: "notturno_p1", 
+                              icon: "$mdi_coolant_temperature",
+                              floor_name: "Notte", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
+                            } 
+                          }
+                        - label:
+                            id: target_temp_label
+                            x: 0
+                            y: 0
+                            width: 100%
+                            height: 30
+                            text: "Temperatura Target Attuale: 20.0°C"
+                            text_align: CENTER
+                            text_color: 0xCBD5E1
+
+              - name: Tapparelle
+                scrollable: false
+                widgets:
+                  - obj:
+                      width: 100%
+                      height: 100%
+                      widgets:
+                        - label:
+                            text: "TO DO"
+                            text_color: 0x94A3B8
+
+
+              - name: Info
+                scrollable: false
+                widgets:
+                  - obj:
+                      width: 100%
+                      height: 100%
+                      bg_color: 0x1E293B
+                      layout:
+                        type: GRID
+                        grid_rows: [ content,content,content,content,content,content,content,content,content,content ]
+                        grid_columns: [ FR(45), FR(55) ]
+                        pad_column: 4
+                        pad_row: 5
+                      widgets: !include lvgl_info_page.yaml
