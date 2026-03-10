@@ -1,0 +1,52 @@
+- label:
+    id: lbl_room_name_${id}
+    x: 0
+    y: 0
+    #width: 80
+    height: 50
+    text: "${room_name}"
+    text_font: nunito_20
+    long_mode: WRAP
+
+
+  # TEMPERATURE
+
+- label:
+    id: lbl_icon_temp_${id}
+    x: 0
+    y: 50
+    width: 50
+    height: 40
+    text: "${mdi_thermometer}"
+    text_font: $icon_font_small
+
+- label:
+    id: label_current_temp_${id}
+    x: 40
+    y: 60
+    width: 60
+    height: 50
+    text: "22.0°C"
+    text_font: nunito_18
+
+
+
+  # HUMIDITY
+
+- label:
+    id: lbl_icon_humidity_${id}
+    x: 0
+    y: 90
+    width: 50
+    height: 40
+    text: "${mdi_water_percent}"
+    text_font: $icon_font_small
+
+- label:
+    id: label_current_humidity_${id}
+    x: 40
+    y: 100
+    width: 60
+    height: 50
+    text: "55%"
+    text_font: nunito_18

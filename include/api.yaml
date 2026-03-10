@@ -1,0 +1,26 @@
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret encryption_key
+
+  # logic related to the API connection status icon 
+  #  https://esphome.io/cookbook/lvgl/#api-connection-status-icon
+  on_client_connected:
+    - if:
+        condition:
+          lambda: 'return (0 == client_info.find("Home Assistant "));'
+        then:
+          - lvgl.widget.show: wifi_label
+          - lvgl.label.update:
+              id: wifi_label
+              text_color: 0x00FF00
+  on_client_disconnected:
+    - if:
+        condition:
+          lambda: 'return (0 == client_info.find("Home Assistant "));'
+        then:
+          - lvgl.widget.show: wifi_label
+          - lvgl.label.update:
+              id: wifi_label
+              text_color: 0xFF0000

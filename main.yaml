@@ -10,6 +10,7 @@
 # Substitution variables used through the codebase
 substitutions:
   icon_font: mdi_icons_40
+  icon_font_small: mdi_icons_20
   text_font: nunito_20
   text_color: white
   bg_color: black
@@ -37,10 +38,7 @@ substitutions:
   screen_width: 480
 
 
-# Enable Home Assistant API
-api:
-  encryption:
-    key: !secret encryption_key
+# ESPHome configuration specific to REAL DEVICE (not SDL)
 
 ota:
   - platform: esphome
@@ -57,8 +55,6 @@ wifi:
 
 captive_portal:
 
-
-
 esphome:
   name: "waveshare-esp32-s3-touch-v2"
   friendly_name: "Waveshare ESP32-S3-Touch-LCD-3.5B"
@@ -69,15 +65,6 @@ esphome:
         - script.execute: update_loading_page
 
 logger:
-
-# Time update script - This is run once per second. Use it to update any time related labels.
-script:
-  - id: time_update
-    then:
-        # The format %I:%M %p will display the time in a 12-hour format with "am" or "pm" included  
-      - lvgl.label.update:
-          id: time_label
-          text: !lambda 'return id(system_time).now().strftime("%l:%M %P");'
 
 packages:
   # Generic configuration for ESP32 screens
@@ -111,6 +98,7 @@ packages:
 
   # MAIN UI DESIGN
   font: !include include/font.yaml
+  scripts: !include include/scripts.yaml
   ui_design: !include include/ui_design.yaml
   heating_sensors: !include include/sensors.yaml
-
+  api: !include include/api.yaml

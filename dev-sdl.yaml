@@ -11,6 +11,7 @@
 # Substitution variables used through the codebase
 substitutions:
   icon_font: mdi_icons_40
+  icon_font_small: mdi_icons_20
   text_font: nunito_20
   text_color: white
   bg_color: black
@@ -38,25 +39,6 @@ substitutions:
   screen_width: '480'
 
 
-# Enable Home Assistant API
-api:
-  encryption:
-    key: !secret encryption_key
-
-  # logic related to the API connection status icon 
-  #  https://esphome.io/cookbook/lvgl/#api-connection-status-icon
-  on_client_connected:
-    - if:
-        condition:
-          lambda: 'return (0 == client_info.find("Home Assistant "));'
-        then:
-          - lvgl.widget.show: wifi_label
-  on_client_disconnected:
-    - if:
-        condition:
-          lambda: 'return (0 == client_info.find("Home Assistant "));'
-        then:
-          - lvgl.widget.hide: wifi_label
 # SDL does not support OTA
 # ota:
 #   - platform: esphome
@@ -78,22 +60,13 @@ api:
 esphome:
   name: sdl-480px-test
   friendly_name: SDL 480px-test
-  on_boot:
-    - priority: 400
-      then:
-        - script.execute: update_loading_page
+  # on_boot:
+  #   - priority: 400
+  #     then:
+  #       - script.execute: update_loading_page
 
 logger:
   level: debug
-
-# Time update script - This is run once per second. Use it to update any time related labels.
-script:
-  - id: time_update
-    then:
-        # The format %I:%M %p will display the time in a 12-hour format with "am" or "pm" included  
-      - lvgl.label.update:
-          id: time_label
-          text: !lambda 'return id(system_time).now().strftime("%l:%M %P");'
 
 packages:
   # Generic configuration for ESP32 screens
@@ -119,12 +92,13 @@ packages:
   hardware: !include esphome-modular-lvgl-buttons/hardware/SDL-lvgl.yaml
   
   # Basic boot screen with ESPHome logo and device diagnostic info
-  loading_screen: !include esphome-modular-lvgl-buttons/pages/loading_480px.yaml
+  #loading_screen: !include esphome-modular-lvgl-buttons/pages/loading_480px.yaml
   # info screen - WiFi login, IP address, MAC address etc
-  info_screen: !include esphome-modular-lvgl-buttons/pages/info.yaml
+  #info_screen: !include esphome-modular-lvgl-buttons/pages/info.yaml
 
   # MAIN UI DESIGN
   font: !include include/font.yaml
+  scripts: !include include/scripts.yaml
   ui_design: !include include/ui_design.yaml
   heating_sensors: !include include/sensors.yaml
-
+  api: !include include/api.yaml

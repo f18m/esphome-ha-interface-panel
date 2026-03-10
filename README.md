@@ -180,7 +180,7 @@ A few links to other similar projects:
 
 * https://github.com/bennydiamond/esphome_lvgl_hmi_garage
 * https://github.com/kancelott/neo-nesp
-
+* https://github.com/hareeshmu/climate-control-display
  
 
 [1]: https://github.com/agillis/esphome-modular-lvgl-buttons
