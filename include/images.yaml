@@ -1,0 +1,10 @@
+
+image:
+  rgb565:
+    alpha_channel:
+      # - file: 'assets/images/homeassistant.png'
+      #   id: ha_img
+      #   resize: 400x82
+      - file: 'assets/images/esphome.png'
+        id: esphome_img
+        resize: 320x95

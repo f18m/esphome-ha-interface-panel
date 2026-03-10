@@ -37,7 +37,7 @@ text_sensor:
               format: "%s"
               args: [ 'id(device_name).state.c_str()' ]
         - lvgl.qrcode.update:
-            id: cp_login
+            id: qrcode_login
             text:
               format: "WIFI:S:%s;T:WPA;P:password;;"
               args: [ 'id(device_name).state.c_str()' ]

@@ -149,7 +149,7 @@ lvgl:
                       bg_color: 0x1E293B
                       layout:
                         type: GRID
-                        grid_rows: [ content,content,content,content,content,content,content,content,content,content ]
+                        grid_rows: [ content,content,content,content,content,content,content,content,content,content,content,content,content,content,content,content ]
                         grid_columns: [ FR(45), FR(55) ]
                         pad_column: 4
                         pad_row: 5

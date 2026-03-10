@@ -86,6 +86,7 @@ packages:
 
   # MAIN UI DESIGN
   font: !include include/font.yaml
+  images: !include include/images.yaml
   scripts: !include include/scripts.yaml
   ui_design: !include include/lvgl_ui_design.yaml
   heating_sensors: !include include/sensors.yaml

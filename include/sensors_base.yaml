@@ -96,6 +96,11 @@ text_sensor:
               text:
                 format: "%s"
                 args: [ 'id(ip_address).state.c_str()' ]
+          - lvgl.qrcode.update:
+              id: qrcode_ip_address
+              text:
+                format: "http://%s"
+                args: [ 'id(ip_address).state.c_str()' ]
 
     ssid:
       id: connected_ssid
@@ -124,7 +129,7 @@ text_sensor:
               format: "%s"
               args: [ 'id(device_name).state.c_str()' ]
         - lvgl.qrcode.update:
-            id: cp_login
+            id: qrcode_login
             text:
               format: "WIFI:S:%s;T:WPA;P:password;;"
               args: [ 'id(device_name).state.c_str()' ]

@@ -108,26 +108,13 @@
     grid_cell_y_align: CENTER
     text: "Updating..."
     text_color: 0xF8FAFC
-- qrcode:
-    id: cp_login
-    grid_cell_column_pos: 0
-    grid_cell_row_pos: 8
-    grid_cell_x_align: START
-    grid_cell_y_align: CENTER
-    pad_left: 10
-    pad_top: 10
-    size: 100
-    text: "WIFI:S:mynetwork;T:WPA;P:password;;"
-- qrcode:
-    id: cp_ip_address
+
+    # SPACER
+- obj:
     grid_cell_column_pos: 1
     grid_cell_row_pos: 8
-    grid_cell_x_align: START
-    grid_cell_y_align: CENTER
-    pad_left: 10
-    pad_top: 10
-    size: 100
-    text: "http://192.168.4.1"
+    height: 20
+
 - label:
     grid_cell_column_pos: 0
     grid_cell_row_pos: 9
@@ -140,5 +127,63 @@
     grid_cell_row_pos: 9
     grid_cell_x_align: STRETCH
     grid_cell_y_align: CENTER
-    text: "CP config page"
+    text: "This device URL"
     text_color: 0xF8FAFC
+- qrcode:
+    id: qrcode_login
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 10
+    grid_cell_x_align: START
+    grid_cell_y_align: CENTER
+    pad_left: 10
+    pad_top: 10
+    size: 100
+    text: "WIFI:S:mynetwork;T:WPA;P:password;;"
+- qrcode:
+    id: qrcode_ip_address
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 10
+    grid_cell_x_align: START
+    grid_cell_y_align: CENTER
+    pad_left: 10
+    pad_top: 10
+    size: 100
+    text: "http://192.168.4.1"
+
+    # SPACER
+- obj:
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 11
+    height: 20
+
+- label:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 12
+    grid_cell_x_align: STRETCH
+    grid_cell_y_align: CENTER
+    text: "Project website"
+    text_color: 0xCBD5E1
+- qrcode:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 13
+    grid_cell_x_align: START
+    grid_cell_y_align: CENTER
+    pad_left: 10
+    pad_top: 10
+    size: 100
+    text: "https://github.com/f18m/esphome-ha-interface-panel"
+
+    # SPACER
+- obj:
+    grid_cell_column_pos: 1
+    grid_cell_row_pos: 14
+    height: 20
+
+- image:
+    grid_cell_column_pos: 0
+    grid_cell_row_pos: 15
+    grid_cell_column_span: 2
+    grid_cell_x_align: CENTER
+    grid_cell_y_align: CENTER
+    align: bottom_mid
+    src: esphome_img
