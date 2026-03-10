@@ -1,52 +1,80 @@
-- label:
-    id: lbl_room_name_${id}
-    x: 0
-    y: 0
-    #width: 80
-    height: 50
-    text: "${room_name}"
-    text_font: nunito_20
-    long_mode: WRAP
+# a ROUNDED VERTICAL BOX with ROOM NAME, TEMPERATURE AND HUMIDITY
 
+obj:
+  border_width: 2
+  border_color: 0xFF0000
+  radius: 10
+  #width: 100%
+  width: 100
+  widgets:
+    - label:
+        id: lbl_room_name_${id}
+        x: 5
+        y: 5
+        width: 90
+        #height: 50
+        text: "${room_name}"
+        text_font: nunito_20
+        text_align: CENTER
+        text_color: 0x00EE00
+        long_mode: WRAP
 
-  # TEMPERATURE
+      # TEMPERATURE
 
-- label:
-    id: lbl_icon_temp_${id}
-    x: 0
-    y: 50
-    width: 50
-    height: 40
-    text: "${mdi_thermometer}"
-    text_font: $icon_font_small
+    - label:
+        id: lbl_icon_temp_${id}
+        x: 0
+        y: 70
+        width: 50
+        height: 40
+        text: "${mdi_thermometer}"
+        text_font: $icon_font_small
 
-- label:
-    id: label_current_temp_${id}
-    x: 40
-    y: 60
-    width: 60
-    height: 50
-    text: "22.0°C"
-    text_font: nunito_18
+    - label:
+        id: label_current_temp_${id}
+        x: 30
+        y: 70
+        width: 60
+        height: 50
+        text: "22.0°C"
+        text_font: nunito_18
 
+      # HUMIDITY
 
+    - label:
+        id: lbl_icon_humidity_${id}
+        x: 0
+        y: 110
+        width: 50
+        height: 40
+        text: "${mdi_water_percent}"
+        text_font: $icon_font_small
 
-  # HUMIDITY
+    - label:
+        id: label_current_humidity_${id}
+        x: 30
+        y: 110
+        width: 60
+        height: 50
+        text: "55%"
+        text_font: nunito_18
 
-- label:
-    id: lbl_icon_humidity_${id}
-    x: 0
-    y: 90
-    width: 50
-    height: 40
-    text: "${mdi_water_percent}"
-    text_font: $icon_font_small
+      # WINDOW CONTACT SENSOR
 
-- label:
-    id: label_current_humidity_${id}
-    x: 40
-    y: 100
-    width: 60
-    height: 50
-    text: "55%"
-    text_font: nunito_18
+    - label:
+        id: lbl_icon_window_${id}
+        x: 30
+        y: 150
+        width: 50
+        height: 30
+        text: "${mdi_window_closed_variant}"
+        text_font: $icon_font_small
+
+  # - label:
+  #     id: label_window_status_${id}
+  #     x: 30
+  #     y: 170
+  #     width: 60
+  #     height: 50
+  #     text: "Closed"
+  #     text_font: nunito_18

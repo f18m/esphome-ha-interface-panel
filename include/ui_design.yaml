@@ -38,101 +38,90 @@ lvgl:
                 #text_color: 0x0000FF
                 height: 50
             tabs:
-              - name: Temperature
+              - name: Stanze
                 scrollable: false
                 widgets:
                   - obj:
-                      #id: temp
                       x: 0
                       y: 0
                       scrollable: false
                       layout: horizontal
                       widgets:
-                        - obj:
-                            border_width: 2
-                            border_color: 0xFF0000
-                            #grid_cell_row_pos: 0
-                            #grid_cell_column_pos: 0
-                            widgets: !include { 
-                              file: room_status_box.yaml, 
-                              vars: { 
-                                id: "bagno_p1", 
-                                room_name: "Bagno", 
-                                sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
-                              } 
-                            }
-                        - obj:
-                            border_width: 2
-                            border_color: 0x0000FF
-                            #grid_cell_row_pos: 0
-                            #grid_cell_column_pos: 1
-                            widgets: !include { 
-                              file: room_status_box.yaml, 
-                              vars: { 
-                                id: "cam_gialla", 
-                                room_name: "Cam Gialla", 
-                                sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
-                              } 
-                            }
-                        - obj:
-                            border_width: 2
-                            border_color: 0x0000FF
-                            # grid_cell_row_pos: 0
-                            # grid_cell_column_pos: 2
-                            widgets: !include { 
-                              file: room_status_box.yaml, 
-                              vars: { 
-                                id: "cam_arancione", 
-                                room_name: "Cam Arancione", 
-                                sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
-                              } 
-                            }
-                        - obj:
-                            border_width: 2
-                            border_color: 0x0000FF
-                            # grid_cell_row_pos: 0
-                            # grid_cell_column_pos: 3
-                            widgets: !include { 
-                              file: room_status_box.yaml, 
-                              vars: { 
-                                id: "cam_verde", 
-                                room_name: "Cam Verde", 
-                                sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
-                              } 
-                            }
+                        - !include { 
+                            file: room_status_box.yaml, 
+                            vars: { 
+                              id: "bagno_p1", 
+                              room_name: "Bagno", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
+                        - !include { 
+                            file: room_status_box.yaml, 
+                            vars: { 
+                              id: "cam_gialla", 
+                              room_name: "Cam. Gialla", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
+                        - !include { 
+                            file: room_status_box.yaml, 
+                            vars: { 
+                              id: "cam_arancione", 
+                              room_name: "Cam. Arancio", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
+                        - !include { 
+                            file: room_status_box.yaml, 
+                            vars: { 
+                              id: "cam_verde", 
+                              room_name: "Cam. Verde", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
 
 
               - name: Riscaldamento
                 scrollable: false
                 widgets:
                   - obj:
-                      id: a
-                      x: 10
-                      y: 10
+                      x: 0
+                      y: 0
                       scrollable: false
-                      widgets: !include { 
-                        file: set_temperature_row_with_icon.yaml, 
-                        vars: { 
-                          id: "diurno_p1", 
-                          icon: "$mdi_sun_thermometer",
-                          floor_name: "Giorno", 
-                          sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
-                        } 
-                      }
-                  - obj:
-                      id: b
-                      x: 10
-                      y: 120
-                      scrollable: false
-                      widgets: !include { 
-                        file: set_temperature_row_with_icon.yaml, 
-                        vars: { 
-                          id: "notturno_p1", 
-                          icon: "$mdi_coolant_temperature",
-                          floor_name: "Notte", 
-                          sensor_entity_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
-                        } 
-                      }
+                      layout:
+                        type: flex
+                        flex_flow: column
+                        #flex_align_main: space_evenly
+                        flex_align_main: start
+                        flex_align_track: center
+                        flex_align_cross: center
+                      widgets:
+                        - !include { 
+                            file: set_temperature_row_with_icon.yaml, 
+                            vars: { 
+                              id: "diurno_p1", 
+                              icon: "$mdi_sun_thermometer",
+                              floor_name: "Giorno", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                            } 
+                          }
+                        - !include { 
+                            file: set_temperature_row_with_icon.yaml, 
+                            vars: { 
+                              id: "notturno_p1", 
+                              icon: "$mdi_coolant_temperature",
+                              floor_name: "Notte", 
+                              sensor_entity_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
+                            } 
+                          }
+                        - label:
+                            id: target_temp_label
+                            x: 0
+                            y: 0
+                            width: 100%
+                            height: 30
+                            text: "Temperatura Target Attuale: 20.0°C"
+                            text_align: CENTER
 
               - name: Tapparelle
                 scrollable: false

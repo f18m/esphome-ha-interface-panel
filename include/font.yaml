@@ -70,4 +70,6 @@ font:
       $mdi_thermometer,
       $mdi_water_percent,
       $mdi_wifi,
+      $mdi_window_closed_variant,
+      $mdi_window_open_variant,
     ]
