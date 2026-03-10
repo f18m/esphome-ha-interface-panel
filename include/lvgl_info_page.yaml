@@ -41,7 +41,7 @@
     text: "MAC Address:"
     text_color: 0xCBD5E1
 - label:
-    id: lbl_mac_address
+    id: lbl_connected_mac
     grid_cell_column_pos: 1
     grid_cell_row_pos: 3
     grid_cell_x_align: STRETCH

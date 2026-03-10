@@ -1,0 +1,119 @@
+# The Waveshare ESP32-S3-Touch-LCD-3.5B 
+# is a 3.5inch 480x320 touchscreen display with an ESP32-S3 MCU.
+#
+# Schematic: https://files.waveshare.com/wiki/ESP32-S3-Touch-LCD-3.5B/ESP32-S3-Touch-LCD-3.5B-Schematic.pdf
+# Wiki:      https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-3.5B
+---
+
+substitutions:
+  # Screen Size
+  screen_height: 480
+  screen_width: 320
+  
+esphome:
+  name: waveshare-esp32-s3-touch
+  friendly_name: WaveShare ESP32-S3 Touch LCD 3.5B
+
+esp32:
+  board: esp32-s3-devkitc-1
+  variant: esp32s3
+  flash_size: 16MB
+  framework:
+    type: esp-idf
+
+psram:
+  mode: octal
+  speed: 80MHz    
+
+preferences:
+  flash_write_interval: 5min
+
+# Backlight control (LCD_BL)
+output:
+  - platform: ledc
+    pin: GPIO6
+    id: backlight_pwm
+    frequency: 5kHz
+
+light:
+  - platform: monochromatic
+    output: backlight_pwm
+    name: "Display Backlight"
+    id: display_backlight
+    restore_mode: ALWAYS_ON
+    
+# QSPI configuration for AXS15231B display controller
+spi:
+  - id: quad_spi
+    type: quad
+    clk_pin: GPIO5      # LCD_SCLK
+    data_pins:
+      - GPIO1           # LCD_DATA0
+      - GPIO2           # LCD_DATA1
+      - GPIO3           # LCD_DATA2
+      - GPIO4           # LCD_DATA3
+
+# Display configuration for AXS15231B
+display:
+  - platform: mipi_spi
+    bus_mode: quad
+    model: AXS15231
+    id: my_display
+    data_rate: 40MHz
+    spi_mode: mode0
+    dimensions:
+      width: 320
+      height: 480
+      offset_width: 0
+      offset_height: 0
+    # rotate the screen by 90 degrees as personally I found this screen to be
+    # better suited for an horizontal installation rather than a vertical
+    # install. If you plan to install this vertically, just remove the following
+    # line and the "transform" block in the "touchscreen" section below in this file.
+    rotation: 90
+    color_order: rgb
+    cs_pin: GPIO12      # LCD_CS
+    # FIXME TO TEST: reset pin should be avail via GPIO port expander pin 1
+    #reset_pin:
+
+# I2C configuration for AXS15231B touch controller
+i2c:
+  - id: touch_i2c
+    sda: GPIO8        # TP_SDA / ESP_SDA
+    scl: GPIO7        # TP_SCL / ESP_SCL
+    scan: true
+    frequency: 400kHz
+
+# TCA9554PWR GPIO Expander, very similar to the PCA9554
+pca9554:
+  - id: tca9554_gpio_expander
+    address: 0x20     # Default I2C address for TCA9554
+    i2c_id: touch_i2c
+
+# Touchscreen configuration for AXS15231B
+touchscreen:
+  - platform: axs15231
+    display: my_display
+    id: my_touchscreen
+    i2c_id: touch_i2c
+
+    # FIXME TO TEST: the interrupt line for the touch screen should enable
+    # better/faster touch interaction. The Interrupt line for touch controller
+    # should be avail via GPIO port expander pin 2
+    update_interval: 10ms    # Poll touchscreen every 10ms (100 Hz)
+
+    # this "transform" block is required to "align" the touch interface
+    # to the 90degrees rotation of the screen (see "display" definition)
+    transform:
+      swap_xy: true
+      mirror_x: false
+      mirror_y: true
+    # Uncomment the following block to log coordinates of touch points:
+    # this is useful to e.g. debug the mirror_x|y configs above
+    # on_update:
+    #   - lambda: |-
+    #       for (auto touch: touches)  {
+    #           if (touch.state <= 2) {
+    #             ESP_LOGI("Touch points:", "id=%d x=%d, y=%d", touch.id, touch.x, touch.y);
+    #           }
+    #       }

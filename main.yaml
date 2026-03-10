@@ -15,7 +15,7 @@ substitutions:
   text_color: white
   bg_color: black
   button_on_color: "ep_orange"
-  button_off_color: "very_dark_gray"
+  button_off_color: "darkgray"
   icon_on_color: "yellow"
   icon_off_color: "gray"
   label_on_color: "white"
@@ -59,46 +59,25 @@ esphome:
   name: "waveshare-esp32-s3-touch-v2"
   friendly_name: "Waveshare ESP32-S3-Touch-LCD-3.5B"
   comment: "Waveshare ESP32-S3-Touch-LCD-3.5B 480px * 320px Smart Screen"
-  on_boot:
-    - priority: 400
-      then:
-        - script.execute: update_loading_page
 
 logger:
 
 packages:
-  # Generic configuration for ESP32 screens
-  # SDL has no Wi-Fi
-  wifi: !include esphome-modular-lvgl-buttons/common/wifi.yaml
-  # Enable OTA updates with a status screen
-  ota_screen: !include esphome-modular-lvgl-buttons/common/ota.yaml
-  # All the colors
-  colors: !include esphome-modular-lvgl-buttons/common/color.yaml
-  # Some nice basic fonts
-  fonts: !include esphome-modular-lvgl-buttons/common/fonts.yaml
   # 1000s of glyphs
-  glyphs: !include esphome-modular-lvgl-buttons/common/mdi_glyph_substitutions.yaml
+  glyphs: !include include/mdi_glyph_substitutions.yaml
   # Some basic sensors
-  sensors: !include esphome-modular-lvgl-buttons/sensors/sensors_base.yaml
+  sensors: !include include/sensors_base.yaml
   # Styles + Themes
-  theme_style: !include esphome-modular-lvgl-buttons/common/theme_style.yaml
-  # Use this theme for debugging
-  # theme_style: !include esphome-modular-lvgl-buttons/common/theme_style_debug.yaml
-  # Include if your touch screen has a backlight. Also sets the time from HA
-  ##backlight: !include esphome-modular-lvgl-buttons/common/backlight_time.yaml
-  backlight: !include my-backlight.yaml
+  theme_style: !include include/theme_style.yaml
+  # Backlight control with screen saver
+  backlight: !include include/backlight.yaml
 
   # Harware description file
-  hardware: !include esphome-modular-lvgl-buttons/hardware/waveshare-esp32-s3-touch-lcd-3.5b.yaml
-
-  # Basic boot screen with ESPHome logo and device diagnostic info
-  loading_screen: !include esphome-modular-lvgl-buttons/pages/loading_480px.yaml
-  # info screen - WiFi login, IP address, MAC address etc
-  info_screen: !include esphome-modular-lvgl-buttons/pages/info.yaml
+  hardware: !include include/hw_waveshare-esp32-s3-touch-lcd-3.5b.yaml
 
   # MAIN UI DESIGN
   font: !include include/font.yaml
   scripts: !include include/scripts.yaml
-  ui_design: !include include/ui_design.yaml
+  ui_design: !include include/lvgl_ui_design.yaml
   heating_sensors: !include include/sensors.yaml
   api: !include include/api.yaml
