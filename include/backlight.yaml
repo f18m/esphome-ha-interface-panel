@@ -41,7 +41,6 @@ time:
                 state: !lambda 'return id(system_time).now().strftime("%a %d %b %Y - %I:%M:%S %p");'
 
     on_time:
-      # Trigger night mode at configured time
       # Update time display every minute
       - seconds: 0
         minutes: '*'

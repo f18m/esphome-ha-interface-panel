@@ -5,7 +5,7 @@
 # List of subtitutions:
 #   - id
 #   - icon
-#   - floor_name
+#   - time_schedule
 #   - ha_temperature_sensor_id: temperature sensor imported from HA
 #
 
@@ -34,7 +34,7 @@ obj:
         y: 25
         width: 170
         height: 30
-        text: "${floor_name}"
+        text: "${time_schedule}"
         text_color: 0xF8FAFC
     - button:
         id: btn_spin_down_daytime_${id}

@@ -16,16 +16,16 @@ api:
         condition:
           lambda: 'return (0 == client_info.find("Home Assistant "));'
         then:
-          - lvgl.widget.show: wifi_label
+          - lvgl.widget.show: lbl_wifi
           - lvgl.label.update:
-              id: wifi_label
+              id: lbl_wifi
               text_color: 0x22C55E
   on_client_disconnected:
     - if:
         condition:
           lambda: 'return (0 == client_info.find("Home Assistant "));'
         then:
-          - lvgl.widget.show: wifi_label
+          - lvgl.widget.show: lbl_wifi
           - lvgl.label.update:
-              id: wifi_label
+              id: lbl_wifi
               text_color: 0xEF4444

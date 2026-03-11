@@ -107,6 +107,9 @@ text_sensor:
               text:
                 format: "http://%s"
                 args: [ 'id(ip_address).state.c_str()' ]
+          - logger.log:
+              format: "Updated QRcode for IP address of this device to point to http://%s"
+              args: [ 'id(ip_address).state.c_str()' ]
 
     ssid:
       id: connected_ssid

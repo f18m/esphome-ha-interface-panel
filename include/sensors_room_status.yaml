@@ -29,7 +29,7 @@ sensor:
         id: lbl_current_humidity_${room_id}
         text: !lambda |-
           char buf[32];
-          sprintf(buf, "%d%%", x);
+          sprintf(buf, "%d%%", std::round(x));
           return std::string(buf);
 
 binary_sensor:

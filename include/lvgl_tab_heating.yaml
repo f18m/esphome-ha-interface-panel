@@ -1,0 +1,37 @@
+
+- obj:
+    x: 0
+    y: 0
+    scrollable: true
+    layout:
+      type: flex
+      flex_flow: column
+      #flex_align_main: space_evenly
+      flex_align_main: start
+      flex_align_track: center
+      flex_align_cross: center
+    widgets:
+      - !include { 
+          file: lvgl_row_set_temperature.yaml, 
+          vars: { 
+            id: "diurno_p1", 
+            icon: "$mdi_sun_thermometer",
+            time_schedule: "Giorno", 
+            ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+          } 
+        }
+      - !include { 
+          file: lvgl_row_set_temperature.yaml, 
+          vars: { 
+            id: "notturno_p1", 
+            icon: "$mdi_coolant_temperature",
+            time_schedule: "Notte", 
+            ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
+          } 
+        }
+      - !include { 
+          file: lvgl_row_current_temperature.yaml, 
+          vars: { 
+            id: "p1", 
+          } 
+        }
