@@ -6,6 +6,7 @@
 #   - ha_temperature_sensor_id: the ID of the temperature sensor to import from HA
 #   - ha_humidity_sensor_id: the ID of the humidity sensor to import from HA
 #   - ha_window_contact_sensor_id: the ID of the contact sensor to import from HA
+#   - ha_floor_heating_switch_id: the ID of the floor heating controller associated with the room
 
 sensor:
   # ROOM TEMPERATURE
@@ -19,6 +20,13 @@ sensor:
           char buf[32];
           sprintf(buf, "%.1f°C", x);
           return std::string(buf);
+    - lvgl.label.update:
+        id: lbl_current_temp_heating_${room_id}
+        text: !lambda |-
+          char buf[32];
+          sprintf(buf, "%.1f°C", x);
+          return std::string(buf);
+
 
   # ROOM HUMIDITY
 - platform: homeassistant
@@ -38,7 +46,6 @@ binary_sensor:
   - platform: homeassistant
     entity_id: ${ha_window_contact_sensor_id}
     id: sensor_contact_${room_id}
-    #attribute: temperature
     on_state:
       - lvgl.label.update:
           id: lbl_icon_window_${room_id}
@@ -47,3 +54,19 @@ binary_sensor:
               return "${mdi_window_open_variant}";
             }
             return "${mdi_window_closed_variant}";
+
+switch:
+    # FLOOR HEATING SWITCH
+  - platform: homeassistant
+    entity_id: ${ha_floor_heating_switch_id}
+    id: switch_floor_heating_${room_id}
+    on_turn_on:
+      - lvgl.label.update:
+          id: lbl_floor_heating_controller_${room_id}
+          text: !lambda |-
+            return "${mdi_radiator}";
+    on_turn_off:
+      - lvgl.label.update:
+          id: lbl_floor_heating_controller_${room_id}
+          text: !lambda |-
+            return "${mdi_radiator_off}";

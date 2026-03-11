@@ -15,7 +15,7 @@ obj:
   width: 440
   height: 80
   bg_color: 0x1E293B
-  border_color: 0xF59E0B
+  border_color: 0x334155
   border_width: 2
   radius: 10
   widgets:

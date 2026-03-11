@@ -130,4 +130,5 @@ font:
       $mdi_wifi,
       $mdi_window_closed_variant,
       $mdi_window_open_variant,
+      $mdi_arrow_down
     ]

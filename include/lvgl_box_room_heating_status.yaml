@@ -13,7 +13,9 @@ obj:
   border_color: 0x334155
   radius: 10
   #width: 100%
+  scrollable: false
   width: 100
+  height: 230
   widgets:
     - label:
         x: 5
@@ -26,65 +28,69 @@ obj:
         text_color: 0xF8FAFC
         long_mode: WRAP
 
-      # TEMPERATURE
+      # CURRENT TEMPERATURE
 
     - label:
         x: 0
         y: 70
         width: 50
-        height: 40
+        #height: 40
         text: "${mdi_thermometer}"
         text_font: $icon_font_small
         text_color: 0xF59E0B
 
     - label:
-        id: lbl_current_temp_${room_id}
+        id: lbl_current_temp_heating_${room_id}
         x: 30
         y: 70
         width: 60
-        height: 50
-        text: "22.0°C"
+        #height: 50
+        text: "20.0°C"
         text_font: nunito_18
         text_color: 0xF59E0B
 
-      # HUMIDITY
+
+      # arrow
+
+    - label:
+        x: 30
+        y: 100
+        width: 50
+        height: 40
+        text: "${mdi_arrow_down}"
+        text_font: $icon_font_small
+        text_color: 0xF59E0B
+
+
+      # TARGET TEMPERATURE
 
     - label:
         x: 0
-        y: 110
+        y: 140
         width: 50
         height: 40
-        text: "${mdi_water_percent}"
+        text: "${mdi_thermometer}"
         text_font: $icon_font_small
-        text_color: 0x38BDF8
+        text_color: 0xEE0000
 
     - label:
-        id: lbl_current_humidity_${room_id}
+        id: lbl_target_temp_heating_${room_id}
         x: 30
-        y: 110
+        y: 140
         width: 60
         height: 50
-        text: "55%"
+        text: "21.0°C"
         text_font: nunito_18
         text_color: 0xCBD5E1
 
-      # WINDOW CONTACT SENSOR
+      # FLOOR HEATING CONTROLLER SWITCH
 
     - label:
-        id: lbl_icon_window_${room_id}
+        id: lbl_floor_heating_controller_${room_id}
         x: 30
-        y: 150
+        y: 180
         width: 50
         height: 30
-        text: "${mdi_window_closed_variant}"
+        text: "${mdi_radiator}"
         text_font: $icon_font_small
         text_color: 0x22C55E
-
-  # - label:
-  #     id: lbl_window_status_${room_id}
-  #     x: 30
-  #     y: 170
-  #     width: 60
-  #     height: 50
-  #     text: "Closed"
-  #     text_font: nunito_18

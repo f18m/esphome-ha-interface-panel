@@ -35,3 +35,35 @@
             id: "p1", 
           } 
         }
+      - obj:
+          scrollable: false
+          layout: horizontal
+          widgets:
+            - !include { 
+                file: lvgl_box_room_heating_status.yaml, 
+                vars: { 
+                  room_id: "bagno_p1", 
+                  room_name: "Bagno", 
+                } 
+              }
+            - !include { 
+                file: lvgl_box_room_heating_status.yaml, 
+                vars: { 
+                  room_id: "cameretta_gialla", 
+                  room_name: "Cam. Gialla", 
+                } 
+              }
+            - !include { 
+                file: lvgl_box_room_heating_status.yaml, 
+                vars: { 
+                  room_id: "cameretta_arancione", 
+                  room_name: "Cam. Arancio", 
+                } 
+              }
+            - !include { 
+                file: lvgl_box_room_heating_status.yaml, 
+                vars: { 
+                  room_id: "cameretta_verde", 
+                  room_name: "Cam. Verde", 
+                } 
+              }

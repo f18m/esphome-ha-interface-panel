@@ -1,0 +1,55 @@
+sensor:
+  # CURRENT TARGET TEMPERATURE 
+  - platform: homeassistant
+    id: sensor_temp_target_now
+    entity_id: sensor.temperatura_target_attuale_p1
+    on_value:
+      # update target temperature on the "Riscaldamento" tab ROW
+      - lvgl.label.update:
+          id: lbl_current_target_temperature
+          text: !lambda |-
+            char buf[32];
+            sprintf(buf, "%.1f°C", x);
+            return std::string(buf);
+      - lvgl.label.update:
+          id: lbl_current_target_temperature_icon
+          text: !lambda |-
+            float diff = x - id(sensor_temp_diurno_p1).state;
+            if (diff < 0) {
+              diff = -diff;
+            }
+            if (diff < 0.01f) {
+              return "${mdi_sun_thermometer}";
+            }
+            return "${mdi_coolant_temperature}";
+
+      # update target temperature on the "Riscaldamento" tab,
+      # inside the box dedicated to each room
+      - lvgl.label.update:
+          id: lbl_target_temp_heating_bagno_p1
+          text: !lambda |-
+            char buf[32];
+            sprintf(buf, "%.1f°C", x);
+            return std::string(buf);
+      - lvgl.label.update:
+          id: lbl_target_temp_heating_cameretta_gialla
+          text: !lambda |-
+            char buf[32];
+            sprintf(buf, "%.1f°C", x);
+            return std::string(buf);
+      - lvgl.label.update:
+          id: lbl_target_temp_heating_cameretta_verde
+          text: !lambda |-
+            char buf[32];
+            sprintf(buf, "%.1f°C", x);
+            return std::string(buf);
+      - lvgl.label.update:
+          id: lbl_target_temp_heating_cameretta_arancione
+          text: !lambda |-
+            char buf[32];
+            sprintf(buf, "%.1f°C", x);
+            return std::string(buf);
+
+      - logger.log:
+          format: "Updated current target temperature to value %f"
+          args: [ 'id(sensor_temp_target_now).state' ]
