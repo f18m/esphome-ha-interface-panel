@@ -12,7 +12,6 @@ sensor:
 - platform: homeassistant
   entity_id: ${ha_temperature_sensor_id}
   id: sensor_temp_${room_id}
-  #attribute: temperature
   on_value:
     - lvgl.label.update:
         id: lbl_current_temp_${room_id}
@@ -25,13 +24,12 @@ sensor:
 - platform: homeassistant
   entity_id: ${ha_humidity_sensor_id}
   id: sensor_humidity_${room_id}
-  #attribute: temperature
   on_value:
     - lvgl.label.update:
         id: lbl_current_humidity_${room_id}
         text: !lambda |-
           char buf[32];
-          sprintf(buf, "%.1f°C", x);
+          sprintf(buf, "%d%%", x);
           return std::string(buf);
 
 binary_sensor:
