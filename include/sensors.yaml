@@ -8,11 +8,10 @@
 # SENSORS
 #
 
-# ROOM STATUS
-
 packages:
 
-  # Room sensors
+  # Import from HA the room sensors
+
   room1: !include { 
       file: sensors_room_status.yaml, 
       vars: { 
@@ -22,26 +21,51 @@ packages:
         ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_finestra_bagno_p1_contact"
       } 
     }
+  room2: !include { 
+      file: sensors_room_status.yaml, 
+      vars: { 
+        room_id: "cameretta_verde",
+        ha_temperature_sensor_id: "sensor.lumi_sensore_ambientale_cameretta_verde_temperature",
+        ha_humidity_sensor_id: "sensor.lumi_sensore_ambientale_cameretta_verde_humidity",
+        ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_portafinestra_cam_verde_contact"
+      }
+    }
+  room3: !include { 
+      file: sensors_room_status.yaml, 
+      vars: { 
+        room_id: "cameretta_gialla",
+        ha_temperature_sensor_id: "sensor.tasmota_sht4x_temperature",
+        ha_humidity_sensor_id: "sensor.tasmota_sht4x_humidity",
+        ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_cameretta_gialla_contact"
+      }
+    }
+  room4: !include { 
+      file: sensors_room_status.yaml, 
+      vars: { 
+        room_id: "cameretta_arancione",
+        ha_temperature_sensor_id: "sensor.broadlink_smart_ir_remote_p1_cameretta_arancione_temperatura",
+        ha_humidity_sensor_id: "sensor.broadlink_smart_ir_remote_p1_cameretta_arancione_umidita",
+        ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_cameretta_arancione_contact"
+      }
+    }
 
-sensor:
 
-  # HEATING TEMPS
 
-  - platform: homeassistant
-    id: temperatura_riscaldamento_diurno_stanze_p1
-    entity_id: input_number.temperatura_riscaldamento_diurno_stanze_p1
-    #attribute: temperature
-    on_value:
-      - lvgl.spinbox.update:
-          id: spinbox_temperature_diurno_p1
-          value: !lambda return x;
+  # Import from HA the helpers that drive heating automations
 
-  - platform: homeassistant
-    id: temperatura_riscaldamento_notturno_stanze_p1
-    entity_id: input_number.temperatura_riscaldamento_notturno_stanze_p1
-    #attribute: temperature
-    on_value:
-      - lvgl.spinbox.update:
-          id: spinbox_temperature_notturno_p1
-          value: !lambda return x;
+  temp_setting1: !include { 
+      file: sensors_temperature_settings.yaml, 
+      vars: { 
+        id: "diurno_p1",
+        ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1",
+      }
+    }
+  temp_setting2: !include { 
+      file: sensors_temperature_settings.yaml, 
+      vars: { 
+        id: "notturno_p1",
+        ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1",
+      }
+    }
+
 

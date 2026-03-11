@@ -66,21 +66,21 @@ lvgl:
                         - !include { 
                             file: lvgl_room_status_box.yaml, 
                             vars: { 
-                              room_id: "cam_gialla", 
+                              room_id: "cameretta_gialla", 
                               room_name: "Cam. Gialla", 
                             } 
                           }
                         - !include { 
                             file: lvgl_room_status_box.yaml, 
                             vars: { 
-                              room_id: "cam_arancione", 
+                              room_id: "cameretta_arancione", 
                               room_name: "Cam. Arancio", 
                             } 
                           }
                         - !include { 
                             file: lvgl_room_status_box.yaml, 
                             vars: { 
-                              room_id: "cam_verde", 
+                              room_id: "cameretta_verde", 
                               room_name: "Cam. Verde", 
                             } 
                           }
@@ -102,7 +102,7 @@ lvgl:
                         flex_align_cross: center
                       widgets:
                         - !include { 
-                            file: lvgl_set_temperature_row_with_icon.yaml, 
+                            file: lvgl_set_temperature_row.yaml, 
                             vars: { 
                               id: "diurno_p1", 
                               icon: "$mdi_sun_thermometer",
@@ -111,7 +111,7 @@ lvgl:
                             } 
                           }
                         - !include { 
-                            file: lvgl_set_temperature_row_with_icon.yaml, 
+                            file: lvgl_set_temperature_row.yaml, 
                             vars: { 
                               id: "notturno_p1", 
                               icon: "$mdi_coolant_temperature",

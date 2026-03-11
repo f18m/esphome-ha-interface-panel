@@ -1,69 +1,92 @@
 # File: lvgl_set_temperature_row.yaml
-# Purpose: Defines a reusable temperature-control row with label, spinbox,
-# and increment/decrement buttons.
+# Purpose: Defines a reusable temperature-control row with icon, label,
+# spinbox, and +/- buttons, to control one single temperature.
+#
 # List of subtitutions:
 #   - id
+#   - icon
 #   - floor_name
-#   - ha_temperature_sensor_id
+#   - ha_temperature_sensor_id: temperature sensor imported from HA
+#
 
-- label:
-    id: lbl_floor_${id}
-    x: 0
-    y: 0
-    width: 170
-    height: 30
-    text: ${floor_name}
-    text_color: 0xFF6B6B
-- button:
-    id: btn_spin_down_daytime_${id}
-    x: 175
-    y: 0
-    width: 40
-    height: 30
-    bg_color: 0x4F46E5
-    on_click:
-        - lvgl.spinbox.decrement: spinbox_temperature_${id}
-    widgets:
-      - label:
-          text: "-"
-          text_align: CENTER
-          text_color: 0xFFFFFF
-          align: CENTER
-- spinbox:
-    id: spinbox_temperature_${id}
-    x: 220
-    y: 0
-    width: 70
-    height: 30
-    value: 15
-    range_from: 15
-    range_to: 25
-    digits: 3
-    decimal_places: 1
-    text_color: 0x000000
-    text_align: CENTER
-    bg_color: 0xFFFFFF
-    border_width: 1
-    border_color: 0xCCCCCC
-    on_value:
-        then:
-        - homeassistant.action:
-            action: input_number.set_value
-            data:
-                entity_id: ${ha_temperature_sensor_id}
-                value: !lambda return x;
-- button:
-    id: btn_spin_up_daytime_${id}
-    x: 295
-    y: 0
-    width: 40
-    height: 30
-    bg_color: 0x4F46E5
-    on_click:
-        - lvgl.spinbox.increment: spinbox_temperature_${id}
-    widgets:
-      - label:
-          text: "+"
-          text_align: CENTER
-          text_color: 0xFFFFFF
-          align: CENTER
+obj:
+  x: 0
+  y: 0
+  width: 440
+  height: 80
+  bg_color: 0x1E293B
+  border_color: 0xF59E0B
+  border_width: 2
+  radius: 10
+  widgets:
+    - label:
+        id: lbl_icon_${id}
+        x: 15
+        y: 20
+        width: 40
+        height: 30
+        text: "${icon}"
+        text_font: $icon_font
+        text_color: 0xF59E0B
+    - label:
+        id: lbl_floor_${id}
+        x: 80
+        y: 25
+        width: 170
+        height: 30
+        text: "${floor_name}"
+        text_color: 0xF8FAFC
+    - button:
+        id: btn_spin_down_daytime_${id}
+        x: 180
+        y: 10
+        width: 70
+        height: 55
+        bg_color: 0xF59E0B
+        on_click:
+          - lvgl.spinbox.decrement: spinbox_temperature_${id}
+        widgets:
+          - label:
+              text: "-"
+              text_align: CENTER
+              text_color: 0x0F172A
+              align: CENTER
+    - spinbox:
+        id: spinbox_temperature_${id}
+        x: 270
+        y: 20
+        width: 70
+        height: 40
+        value: 15
+        range_from: 15
+        range_to: 25
+        digits: 3
+        decimal_places: 1
+        text_color: 0x0F172A
+        text_align: CENTER
+        text_font: nunito_18
+        bg_color: 0xF8FAFC
+        border_width: 1
+        border_color: 0x334155
+        on_value:
+          then:
+            - homeassistant.action:
+                action: input_number.set_value
+                data:
+                  entity_id: ${ha_temperature_sensor_id}
+                  value: !lambda return x;
+    - button:
+        id: btn_spin_up_daytime_${id}
+        x: 355
+        y: 10
+        width: 70
+        height: 55
+        bg_color: 0xF59E0B
+        on_click:
+          - lvgl.spinbox.increment: spinbox_temperature_${id}
+        widgets:
+          - label:
+              text: "+"
+              text_align: CENTER
+              text_color: 0x0F172A
+              align: CENTER

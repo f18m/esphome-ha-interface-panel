@@ -1,0 +1,17 @@
+# File: sensor_temperature_settings.yaml
+# Purpose: SENSORS to use together with the "lvgl_set_temperature_row.yaml"
+#
+# List of subtitutions:
+#   - id: the same ID you used when including "lvgl_set_temperature_row.yaml"
+#   - ha_temperature_sensor_id: the same ID you used when including "lvgl_set_temperature_row.yaml"
+
+sensor:
+  # TEMPERATURE
+  - platform: homeassistant
+    id: sensor_temp_${id}
+    entity_id: ${ha_temperature_sensor_id}
+    #attribute: temperature
+    on_value:
+      - lvgl.spinbox.update:
+          id: spinbox_temperature_${id}
+          value: !lambda return x;
