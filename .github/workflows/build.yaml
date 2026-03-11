@@ -21,6 +21,18 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v5
+      - name: Create dummy secrets.yaml
+        run: |
+          cat > secrets.yaml << 'EOF'
+          wifi_ssid: "dummy-ssid"
+          wifi_password: "dummy-password"
+          wifi_ap_password: "dummy-ap-password"
+          latitude: 0.0
+          longitude: 0.0
+          encryption_key: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="
+          ota_password: "00000000000000000000000000000000"
+          ha_long_lived_token: "Bearer dummy-token"
+          EOF
       - name: ESPHome
         uses: esphome/build-action@v7
         with:
