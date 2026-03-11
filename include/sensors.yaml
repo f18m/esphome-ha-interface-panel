@@ -1,16 +1,31 @@
+# File: sensors.yaml
+# Purpose: Defines Home Assistant sensor integrations that update LVGL room
+# temperature and heating controls.
+# List of subtitutions:
+#   - none
+
 #
 # SENSORS
 #
 
+# ROOM STATUS
+
+packages:
+
+  # Room sensors
+  room1: !include { 
+      file: sensors_room_status.yaml, 
+      vars: { 
+        room_id: "bagno_p1", 
+        ha_temperature_sensor_id: "sensor.lumi_sensore_ambientale_bagno_p1_temperature", 
+        ha_humidity_sensor_id: "sensor.lumi_sensore_ambientale_bagno_p1_humidity",
+        ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_finestra_bagno_p1_contact"
+      } 
+    }
+
 sensor:
-  # - platform: homeassistant
-  #   id: temperatura_riscaldamento_diurno_stanze_pt
-  #   entity_id: input_number.temperatura_riscaldamento_diurno_stanze_pt
-  #   #attribute: temperature
-  #   on_value:
-  #     - lvgl.spinbox.update:
-  #         id: spinbox_temperature_pt
-  #         value: !lambda return x;
+
+  # HEATING TEMPS
 
   - platform: homeassistant
     id: temperatura_riscaldamento_diurno_stanze_p1
@@ -29,12 +44,4 @@ sensor:
       - lvgl.spinbox.update:
           id: spinbox_temperature_notturno_p1
           value: !lambda return x;
-  # - platform: homeassistant
-  #   id: temperatura_riscaldamento_diurno_stanze_p2
-  #   entity_id: input_number.temperatura_riscaldamento_diurno_stanze_p2
-  #   #attribute: temperature
-  #   on_value:
-  #     - lvgl.spinbox.update:
-  #         id: spinbox_temperature_p2
-  #         value: !lambda return x;
 

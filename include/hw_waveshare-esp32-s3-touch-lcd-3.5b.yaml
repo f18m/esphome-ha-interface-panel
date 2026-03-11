@@ -1,9 +1,15 @@
+# File: hw_waveshare-esp32-s3-touch-lcd-3.5b.yaml
+# Purpose: Declares hardware setup for the Waveshare ESP32-S3 Touch LCD
+# 3.5B (display, touch, buses, backlight).
+#
 # The Waveshare ESP32-S3-Touch-LCD-3.5B 
 # is a 3.5inch 480x320 touchscreen display with an ESP32-S3 MCU.
 #
 # Schematic: https://files.waveshare.com/wiki/ESP32-S3-Touch-LCD-3.5B/ESP32-S3-Touch-LCD-3.5B-Schematic.pdf
 # Wiki:      https://www.waveshare.com/wiki/ESP32-S3-Touch-LCD-3.5B
----
+#
+# List of subtitutions:
+#   - none
 
 substitutions:
   # Screen Size

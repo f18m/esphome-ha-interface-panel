@@ -1,3 +1,9 @@
+# File: hw_sdl.yaml
+# Purpose: Provides SDL-based display/touchscreen and mock backlight output
+# for desktop testing.
+# List of subtitutions:
+#   - none
+
 # SDL screen for testing
 # Hardware configuration file
 

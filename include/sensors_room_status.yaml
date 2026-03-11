@@ -1,0 +1,51 @@
+# File: sensor_room_status.yaml
+# Purpose: SENSORS to use together with the "lvgl_room_status_box.yaml"
+#
+# List of subtitutions:
+#   - room_id: the same ID you used when including "lvgl_room_status_box.yaml"
+#   - ha_temperature_sensor_id: the ID of the temperature sensor to import from HA
+#   - ha_humidity_sensor_id: the ID of the humidity sensor to import from HA
+#   - ha_window_contact_sensor_id: the ID of the contact sensor to import from HA
+
+sensor:
+  # ROOM TEMPERATURE
+- platform: homeassistant
+  entity_id: ${ha_temperature_sensor_id}
+  id: sensor_temp_${room_id}
+  #attribute: temperature
+  on_value:
+    - lvgl.label.update:
+        id: lbl_current_temp_${room_id}
+        text: !lambda |-
+          char buf[32];
+          sprintf(buf, "%.1f°C", x);
+          return std::string(buf);
+
+  # ROOM HUMIDITY
+- platform: homeassistant
+  entity_id: ${ha_humidity_sensor_id}
+  id: sensor_humidity_${room_id}
+  #attribute: temperature
+  on_value:
+    - lvgl.label.update:
+        id: lbl_current_humidity_${room_id}
+        text: !lambda |-
+          char buf[32];
+          sprintf(buf, "%.1f°C", x);
+          return std::string(buf);
+
+binary_sensor:
+
+    # ROOM WINDOW CONTACT SENSOR
+  - platform: homeassistant
+    entity_id: ${ha_window_contact_sensor_id}
+    id: sensor_contact_${room_id}
+    #attribute: temperature
+    on_state:
+      - lvgl.label.update:
+          id: lbl_icon_window_${room_id}
+          text: !lambda |-
+            if (x) {
+              return "${mdi_window_open_variant}";
+            }
+            return "${mdi_window_closed_variant}";

@@ -1,3 +1,8 @@
+# File: lvgl_ui_design.yaml
+# Purpose: Declares the main LVGL page layout, tabs, and included UI
+# components for the panel.
+#
+
 lvgl:
   pages:
     - id: main_page
@@ -54,33 +59,29 @@ lvgl:
                         - !include { 
                             file: lvgl_room_status_box.yaml, 
                             vars: { 
-                              id: "bagno_p1", 
+                              room_id: "bagno_p1", 
                               room_name: "Bagno", 
-                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
                             } 
                           }
                         - !include { 
                             file: lvgl_room_status_box.yaml, 
                             vars: { 
-                              id: "cam_gialla", 
+                              room_id: "cam_gialla", 
                               room_name: "Cam. Gialla", 
-                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
                             } 
                           }
                         - !include { 
                             file: lvgl_room_status_box.yaml, 
                             vars: { 
-                              id: "cam_arancione", 
+                              room_id: "cam_arancione", 
                               room_name: "Cam. Arancio", 
-                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
                             } 
                           }
                         - !include { 
                             file: lvgl_room_status_box.yaml, 
                             vars: { 
-                              id: "cam_verde", 
+                              room_id: "cam_verde", 
                               room_name: "Cam. Verde", 
-                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
                             } 
                           }
 
@@ -106,7 +107,7 @@ lvgl:
                               id: "diurno_p1", 
                               icon: "$mdi_sun_thermometer",
                               floor_name: "Giorno", 
-                              sensor_entity_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+                              ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
                             } 
                           }
                         - !include { 
@@ -115,7 +116,7 @@ lvgl:
                               id: "notturno_p1", 
                               icon: "$mdi_coolant_temperature",
                               floor_name: "Notte", 
-                              sensor_entity_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
+                              ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
                             } 
                           }
                         - label:

@@ -1,3 +1,9 @@
+# File: theme_style.yaml
+# Purpose: Defines default LVGL theme/style settings used across objects,
+# labels, buttons, and pages.
+# List of subtitutions:
+#   - none
+
 lvgl:
   page_wrap: true
   theme:
@@ -56,33 +62,33 @@ lvgl:
       text_color: $label_on_color
       align: center      
 
-select:
-  - platform: template
-    name: "Current Theme"
-    id: current_theme
-    icon: mdi:theme-light-dark
-    optimistic: true
-    options:
-      - Dark
-      - Light
-    initial_option: Dark
-    on_value:
-      then:
-        - if:
-            condition:
-              - lambda: 'return id(current_theme).current_option() == "Dark";'
-            then:
-              - lvgl.style.update:
-                  id: page_style
-                  bg_color: black
-                  text_color: white
-              - lvgl.widget.redraw
-        - if:
-            condition:
-              - lambda: 'return id(current_theme).current_option() == "Light";'
-            then:
-              - lvgl.style.update:
-                  id: page_style
-                  bg_color: white
-                  text_color: black
-              - lvgl.widget.redraw
+# select:
+#   - platform: template
+#     name: "Current Theme"
+#     id: current_theme
+#     icon: mdi:theme-light-dark
+#     optimistic: true
+#     options:
+#       - Dark
+#       - Light
+#     initial_option: Dark
+#     on_value:
+#       then:
+#         - if:
+#             condition:
+#               - lambda: 'return id(current_theme).current_option() == "Dark";'
+#             then:
+#               - lvgl.style.update:
+#                   id: page_style
+#                   bg_color: black
+#                   text_color: white
+#               - lvgl.widget.redraw
+#         - if:
+#             condition:
+#               - lambda: 'return id(current_theme).current_option() == "Light";'
+#             then:
+#               - lvgl.style.update:
+#                   id: page_style
+#                   bg_color: white
+#                   text_color: black
+#               - lvgl.widget.redraw

@@ -63,20 +63,25 @@ esphome:
 logger:
 
 packages:
+  # Packages edited from the great
+  #    https://github.com/agillis/esphome-modular-lvgl-buttons
+  # project:
+
   # 1000s of glyphs
   glyphs: !include include/mdi_glyph_substitutions.yaml
   # Some basic sensors
-  sensors: !include include/sensors_base.yaml
+  base_sensors: !include include/sensors_base.yaml
   # Styles + Themes
   theme_style: !include include/theme_style.yaml
   # Backlight control with screen saver
   backlight: !include include/backlight.yaml
-
-  # Harware description file
+  # Hardware description file
   hardware: !include include/hw_waveshare-esp32-s3-touch-lcd-3.5b.yaml
 
   # MAIN UI DESIGN
+  # The core part of this project:
   font: !include include/font.yaml
+  images: !include include/images.yaml
   scripts: !include include/scripts.yaml
   ui_design: !include include/lvgl_ui_design.yaml
   heating_sensors: !include include/sensors.yaml

@@ -1,3 +1,9 @@
+# File: lvgl_info_page.yaml
+# Purpose: Defines widgets shown in the Info tab, including diagnostics
+# labels and QR codes.
+# List of subtitutions:
+#   - none
+
 #
 # INFO TAB
 #

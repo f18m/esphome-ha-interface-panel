@@ -1,3 +1,9 @@
+# File: backlight.yaml
+# Purpose: Manages display backlight and LVGL pause/resume behavior based
+# on idle timeout and touch activity.
+# List of subtitutions:
+#   - touchscreen_idle_timeout
+
 lvgl:
 
   on_idle:

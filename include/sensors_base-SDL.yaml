@@ -1,3 +1,9 @@
+# File: sensors_base-SDL.yaml
+# Purpose: Declares base sensors/text sensors for SDL mode and links values
+# to Info page widgets.
+# List of subtitutions:
+#   - none
+
 ---
 binary_sensor:
   - platform: status

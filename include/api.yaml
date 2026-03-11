@@ -1,3 +1,8 @@
+# File: api.yaml
+# Purpose: Configures ESPHome API encryption and updates the UI Wi-Fi
+# indicator on HA connect/disconnect events.
+# List of subtitutions:
+#   - none
 
 # Enable Home Assistant API
 api:

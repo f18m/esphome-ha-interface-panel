@@ -1,3 +1,7 @@
+# File: font.yaml
+# Purpose: Defines text and Material Design icon fonts used by the LVGL interface.
+# List of subtitutions:
+#   - none
 
 #
 # FONTS

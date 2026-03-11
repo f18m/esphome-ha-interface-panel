@@ -1,3 +1,7 @@
+# File: scripts.yaml
+# Purpose: Defines reusable scripts, currently for periodic date/time label updates.
+# List of subtitutions:
+#   - none
 
 # Time update script - This is run once per second. Use it to update any time related labels.
 script:

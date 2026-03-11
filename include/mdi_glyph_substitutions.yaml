@@ -1,3 +1,9 @@
+# File: mdi_glyph_substitutions.yaml
+# Purpose: Maps Material Design icon names to unicode glyphs for use via
+# ESPHome substitutions.
+# List of subtitutions:
+#   - none
+
 ##Allows using mdi icons in esphome configs without having to look up the unicode value
 ##Uses the substitution engine to substitute the icon with the unicode. This means it is limited to a valid substitution format
 ##So instead of the home assistant mdi: way, icons are prefixed with mdi_. Slashes are also not allowed, so those are replaced with underscores as well.

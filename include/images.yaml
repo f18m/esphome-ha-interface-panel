@@ -1,3 +1,7 @@
+# File: images.yaml
+# Purpose: Registers static image assets used by LVGL pages.
+# List of subtitutions:
+#   - none
 
 image:
   rgb565:

@@ -1,5 +1,12 @@
+# File: lvgl_set_temperature_row_with_icon.yaml
+# Purpose: Defines a reusable temperature-control row with icon, label,
+# spinbox, and +/- buttons, to control one single temperature.
 #
-# A row of widgets to control the temperature of a single room, with a label and two buttons to increase/decrease the temperature.
+# List of subtitutions:
+#   - id
+#   - icon
+#   - floor_name
+#   - ha_temperature_sensor_id: temperature sensor imported from HA
 #
 
 obj:
@@ -66,7 +73,7 @@ obj:
             - homeassistant.action:
                 action: input_number.set_value
                 data:
-                  entity_id: ${sensor_entity_id}
+                  entity_id: ${ha_temperature_sensor_id}
                   value: !lambda return x;
     - button:
         id: btn_spin_up_daytime_${id}

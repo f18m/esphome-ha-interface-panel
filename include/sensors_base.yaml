@@ -1,3 +1,9 @@
+# File: sensors_base.yaml
+# Purpose: Declares base diagnostic sensors/text sensors and updates related
+# Info page labels/QRs.
+# List of subtitutions:
+#   - none
+
 ---
 button:
   - platform: restart
