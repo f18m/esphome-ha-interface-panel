@@ -16,17 +16,19 @@ substitutions:
   text_font: nunito_20
   
   # COLOURS
-  icon_on_color: 0x22C55E
-  icon_off_color: 0xEF4444
-  icon_temp_color: 0xF59E0B
-  icon_temp_target_color: 0xEE0000
-  icon_humidity_color: 0x38BDF8
+  # We use standard CSS colour names where possible,
+  # see https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/named-color
+  icon_on_color: mediumseagreen
+  icon_off_color: tomato
+  icon_temp_color: orange
+  icon_temp_target_color: red
+  icon_humidity_color: dodgerblue
   bg_color: 0x1E293B
   border_color: 0x334155
-  label_title_color: 0xF8FAFC
-  label_on_color: 0xF8FAFC
-  label_description_color: 0xCBD5E1
-  label_spinbtn_color: 0x0F172A
+  label_title_color: ghostwhite
+  label_on_color: ghostwhite
+  label_description_color: lightgray
+  label_spinbtn_color: black
   label_tabs_color: gray
 
   # Set touchscreen idle timeout
