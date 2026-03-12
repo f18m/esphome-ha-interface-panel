@@ -8,9 +8,9 @@
 #   - room_name
 
 obj:
-  bg_color: 0x1E293B
+  bg_color: $bg_color
   border_width: 2
-  border_color: 0x334155
+  border_color: $border_color
   radius: 10
   #width: 100%
   width: 100
@@ -23,7 +23,7 @@ obj:
         text: "${room_name}"
         text_font: nunito_20
         text_align: CENTER
-        text_color: 0xF8FAFC
+        text_color: $label_title_color
         long_mode: WRAP
 
       # TEMPERATURE
@@ -35,7 +35,7 @@ obj:
         height: 40
         text: "${mdi_thermometer}"
         text_font: $icon_font_small
-        text_color: 0xF59E0B
+        text_color: $icon_temp_color
 
     - label:
         id: lbl_current_temp_${room_id}
@@ -45,7 +45,7 @@ obj:
         height: 50
         text: "22.0°C"
         text_font: nunito_18
-        text_color: 0xF59E0B
+        text_color: $icon_temp_color
 
       # HUMIDITY
 
@@ -56,7 +56,7 @@ obj:
         height: 40
         text: "${mdi_water_percent}"
         text_font: $icon_font_small
-        text_color: 0x38BDF8
+        text_color: $icon_humidity_color
 
     - label:
         id: lbl_current_humidity_${room_id}
@@ -66,7 +66,7 @@ obj:
         height: 50
         text: "55%"
         text_font: nunito_18
-        text_color: 0xCBD5E1
+        text_color: $icon_humidity_color
 
       # WINDOW CONTACT SENSOR
 
@@ -78,7 +78,7 @@ obj:
         height: 30
         text: "${mdi_window_closed_variant}"
         text_font: $icon_font_small
-        text_color: 0x22C55E
+        text_color: $icon_on_color
 
   # - label:
   #     id: lbl_window_status_${room_id}

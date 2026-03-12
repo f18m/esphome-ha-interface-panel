@@ -16,23 +16,24 @@ lvgl:
       radius: 0
       scrollable: false      
       bg_opa: TRANSP
+      #bg_color: $bg_color
       bg_color: black
       # outline_width: 1
-      # outline_color: red
+      # outline_color: $icon_on_color
     label:
       scrollbar_mode: "OFF"
       border_width: 0
       scrollable: false
       text_font: $text_font
-      text_color: $label_off_color
+      text_color: $label_description_color
       # outline_width: 1
-      # outline_color: red
+      # outline_color: $icon_on_color
     image:
       scrollbar_mode: "OFF"
       border_width: 0
       scrollable: false
       # outline_width: 1
-      # outline_color: red
+      # outline_color: $icon_on_color
     button:
       scrollbar_mode: "OFF"
       width: 100%
@@ -45,13 +46,14 @@ lvgl:
       press_lock: false
       scroll_on_focus: true      
       bg_opa: cover
-      bg_color: $button_off_color
+      bg_color: $bg_color
       # outline_width: 1
-      # outline_color: red
+      # outline_color: $icon_on_color
 
   style_definitions:
     - id: page_style
       scrollbar_mode: "OFF"
+      #bg_color: $bg_color
       bg_color: black
       bg_opa: cover
       pad_all: 1
@@ -80,8 +82,8 @@ lvgl:
 #             then:
 #               - lvgl.style.update:
 #                   id: page_style
-#                   bg_color: black
-#                   text_color: white
+#                   bg_color: $bg_color
+#                   text_color: $text_color
 #               - lvgl.widget.redraw
 #         - if:
 #             condition:
@@ -89,6 +91,6 @@ lvgl:
 #             then:
 #               - lvgl.style.update:
 #                   id: page_style
-#                   bg_color: white
-#                   text_color: black
+#                   bg_color: $text_color
+#                   text_color: $bg_color
 #               - lvgl.widget.redraw

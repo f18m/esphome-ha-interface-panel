@@ -4,4 +4,4 @@
     widgets:
       - label:
           text: "TO DO"
-          text_color: 0x94A3B8
+          text_color: $label_description_color

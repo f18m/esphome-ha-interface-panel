@@ -2,7 +2,7 @@ sensor:
   # CURRENT TARGET TEMPERATURE 
   - platform: homeassistant
     id: sensor_temp_target_now
-    entity_id: sensor.temperatura_target_attuale_p1
+    entity_id: ${ha_temperature_sensor_id}
     on_value:
       # update target temperature on the "Riscaldamento" tab ROW
       - lvgl.label.update:

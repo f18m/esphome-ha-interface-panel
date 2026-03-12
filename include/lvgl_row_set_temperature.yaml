@@ -14,8 +14,8 @@ obj:
   y: 0
   width: 440
   height: 80
-  bg_color: 0x1E293B
-  border_color: 0x334155
+  bg_color: $bg_color
+  border_color: $border_color
   border_width: 2
   radius: 10
   widgets:
@@ -27,7 +27,7 @@ obj:
         height: 30
         text: "${icon}"
         text_font: $icon_font
-        text_color: 0xF59E0B
+        text_color: $icon_temp_color
     - label:
         id: lbl_floor_${id}
         x: 80
@@ -35,21 +35,21 @@ obj:
         width: 170
         height: 30
         text: "${time_schedule}"
-        text_color: 0xF8FAFC
+        text_color: $label_title_color
     - button:
         id: btn_spin_down_daytime_${id}
         x: 180
         y: 10
         width: 70
         height: 55
-        bg_color: 0xF59E0B
+        bg_color: $icon_temp_color
         on_click:
           - lvgl.spinbox.decrement: spinbox_temperature_${id}
         widgets:
           - label:
               text: "-"
               text_align: CENTER
-              text_color: 0x0F172A
+              text_color: $label_spinbtn_color
               align: CENTER
     - spinbox:
         id: spinbox_temperature_${id}
@@ -62,12 +62,12 @@ obj:
         range_to: 25
         digits: 3
         decimal_places: 1
-        text_color: 0x0F172A
+        text_color: $label_spinbtn_color
         text_align: CENTER
         text_font: nunito_18
-        bg_color: 0xF8FAFC
+        bg_color: $label_title_color
         border_width: 1
-        border_color: 0x334155
+        border_color: $border_color
         on_value:
           then:
             - homeassistant.action:
@@ -81,12 +81,12 @@ obj:
         y: 10
         width: 70
         height: 55
-        bg_color: 0xF59E0B
+        bg_color: $icon_temp_color
         on_click:
           - lvgl.spinbox.increment: spinbox_temperature_${id}
         widgets:
           - label:
               text: "+"
               text_align: CENTER
-              text_color: 0x0F172A
+              text_color: $label_spinbtn_color
               align: CENTER

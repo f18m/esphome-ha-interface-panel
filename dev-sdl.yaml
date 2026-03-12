@@ -10,28 +10,26 @@
 
 # Substitution variables used through the codebase
 substitutions:
+  # FONTS
   icon_font: mdi_icons_40
   icon_font_small: mdi_icons_20
   text_font: nunito_20
-  text_color: white
-  bg_color: black
-  button_on_color: "ep_orange"
-  button_off_color: "darkgray"
-  icon_on_color: "yellow"
-  icon_off_color: "gray"
-  label_on_color: "white"
-  label_off_color: "gray"
-  button_text_color: "white"
+  
+  # COLOURS
+  icon_on_color: 0x22C55E
+  icon_off_color: 0xEF4444
+  icon_temp_color: 0xF59E0B
+  icon_temp_target_color: 0xEE0000
+  icon_humidity_color: 0x38BDF8
+  bg_color: 0x1E293B
+  border_color: 0x334155
+  label_title_color: 0xF8FAFC
+  label_on_color: 0xF8FAFC
+  label_description_color: 0xCBD5E1
+  label_spinbtn_color: 0x0F172A
+  label_tabs_color: gray
 
-  # LCD back light modes - Code in backlight_time.yaml
-  # Set Day mode - starts at Sunrise - screen at 100%
-  touchscreen_daytime_brightness: "100%"
-  # Set Evening mode -  starts at Sunset - screen at 50% (may need to be brighter for some screens)
-  touchscreen_nighttime_brightness: "50%"
-  # Set Night mode start time (default is midnight)
-  touchscreen_night_hour: "0"      # Hour for night mode (0-23)
-  touchscreen_night_minute: "0"    # Minute for night mode (0-59)
-  # Set touchscreen idle timeout - In night mode back light goes off after this amount of time
+  # Set touchscreen idle timeout
   touchscreen_idle_timeout: "60s"
 
   # Screen Size

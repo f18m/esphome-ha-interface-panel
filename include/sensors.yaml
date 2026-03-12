@@ -73,6 +73,9 @@ packages:
     }
   temp_target: !include { 
       file: sensors_temperature_target.yaml, 
+      vars: { 
+        ha_temperature_sensor_id: "sensor.temperatura_target_attuale_p1",
+      }
     }
 
 

@@ -19,7 +19,7 @@ api:
           - lvgl.widget.show: lbl_wifi
           - lvgl.label.update:
               id: lbl_wifi
-              text_color: 0x22C55E
+              text_color: $icon_on_color
   on_client_disconnected:
     - if:
         condition:
@@ -28,4 +28,4 @@ api:
           - lvgl.widget.show: lbl_wifi
           - lvgl.label.update:
               id: lbl_wifi
-              text_color: 0xEF4444
+              text_color: $icon_off_color
