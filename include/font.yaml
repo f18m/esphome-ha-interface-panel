@@ -13,39 +13,39 @@ font:
   # Nunito SemiBold FONTs
   #
 
-  - file: "assets/fonts/Nunito-SemiBold.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/Nunito-SemiBold.ttf"
     id: nunito_72
     size: 72
     bpp: 8
-  - file: "assets/fonts/Nunito-SemiBold.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/Nunito-SemiBold.ttf"
     id: nunito_48
     size: 48
     bpp: 8
-  - file: "assets/fonts/Nunito-SemiBold.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/Nunito-SemiBold.ttf"
     id: nunito_42
     size: 42
     bpp: 8
-  - file: "assets/fonts/Nunito-SemiBold.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/Nunito-SemiBold.ttf"
     id: nunito_36
     size: 36
     bpp: 8
-  - file: "assets/fonts/Nunito-SemiBold.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/Nunito-SemiBold.ttf"
     id: nunito_24
     size: 24
     bpp: 8
-  - file: "assets/fonts/Nunito-SemiBold.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/Nunito-SemiBold.ttf"
     id: nunito_20
     size: 20
     bpp: 8
-  - file: "assets/fonts/Nunito-SemiBold.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/Nunito-SemiBold.ttf"
     id: nunito_18
     size: 18
     bpp: 8
-  - file: "assets/fonts/Nunito-SemiBold.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/Nunito-SemiBold.ttf"
     id: nunito_14
     size: 14
     bpp: 8
-  - file: "assets/fonts/Nunito-SemiBold.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/Nunito-SemiBold.ttf"
     id: nunito_12
     size: 12
     bpp: 8
@@ -53,11 +53,11 @@ font:
   # 
   # Enphase Visuelt FONT
   # 
-  - file: "assets/fonts/epVisuelt-Regular.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/epVisuelt-Regular.ttf"
     id: visuelt_20
     size: 20
     bpp: 8
-  - file: "assets/fonts/epVisuelt-Regular.ttf"
+  - file: "https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/fonts/epVisuelt-Regular.ttf"
     id: visuelt_16
     size: 16
     bpp: 8

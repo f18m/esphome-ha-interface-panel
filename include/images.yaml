@@ -9,6 +9,6 @@ image:
       # - file: 'assets/images/homeassistant.png'
       #   id: ha_img
       #   resize: 400x82
-      - file: 'assets/images/esphome.png'
+      - file: 'https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/images/esphome.png'
         id: esphome_img
         resize: 320x95
