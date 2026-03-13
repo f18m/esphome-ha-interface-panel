@@ -53,6 +53,14 @@ wifi:
     ssid: "Waveshare-ESP32-S3-3.5B Fallback"
     password: !secret wifi_ap_password
 
+# Webserver is exposed under regular use
+web_server:
+  version: 3
+  port: 80
+  # Disable OTA updates for web_server only
+  # Captive portal will still have OTA access since it auto-loads the web server OTA platform
+  ota: false
+
 captive_portal:
 
 esphome:
