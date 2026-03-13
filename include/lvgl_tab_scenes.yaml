@@ -1,7 +1,25 @@
 - obj:
     width: 100%
     height: 100%
+    layout:
+      type: flex
+      flex_flow: column
+      flex_align_main: start
+      flex_align_track: center
+      flex_align_cross: center
     widgets:
-      - label:
-          text: "TO DO"
-          text_color: $label_description_color
+      - button:
+          width: 100%
+          height: 60
+          bg_color: $icon_temp_color
+          on_click:
+            - homeassistant.action:
+                action: scene.turn_on
+                data:
+                  entity_id: scene.riposino
+          widgets:
+            - label:
+                text: "Riposino"
+                text_align: CENTER
+                text_color: $label_spinbtn_color
+                align: CENTER
