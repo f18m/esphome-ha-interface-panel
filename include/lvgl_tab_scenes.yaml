@@ -12,12 +12,57 @@
           width: 100%
           height: 60
           bg_color: $icon_temp_color
+          pressed:
+            bg_color: darkorange
+          layout:
+            type: flex
+            flex_flow: row
+            flex_align_main: center
+            flex_align_cross: center
+            flex_align_track: center
+            pad_column: 10
+          on_click:
+            - homeassistant.action:
+                action: scene.turn_on
+                data:
+                  entity_id: scene.tapparelle_aperte_max
+          widgets:
+            - label:
+                text: "$mdi_white_balance_sunny"
+                text_align: CENTER
+                text_color: $label_spinbtn_color
+                text_font: $icon_font
+                align: CENTER
+            - label:
+                text: "Tapparelle Aperte Max"
+                text_align: CENTER
+                text_color: $label_spinbtn_color
+                align: CENTER
+      - button:
+          width: 100%
+          height: 60
+          bg_color: $icon_temp_color
+          pressed:
+            bg_color: darkorange
+          layout:
+            type: flex
+            flex_flow: row
+            flex_align_main: center
+            flex_align_cross: center
+            flex_align_track: center
+            pad_column: 10
           on_click:
             - homeassistant.action:
                 action: scene.turn_on
                 data:
                   entity_id: scene.riposino
           widgets:
+            - label:
+                text: "$mdi_bed"
+                text_align: CENTER
+                text_color: $label_spinbtn_color
+                text_font: $icon_font
+                align: CENTER
             - label:
                 text: "Riposino"
                 text_align: CENTER

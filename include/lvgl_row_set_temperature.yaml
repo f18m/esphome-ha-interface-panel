@@ -43,13 +43,16 @@ obj:
         width: 70
         height: 55
         bg_color: $icon_temp_color
+        pressed:
+          bg_color: darkorange
         on_click:
           - lvgl.spinbox.decrement: spinbox_temperature_${id}
         widgets:
           - label:
-              text: "-"
+              text: "$mdi_chevron_down"
               text_align: CENTER
               text_color: $label_spinbtn_color
+              text_font: $icon_font
               align: CENTER
     - spinbox:
         id: spinbox_temperature_${id}
@@ -82,11 +85,14 @@ obj:
         width: 70
         height: 55
         bg_color: $icon_temp_color
+        pressed:
+          bg_color: darkorange
         on_click:
           - lvgl.spinbox.increment: spinbox_temperature_${id}
         widgets:
           - label:
-              text: "+"
+              text: "$mdi_chevron_up"
               text_align: CENTER
               text_color: $label_spinbtn_color
+              text_font: $icon_font
               align: CENTER
