@@ -1,0 +1,13 @@
+packages:
+  remote_package_files:
+    url: https://github.com/f18m/esphome-ha-interface-panel
+    files: 
+      - path: main.yaml
+        vars:
+          encryption_key: "MqLWuv12+mOVDxRI7E0dK8Vx0+xy1gnRHEkzhXMBCac="
+          wifi_ssid: "Some-SSID"
+          wifi_password: "supersecretpassword"
+          wifi_ap_password: "deadbeefdead"
+          ota_password: "deadbeefdeadbeefdeadbeefdeadbeef"
+    ref: main  # optional
+    refresh: 1d  # optional

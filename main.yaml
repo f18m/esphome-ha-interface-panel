@@ -37,6 +37,14 @@ substitutions:
   screen_height: '320'
   screen_width: '480'
 
+  # secrets -- these allow the ESPHome device to "talk" to your Wifi and
+  # your HomeAssistant instance
+  encryption_key: "your_encryption_key_here"
+  ota_password: "your_ota_password_here"
+  wifi_ssid: "your_wifi_ssid_here"
+  wifi_password: "your_wifi_password_here"
+  wifi_ap_password: "your_wifi_ap_password_here"
+
 
 # ESPHome configuration specific to REAL DEVICE (not SDL)
 
@@ -55,13 +63,13 @@ wifi:
 
 # Webserver is exposed under regular use
 web_server:
-  version: 3
+  #version: 3
   port: 80
   # Disable OTA updates for web_server only
   # Captive portal will still have OTA access since it auto-loads the web server OTA platform
   ota: false
 
-captive_portal:
+#captive_portal:
 
 esphome:
   name: "waveshare-esp32-s3-touch-v2"
