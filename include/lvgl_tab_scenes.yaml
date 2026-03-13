@@ -1,0 +1,7 @@
+- obj:
+    width: 100%
+    height: 100%
+    widgets:
+      - label:
+          text: "TO DO"
+          text_color: $label_description_color

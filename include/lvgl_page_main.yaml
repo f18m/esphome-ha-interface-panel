@@ -52,7 +52,7 @@ lvgl:
                 widgets: !include lvgl_tab_rooms.yaml
 
 
-              - name: Riscaldamento
+              - name: Riscald.
                 scrollable: true
                 widgets: !include lvgl_tab_heating.yaml
 
@@ -61,17 +61,11 @@ lvgl:
                 scrollable: false
                 widgets: !include lvgl_tab_covers.yaml
 
+              - name: Scene
+                scrollable: false
+                widgets: !include lvgl_tab_scenes.yaml
+
+
               - name: Info
                 scrollable: false
-                widgets:
-                  - obj:
-                      width: 100%
-                      height: 100%
-                      bg_color: $bg_color
-                      layout:
-                        type: GRID
-                        grid_rows: [ content,content,content,content,content,content,content,content,content,content,content,content,content,content,content,content ]
-                        grid_columns: [ FR(45), FR(55) ]
-                        pad_column: 4
-                        pad_row: 5
-                      widgets: !include lvgl_tab_info.yaml
+                widgets: !include lvgl_tab_info.yaml

@@ -8,14 +8,15 @@
 #   - room_name
 
 obj:
+  # the height of this OBJ is declared in the parent container!
+  # I couldn't get layout to render correctly if I put the height here
+  # (not sure why)
+
   bg_color: $bg_color
   border_width: 2
   border_color: $border_color
   radius: 10
-  #width: 100%
   scrollable: false
-  width: 100
-  height: 230
   widgets:
     - label:
         x: 5
