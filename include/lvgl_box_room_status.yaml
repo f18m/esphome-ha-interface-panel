@@ -21,7 +21,7 @@ obj:
         width: 90
         #height: 50
         text: "${room_name}"
-        text_font: nunito_20
+        text_font: visuelt_20
         text_align: CENTER
         text_color: $label_title_color
         long_mode: WRAP

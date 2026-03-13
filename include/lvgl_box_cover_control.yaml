@@ -1,0 +1,97 @@
+# File: lvgl_box_cover_control.yaml
+# Purpose: Defines a reusable box that allows to control COVERS/SHUTTERS of a room.
+# This looks like a ROUNDED VERTICAL BOX.
+#
+# List of subtitutions:
+#   - room_id
+#   - room_name
+#   - 
+
+obj:
+  bg_color: $bg_color
+  border_width: 2
+  border_color: $border_color
+  radius: 10
+  scrollable: false
+
+  width: 110
+  height: 215
+
+  widgets:
+    - label:
+        x: 5
+        y: 5
+        width: 100
+        text: "${room_name}"
+        text_font: visuelt_16
+        text_align: CENTER
+        text_color: $label_title_color
+        long_mode: WRAP
+
+    # UP BUTTON
+    - button:
+        x: 5
+        y: 40
+        width: 100
+        height: 50
+        bg_color: $icon_temp_color
+        pressed:
+          bg_color: darkorange
+        widgets:
+          - label:
+              id: cov_up_${room_id}
+              align: CENTER
+              text: "$mdi_chevron_up"
+              text_font: $icon_font
+              text_color: $label_on_color
+        on_press:
+          then:
+            - homeassistant.action:
+                action: cover.open
+                data:
+                  entity_id: cover.${room_id}
+
+
+    # STOP BUTTON
+    - button:
+        x: 5
+        y: 95
+        width: 100
+        height: 50
+        bg_color: $icon_temp_color
+        pressed:
+          bg_color: darkorange
+        widgets:
+          - label:
+              id: cov_stop_${room_id}
+              align: CENTER
+              text: "STOP"
+              #text_font: $icon_font
+              text_color: $label_on_color
+        on_press:
+          then:
+            - homeassistant.action:
+                action: cover.stop
+                data:
+                  entity_id: cover.${room_id}
+    - button:
+        x: 5
+        y: 150
+        width: 100
+        height: 50
+        bg_color: $icon_temp_color
+        pressed:
+          bg_color: darkorange
+        widgets:
+          - label:
+              id: cov_down_${room_id}
+              align: CENTER
+              text: "$mdi_chevron_down"
+              text_font: $icon_font
+              text_color: $label_on_color
+        on_press:
+          then:
+            - homeassistant.action:
+                action: cover.close
+                data:
+                  entity_id: cover.${room_id}

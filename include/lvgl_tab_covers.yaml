@@ -1,7 +1,40 @@
+
 - obj:
-    width: 100%
-    height: 100%
+    scrollable: false
+    layout:
+      type: flex
+      flex_flow: row
+      flex_align_main: start
+      flex_align_track: center
+      flex_align_cross: center
+      pad_column: 5
+      pad_row: 0
     widgets:
-      - label:
-          text: "TO DO"
-          text_color: $label_description_color
+      - !include { 
+          file: lvgl_box_cover_control.yaml, 
+          vars: { 
+            room_id: "bagno_p1", 
+            room_name: "Bagno", 
+          } 
+        }
+      - !include { 
+          file: lvgl_box_cover_control.yaml, 
+          vars: { 
+            room_id: "cameretta_gialla", 
+            room_name: "Cam. Gialla", 
+          } 
+        }
+      - !include { 
+          file: lvgl_box_cover_control.yaml, 
+          vars: { 
+            room_id: "cameretta_arancione", 
+            room_name: "Cam. Arancio", 
+          } 
+        }
+      - !include { 
+          file: lvgl_box_cover_control.yaml, 
+          vars: { 
+            room_id: "cameretta_verde", 
+            room_name: "Cam. Verde", 
+          } 
+        }

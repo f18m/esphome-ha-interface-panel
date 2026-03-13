@@ -57,6 +57,10 @@ font:
     id: visuelt_20
     size: 20
     bpp: 8
+  - file: "assets/fonts/epVisuelt-Regular.ttf"
+    id: visuelt_16
+    size: 16
+    bpp: 8
 
 
   #

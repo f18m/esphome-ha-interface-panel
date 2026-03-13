@@ -34,28 +34,31 @@ lvgl:
             x: 0
             y: 35
             width: 480
-            height: 280
+            height: 285
             bg_color: $bg_color
             scrollable: false
             tab_style:
               #border_color: $icon_on_color
               #border_width: 6
-              height: 50
+              # height must be enough to be confortable to press:
+              height: 45
               bg_color: white
               items:
-                height: 50
                 bg_color: $border_color
                 text_color: $label_tabs_color
             tabs:
+
+              # each of this tab has 
+              # FULL WIDTH AVAILABLE: 480px
+              # HEIGHT AVAILABLE: 240px
+
               - name: Stanze
                 scrollable: false
                 widgets: !include lvgl_tab_rooms.yaml
 
-
               - name: Riscald.
                 scrollable: true
                 widgets: !include lvgl_tab_heating.yaml
-
 
               - name: Tapparelle
                 scrollable: false
@@ -64,7 +67,6 @@ lvgl:
               - name: Scene
                 scrollable: false
                 widgets: !include lvgl_tab_scenes.yaml
-
 
               - name: Info
                 scrollable: false
