@@ -7,38 +7,80 @@
 #   - ha_humidity_sensor_id: the ID of the humidity sensor to import from HA
 #   - ha_window_contact_sensor_id: the ID of the contact sensor to import from HA
 #   - ha_floor_heating_switch_id: the ID of the floor heating controller associated with the room
+#   - ha_cover_id: the ID of the cover entity associated with the window (for the open/close status)
 
 sensor:
   # ROOM TEMPERATURE
-- platform: homeassistant
-  entity_id: ${ha_temperature_sensor_id}
-  id: sensor_temp_${room_id}
-  on_value:
-    - lvgl.label.update:
-        id: lbl_current_temp_${room_id}
-        text: !lambda |-
-          char buf[32];
-          sprintf(buf, "%.1f°C", x);
-          return std::string(buf);
-    - lvgl.label.update:
-        id: lbl_current_temp_heating_${room_id}
-        text: !lambda |-
-          char buf[32];
-          sprintf(buf, "%.1f°C", x);
-          return std::string(buf);
+  - platform: homeassistant
+    entity_id: ${ha_temperature_sensor_id}
+    id: sensor_temp_${room_id}
+    on_value:
+      - lvgl.label.update:
+          id: lbl_current_temp_${room_id}
+          text: !lambda |-
+            char buf[32];
+            sprintf(buf, "%.1f°C", x);
+            return std::string(buf);
+      - lvgl.label.update:
+          id: lbl_current_temp_heating_${room_id}
+          text: !lambda |-
+            char buf[32];
+            sprintf(buf, "%.1f°C", x);
+            return std::string(buf);
 
 
-  # ROOM HUMIDITY
-- platform: homeassistant
-  entity_id: ${ha_humidity_sensor_id}
-  id: sensor_humidity_${room_id}
-  on_value:
-    - lvgl.label.update:
-        id: lbl_current_humidity_${room_id}
-        text: !lambda |-
-          char buf[32];
-          sprintf(buf, "%.0f%%", std::round(x));
-          return std::string(buf);
+    # ROOM HUMIDITY
+  - platform: homeassistant
+    entity_id: ${ha_humidity_sensor_id}
+    id: sensor_humidity_${room_id}
+    on_value:
+      - lvgl.label.update:
+          id: lbl_current_humidity_${room_id}
+          text: !lambda |-
+            char buf[32];
+            sprintf(buf, "%.0f%%", std::round(x));
+            return std::string(buf);
+
+    # ROOM COVER POSITION (for the window)
+  - platform: homeassistant
+    id: cover_position_${room_id}
+    entity_id: ${ha_cover_id}
+    attribute: current_position
+    on_value:
+      - if:
+          # is 100% open?
+          condition:
+            lambda: |-
+              return x == 100;
+          then:
+            # yes: then make a bit transparent the UP button, to give a visual
+            # feedback that it's not possible to open more
+            - lvgl.widget.update:
+                id: cover_up_${room_id}
+                text_opa: 60%
+          else:
+            - lvgl.widget.update:
+                id: cover_up_${room_id}
+                text_opa: 100%
+      - if:
+          # is 100% closed?
+          condition:
+            lambda: |-
+              return x == 0;
+          then:
+            # yes: then make a bit transparent the DOWN button, to give a visual
+            # feedback that it's not possible to close more
+            - lvgl.widget.update:
+                id: cover_down_${room_id}
+                text_opa: 60%
+          else:
+            - lvgl.widget.update:
+                id: cover_down_${room_id}
+                text_opa: 100%
+
+      - logger.log:
+          format: "Updated labels for UP/DOWN btns for cover of room ${room_id} to %s"
+          args: [ 'id(cover_position_${room_id}).state' ]
 
 binary_sensor:
 
@@ -70,3 +112,30 @@ switch:
           id: lbl_floor_heating_controller_${room_id}
           text: !lambda |-
             return "${mdi_radiator_off}";
+
+
+text_sensor:
+  # ROOM COVER STATUS (for the window)
+  - platform: homeassistant
+    id: cover_state_${room_id}
+    entity_id: ${ha_cover_id}
+    on_value:
+      - if:
+          # is the COVER currently opening or closing (=moving)?
+          condition:
+            lambda: |-
+              return ((0 == x.compare(std::string{"opening"})) or (0 == x.compare(std::string{"closing"})));
+          then:
+            - lvgl.label.update:
+                id: cover_stop_${room_id}
+                text: "STOP"
+          else:
+            - lvgl.label.update:
+                id: cover_stop_${room_id}
+                text:
+                  format: "%.0f%%"
+                  args: [ 'id(cover_position_${room_id}).get_state()' ]
+
+      - logger.log:
+          format: "Updated labels for STOP btn for cover of room ${room_id} to %s"
+          args: [ 'id(cover_position_${room_id}).state' ]

@@ -15,6 +15,7 @@
           vars: { 
             room_id: "bagno_p1", 
             room_name: "Bagno", 
+            ha_cover_id: "cover.tapparella_bagno_piano_primo"
           } 
         }
       - !include { 
@@ -22,6 +23,7 @@
           vars: { 
             room_id: "cameretta_gialla", 
             room_name: "Cam. Gialla", 
+            ha_cover_id: "cover.tapparella_cameretta_gialla"
           } 
         }
       - !include { 
@@ -29,6 +31,7 @@
           vars: { 
             room_id: "cameretta_arancione", 
             room_name: "Cam. Arancio", 
+            ha_cover_id: "cover.tapparella_cameretta_arancione_2"
           } 
         }
       - !include { 
@@ -36,5 +39,6 @@
           vars: { 
             room_id: "cameretta_verde", 
             room_name: "Cam. Verde", 
+            ha_cover_id: "cover.tapparella_cameretta_verde"
           } 
         }

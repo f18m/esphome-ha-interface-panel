@@ -19,7 +19,8 @@ packages:
         ha_temperature_sensor_id: "sensor.lumi_sensore_ambientale_bagno_p1_temperature", 
         ha_humidity_sensor_id: "sensor.lumi_sensore_ambientale_bagno_p1_humidity",
         ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_finestra_bagno_p1_contact",
-        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_bagno"
+        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_bagno",
+        ha_cover_id: "cover.tapparella_bagno_piano_primo"
       } 
     }
   room2: !include { 
@@ -29,7 +30,8 @@ packages:
         ha_temperature_sensor_id: "sensor.lumi_sensore_ambientale_cameretta_verde_temperature",
         ha_humidity_sensor_id: "sensor.lumi_sensore_ambientale_cameretta_verde_humidity",
         ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_portafinestra_cam_verde_contact",
-        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_verde"
+        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_verde",
+        ha_cover_id: "cover.tapparella_cameretta_verde"
       }
     }
   room3: !include { 
@@ -39,7 +41,8 @@ packages:
         ha_temperature_sensor_id: "sensor.tasmota_sht4x_temperature",
         ha_humidity_sensor_id: "sensor.tasmota_sht4x_humidity",
         ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_cameretta_gialla_contact",
-        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_gialla"
+        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_gialla",
+        ha_cover_id: "cover.tapparella_cameretta_gialla"
       }
     }
   room4: !include { 
@@ -49,7 +52,8 @@ packages:
         ha_temperature_sensor_id: "sensor.broadlink_smart_ir_remote_p1_cameretta_arancione_temperatura",
         ha_humidity_sensor_id: "sensor.broadlink_smart_ir_remote_p1_cameretta_arancione_umidita",
         ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_cameretta_arancione_contact",
-        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_arancione"
+        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_arancione",
+        ha_cover_id: "cover.tapparella_cameretta_arancione"
       }
     }
 
@@ -77,6 +81,3 @@ packages:
         ha_temperature_sensor_id: "sensor.temperatura_target_attuale_p1",
       }
     }
-
-
-

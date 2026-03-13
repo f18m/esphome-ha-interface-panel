@@ -5,7 +5,7 @@
 # List of subtitutions:
 #   - room_id
 #   - room_name
-#   - 
+#   - ha_cover_id
 
 obj:
   bg_color: $bg_color
@@ -39,7 +39,7 @@ obj:
           bg_color: darkorange
         widgets:
           - label:
-              id: cov_up_${room_id}
+              id: cover_up_${room_id}
               align: CENTER
               text: "$mdi_chevron_up"
               text_font: $icon_font
@@ -49,7 +49,7 @@ obj:
             - homeassistant.action:
                 action: cover.open
                 data:
-                  entity_id: cover.${room_id}
+                  entity_id: ${ha_cover_id}
 
 
     # STOP BUTTON
@@ -63,7 +63,7 @@ obj:
           bg_color: darkorange
         widgets:
           - label:
-              id: cov_stop_${room_id}
+              id: cover_stop_${room_id}
               align: CENTER
               text: "STOP"
               #text_font: $icon_font
@@ -73,7 +73,7 @@ obj:
             - homeassistant.action:
                 action: cover.stop
                 data:
-                  entity_id: cover.${room_id}
+                  entity_id: ${ha_cover_id}
     - button:
         x: 5
         y: 150
@@ -84,7 +84,7 @@ obj:
           bg_color: darkorange
         widgets:
           - label:
-              id: cov_down_${room_id}
+              id: cover_down_${room_id}
               align: CENTER
               text: "$mdi_chevron_down"
               text_font: $icon_font
@@ -94,4 +94,4 @@ obj:
             - homeassistant.action:
                 action: cover.close
                 data:
-                  entity_id: cover.${room_id}
+                  entity_id: ${ha_cover_id}
