@@ -10,13 +10,19 @@ else
 OPTIONS:= --device 192.168.1.97
 endif
 
+ifeq ($(CONFIG_FILE),)
+# default value
+CONFIG_FILE:=interface-panel.yaml
+endif
+
+
 flash-main:
 	@echo "Flashing the MAIN firmware..."
-	esphome run $(OPTIONS) main.yaml
+	esphome run $(OPTIONS) $(CONFIG_FILE)
 
 upload-main:
 	@echo "Uploading the MAIN firmware..."
-	esphome upload $(OPTIONS) main.yaml
+	esphome upload $(OPTIONS) $(CONFIG_FILE)
 
 
 # test with SDL emulator in local

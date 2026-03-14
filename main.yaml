@@ -9,6 +9,18 @@
 
 # Substitution variables used through the codebase
 substitutions:
+  # secrets -- these allow the ESPHome device to "talk" to your Wifi and
+  # your HomeAssistant instance
+  encryption_key: "your_encryption_key_here"
+  ota_password: "your_ota_password_here"
+  wifi_ssid: "your_wifi_ssid_here"
+  wifi_password: "your_wifi_password_here"
+  wifi_ap_password: "your_wifi_ap_password_here"
+
+  # --------------------------------------------------------------------------
+  # Everything below this line is not really meant to be overridden by the user, but you can if you want to
+  # --------------------------------------------------------------------------
+
   # FONTS
   icon_font: mdi_icons_40
   icon_font_small: mdi_icons_20
@@ -37,29 +49,21 @@ substitutions:
   screen_height: '320'
   screen_width: '480'
 
-  # secrets -- these allow the ESPHome device to "talk" to your Wifi and
-  # your HomeAssistant instance
-  encryption_key: "your_encryption_key_here"
-  ota_password: "your_ota_password_here"
-  wifi_ssid: "your_wifi_ssid_here"
-  wifi_password: "your_wifi_password_here"
-  wifi_ap_password: "your_wifi_ap_password_here"
-
 
 # ESPHome configuration specific to REAL DEVICE (not SDL)
 
+# Wireless Connectivity:
 ota:
   - platform: esphome
-    password: !secret ota_password
-
+    password: ${ota_password}
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
+  ssid: ${wifi_ssid}
+  password: ${wifi_password}
 
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
-    ssid: "Waveshare-ESP32-S3-3.5B Fallback"
-    password: !secret wifi_ap_password
+    ssid: "InterfacePanel Fallback"
+    password: ${wifi_ap_password}
 
 # Webserver is exposed under regular use
 web_server:
@@ -74,7 +78,7 @@ web_server:
 esphome:
   name: "waveshare-esp32-s3-touch-v2"
   friendly_name: "Waveshare ESP32-S3-Touch-LCD-3.5B"
-  comment: "Waveshare ESP32-S3-Touch-LCD-3.5B 480px * 320px Smart Screen"
+  comment: "ESPHome HomeAssistant General Purpose Interface Panel"
 
 logger:
 

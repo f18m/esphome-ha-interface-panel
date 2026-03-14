@@ -2,12 +2,12 @@
 # Purpose: Configures ESPHome API encryption and updates the UI Wi-Fi
 # indicator on HA connect/disconnect events.
 # List of subtitutions:
-#   - none
+#   - encryption_key
 
 # Enable Home Assistant API
 api:
   encryption:
-    key: !secret encryption_key
+    key: ${encryption_key}
 
   # logic related to the API connection status icon 
   #  https://esphome.io/cookbook/lvgl/#api-connection-status-icon

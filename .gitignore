@@ -2,5 +2,9 @@
 # This is an example and may include too much for your use-case.
 # You can modify this file to suit your needs.
 /.esphome/
-/secrets.yaml
+
 *.yaml.validated
+
+# local secrets file, not to be committed to version control
+secrets.yaml
+interface-panel*.yaml

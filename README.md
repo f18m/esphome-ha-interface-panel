@@ -90,10 +90,13 @@ to allow the device to talk to your Wifi network and your HomeAssistant instance
 See [ESPHome CLI intro](https://esphome.io/guides/getting_started_command_line/).
 Assuming you have `esphome` CLI utility working fine (e.g. you can run `esphome version`), follow this step by step procedure:
 
-1. Git clone this repository
+1. Create an `interface-panel.yaml` file containing the same config reported
+above in previous section. It points to this GH repository so that `esphome` will
+fetch this repo on the fly.
 
 2. Create a `secrets.yaml` file containing all secrets 
-to allow the device to talk to your Wifi network and your HomeAssistant instance.
+to allow the device to talk to your Wifi network and your HomeAssistant instance:
+`encryption_key`, `wifi_ssid`, etc.
 
 3. If this is the first time you're flashing the board (brand new device),
 connect the board via USB to the local computer and
@@ -101,7 +104,8 @@ update the `Makefile` to point to the right USB-TTY device, e.g. `/dev/ttyACM0`.
 If you're just updating the firmware, then you can do OTA update, just make sure
 that the IP in the `Makefile` is correct.
 
-3. Run `make flash-main` to do an update over the air (OTA). Run `make flash-main LOCALLY_ATTACHED=1` to do an update via an USB cable.
+4. Run `make flash-main` to do an update over the air (OTA). 
+Run `make flash-main LOCALLY_ATTACHED=1` to do an update via an USB cable.
 
 
 ## Installation within the electrical/wall box
