@@ -106,36 +106,12 @@ that the IP in the `Makefile` is correct.
 
 ## Installation within the electrical/wall box
 
-In my country (Italy), the typical wall box is the so-called `503` model, with dimensions of inner usable space roughly equal to:
-
-* width: 96mm
-* height: 70mm
-* depth: 48mm
-
-These play well with the Waveshare 3.5'' board which has dimensions:
-
-* width: 95mm
-* height: 59mm
-* depth: 14mm
-
-Moreover the board has a connector on the back which supports injecting the 5V power
-from a convenient power supply installed on the back of the panel:
-
-<img src="./docs/waveshare-connector-layout.png">
+See [Hardware Install](./docs/hardware-install.md).
 
 
-So I designed an [adapter plate](./wall-box-adapter/waveshare-503wallbox-adapter.scad) with [OpenSCAD](https://openscad.org/):
+## Screenshots & Photos
 
-<img src="./wall-box-adapter/preview.png">
-
-This can be 3D-printed. The LCD panel and its electronics are designed to be press-fit 
-within an hollow box (no screws). Behind the hollow box there
-are screw holes to mount the plate on the 503 wall box. 
-
-
-## Photos
-
-<img src="./docs/installation-photo1.jpeg">
+TO DO 
 
 
 ## How to Develop
