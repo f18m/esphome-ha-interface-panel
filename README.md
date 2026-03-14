@@ -1,6 +1,6 @@
 # ESPHome HomeAssistant Interface Panel
 
-An ESPHome-based touch screen panel to install in your house to interface with HomeAssistant.
+An [ESPHome](https://esphome.io/)-based touch screen panel to install in your house to interface with [Home Assistant](https://www.home-assistant.io/).
 This project is based on the [esphome-modular-lvgl-buttons library][1].
 
 ## Hardware Required
@@ -11,114 +11,15 @@ To use this project you should have an ESP32-powered board with an LCD screen of
 I'm currently using the [WaveShare ESP32-S3-Touch-LCD-3.5B][2].
 Alternatives include the `Guition`  and `Sunton` devices.
 
-TODO ADD PHOTO
+<img src="./docs/waveshare-photo1.png">
 
 
 ## Hardware Details
 
-The [WaveShare ESP32-S3-Touch-LCD-3.5B][2] board is equipped with:
+See [Hardware Details page](./docs/hardware.md)
 
 
-| Chip        | Type / Function            | What it does (short)                                   |
-|-------------|----------------------------|--------------------------------------------------------|
-| [AXS15231B](docs/AXS15231B_Datasheet_V0.5.pdf)   | Display Driver and Touch Panel Controller  | Drives LCD/TFT displays and touch panels       | 
-| [QMI8658](docs/QMI8658C.pdf)     | IMU sensor                 | 6-axis motion sensing (accelerometer + gyroscope)      |
-| [PCF85063](docs/PCF85063A.pdf)    | Real-Time Clock (RTC)      | Keeps date/time with ultra-low power                   |
-| [AXP2101](docs/X-power-AXP2101_SWcharge_V1.0.pdf)     | Power Management IC (PMIC) | Battery charging, power regulation, power sequencing   |
-| [ES8311](docs/ES8311.DS.pdf)      | Audio Codec                | Audio ADC/DAC for mic input and speaker/headphone out  |
-| [W25Q128JVSIQ](docs/W25Q128JV.pdf) | External SPI flash memory | 16MB NOR-Flash Memory                                  |
-| [TCA9554](docs/TCA9554.pdf)     | Port Expander              | Provides extra connections to e.g. LCD and Touch lines |
-
-Block diagram:
-
-```mermaid
-flowchart LR
-    USB[USB Type-C<br/>VBUS + USB D±]
-
-    ESP[ESP32-S3<br/>Wi-Fi / BLE MCU]
-
-    FLASH[SPI Flash<br/>W25Qxx]
-
-    LCDDRV[AXS15231B<br/>LCD and Touch Controller]
-    LCD[LCD Panel<br/>Backlight]
-
-    AUDIO[ES8311<br/>Audio Codec]
-    AMP[NS4150B<br/>Audio Amplifier]
-    SPK[Speaker / Mic]
-
-    IMU[QMI8658<br/>6-axis IMU]
-    RTC[PCF85063<br/>RTC]
-
-    IOX[TCA9554<br/>I/O Expander]
-
-    PMIC[AXP2101<br/>PMIC + Charger]
-    BAT[Li-Ion Battery]
-
-    %% Connections
-    USB -->|VBUS / USB| ESP
-    USB -->|VBUS| PMIC
-
-    PMIC -->|3V3 / 2V8 / RTC| ESP
-    PMIC -->|Power Rails| LCDDRV
-    PMIC -->|Power Rails| AUDIO
-    PMIC -->|Power Rails| IMU
-    PMIC -->|Power Rails| RTC
-    PMIC -->|Power Rails| IOX
-
-    BAT --> PMIC
-
-    ESP -->|SPI / QSPI| FLASH
-    ESP -->|SPI / QSPI| LCDDRV
-    LCDDRV --> LCD
-
-    ESP -->|I²C| LCDDRV
-    ESP -->|I²C| IMU
-    ESP -->|I²C| RTC
-    ESP -->|I²C| IOX
-    ESP -->|I²C| PMIC
-
-    ESP -->|I²S| AUDIO
-    AUDIO --> AMP
-    AMP --> SPK
-```
-
-Mapping between ESP chip and the AXS15231B controller:
-
-| Signal    | GPIO |
-|-----------|------|
-| LCD_CS    | GPIO12 |
-| LCD_SCLK  | GPIO5 |
-| LCD_DATA0 | GPIO1 |
-| LCD_DATA1 | GPIO2 |
-| LCD_DATA2 | GPIO3 |
-| LCD_DATA3 | GPIO4 |
-| LCD_BL    | GPIO6 |
-
-and for the Touchscreen interface (TP interface):
-
-| Signal | Connection |
-|--------|------------|
-| TP_SCL | GPIO7 |
-| TP_SDA | GPIO8 |
-| TP_INT | Accessible via GPIO expander TCA9554PWR |
-
-The GPIO expander (ESP) TCA9554PWR is connected to the ESP32 chip using the I2C bus:
-
-| Signal  | GPIO |
-|---------|------|
-| ESP_SCL | GPIO7 |
-| ESP_SDA | GPIO8 |
-
-I measured the board power consumption to be roughly:
-
-* 160mA at startup
-* 110mA in idle
-
-powering the board at 5V through the back-of-the-board connector.
-This shows an amazing <1W power consumption!
-
-
-## Software/Firmware
+## Software/Firmware Overview
 
 There are 2 ways to develop software for Waveshare devices, as suggested by Waveshare:
 
@@ -126,15 +27,81 @@ There are 2 ways to develop software for Waveshare devices, as suggested by Wave
 2. Arduino IDE
 
 However I've chosen a third way: using **ESPHome**.
-I contributed to the [esphome-modular-lvgl-buttons library][1] the support for the Waveshare
-hardware board and this repository contains a working [main.yaml](./main.yaml) ESPHome configuration file that can be used to generate the actual firmware binary and flash it on the board.
+[ESPHome](esphome.io) has support for all chips installed on the Waveshare device, see [Hardware Details page](./docs/hardware.md) and offers seamless integration
+with [Home Assistant](https://www.home-assistant.io/)
+
+This repository contains a working [main.yaml](./main.yaml) ESPHome configuration file that can be used to generate the actual firmware binary and flash it on the board.
+Please note that this is an [ESPHome package](https://esphome.io/components/packages/) and thus it uses [substitutions](https://esphome.io/components/substitutions/) to make the YAML config file as reusable as possible.
+
+The ESPHome firmware uses the [LVGL Graphics](https://esphome.io/components/lvgl/) to render the UI on the display.
 
 In addition this repository provides 2 more ESPHome configuration files:
 
-* [dev-sdl.yaml](./dev-sdl.yaml): this is a friendly version of [main.yaml](./main.yaml) that 
+* [dev-sdl.yaml](./dev-sdl.yaml): this is a development-friendly version of [main.yaml](./main.yaml) that 
 allows for quick iteration on your computer, using the SDL backend of ESPHome (so you can test UI changes without re-flashing all the times the real device).
 
 * [self-contained.yaml](./self-contained.yaml): this is a self-contained ESPHome firmware that does NOT use the [esphome-modular-lvgl-buttons library][1]. I used this as early experiment to interface the Waveshare panel with ESPHome.
+
+NOTE: Although I contributed to the [esphome-modular-lvgl-buttons library][1] the support for the Waveshare hardware board after some time I decided to decouple this project from [1]
+
+
+## Software/Firmware Installation
+
+For the very-first FLASH on the board, please use the CLI method described below.
+
+### Using ESPHome Builder
+
+See [ESPHome usage from Home Assistant UI](https://esphome.io/guides/getting_started_hassio/).
+Assuming you have ESPHome Builder installed and running,
+follow this step by step procedure:
+
+1. Click "New Device" in ESPHome Builder interface and choose "Empty Configuration"
+
+2. Copy-paste the following config:
+
+```yaml
+packages:
+  remote_package_files:
+    url: https://github.com/f18m/floor-heating-controller/
+    files: 
+      - path: main.yaml
+        vars:
+          encryption_key: !secret encryption_key
+          wifi_ssid: !secret wifi_ssid
+          wifi_password: !secret wifi_password
+          wifi_ap_password: !secret wifi_ap_password
+          ota_password: !secret ota_password
+    ref: main  # optional
+    refresh: 1d  # optional
+
+esphome:
+  name: "interfacepanel-p0"
+  friendly_name: InterfacePanel-P0
+```
+
+Make sure your ESPHome Builder `secrets` file contains above keys
+to allow the device to talk to your Wifi network and your HomeAssistant instance.
+
+3. Hit "Validate" and then "Install".
+
+
+### Using Command Line
+
+See [ESPHome CLI intro](https://esphome.io/guides/getting_started_command_line/).
+Assuming you have `esphome` CLI utility working fine (e.g. you can run `esphome version`), follow this step by step procedure:
+
+1. Git clone this repository
+
+2. Create a `secrets.yaml` file containing all secrets 
+to allow the device to talk to your Wifi network and your HomeAssistant instance.
+
+3. If this is the first time you're flashing the board (brand new device),
+connect the board via USB to the local computer and
+update the `Makefile` to point to the right USB-TTY device, e.g. `/dev/ttyACM0`.
+If you're just updating the firmware, then you can do OTA update, just make sure
+that the IP in the `Makefile` is correct.
+
+3. Run `make flash-main` to do an update over the air (OTA). Run `make flash-main LOCALLY_ATTACHED=1` to do an update via an USB cable.
 
 
 ## Installation within the electrical/wall box
@@ -168,10 +135,21 @@ are screw holes to mount the plate on the 503 wall box.
 
 ## Photos
 
-TO BE WRITTEN
+<img src="./docs/installation-photo1.jpeg">
+
 
 ## How to Develop
 
+Editing the LVGL configuration via YAMLs is a pain but after a while you will get used to it.
+The most useful command to develop changes to the UI is:
+
+```sh
+make test-local
+```
+
+that will use the SDL backend of ESPhome to render locally on your Linux workstation.
+Maintain the differences between [main.yaml](./main.yaml) and [dev-sdl.yaml](./dev-sdl.yaml) as minimal as possible
+to avoid mismatches between the SDL rendering and the actual rendering on the device.
 
 
 ## Links
