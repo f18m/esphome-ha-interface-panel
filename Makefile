@@ -24,6 +24,10 @@ upload-main:
 	@echo "Uploading the MAIN firmware..."
 	esphome upload $(OPTIONS) $(CONFIG_FILE)
 
+validate-main:
+	@echo "Validating the MAIN firmware..."
+	esphome config $(CONFIG_FILE) >$(CONFIG_FILE).validated
+
 
 # test with SDL emulator in local
 

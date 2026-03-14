@@ -47,9 +47,11 @@ obj:
         on_press:
           then:
             - homeassistant.action:
-                action: cover.open
+                action: cover.open_cover
                 data:
                   entity_id: ${ha_cover_id}
+            - logger.log:
+                format: "Sending HA request to open cover ${ha_cover_id}"
 
 
     # STOP BUTTON
@@ -71,9 +73,13 @@ obj:
         on_press:
           then:
             - homeassistant.action:
-                action: cover.stop
+                action: cover.stop_cover
                 data:
                   entity_id: ${ha_cover_id}
+            - logger.log:
+                format: "Sending HA request to stop cover ${ha_cover_id}"
+
+    # DOWN BUTTON
     - button:
         x: 5
         y: 150
@@ -92,6 +98,8 @@ obj:
         on_press:
           then:
             - homeassistant.action:
-                action: cover.close
+                action: cover.close_cover
                 data:
                   entity_id: ${ha_cover_id}
+            - logger.log:
+                format: "Sending HA request to close cover ${ha_cover_id}"

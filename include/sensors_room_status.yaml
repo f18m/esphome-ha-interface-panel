@@ -78,9 +78,9 @@ sensor:
                 id: cover_down_${room_id}
                 text_opa: 100%
 
-      - logger.log:
-          format: "Updated labels for UP/DOWN btns for cover of room ${room_id} to %s"
-          args: [ 'id(cover_position_${room_id}).state' ]
+      # - logger.log:
+      #     format: "Updated labels for UP/DOWN btns for cover of room ${room_id} to %d"
+      #     args: [ 'id(cover_position_${room_id}).state' ]
 
 binary_sensor:
 

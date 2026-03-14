@@ -53,7 +53,7 @@ packages:
         ha_humidity_sensor_id: "sensor.broadlink_smart_ir_remote_p1_cameretta_arancione_umidita",
         ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_cameretta_arancione_contact",
         ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_arancione",
-        ha_cover_id: "cover.tapparella_cameretta_arancione"
+        ha_cover_id: "cover.tapparella_cameretta_arancione_2"
       }
     }
 
