@@ -136,6 +136,6 @@ text_sensor:
                   format: "%.0f%%"
                   args: [ 'id(cover_position_${room_id}).get_state()' ]
 
-      - logger.log:
-          format: "Updated labels for STOP btn for cover of room ${room_id} to %s"
-          args: [ 'id(cover_position_${room_id}).state' ]
+      # - logger.log:
+      #     format: "Updated labels for STOP btn for cover of room ${room_id} to %s"
+      #     args: [ 'id(cover_position_${room_id}).state' ]
