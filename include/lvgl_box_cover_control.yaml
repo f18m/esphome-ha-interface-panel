@@ -31,9 +31,9 @@ obj:
     # UP BUTTON
     - button:
         x: 5
-        y: 40
+        y: 30
         width: 100
-        height: 50
+        height: 60
         bg_color: $icon_temp_color
         pressed:
           bg_color: darkorange
@@ -84,7 +84,7 @@ obj:
         x: 5
         y: 150
         width: 100
-        height: 50
+        height: 60
         bg_color: $icon_temp_color
         pressed:
           bg_color: darkorange

@@ -10,6 +10,18 @@
 
 # Substitution variables used through the codebase
 substitutions:
+  # secrets -- these allow the ESPHome device to "talk" to your Wifi and
+  # your HomeAssistant instance
+  encryption_key: "I445Nv3wkiOT85A1hLs1PZZB3orL15TB9W6K6Jc9tmE="
+  ota_password: "your_ota_password_here"
+  wifi_ssid: "your_wifi_ssid_here"
+  wifi_password: "your_wifi_password_here"
+  wifi_ap_password: "your_wifi_ap_password_here"
+
+  # --------------------------------------------------------------------------
+  # Everything below this line is not really meant to be overridden by the user, but you can if you want to
+  # --------------------------------------------------------------------------
+
   # FONTS
   icon_font: mdi_icons_40
   icon_font_small: mdi_icons_20
@@ -60,31 +72,41 @@ substitutions:
 esphome:
   name: sdl-480px-test
   friendly_name: SDL 480px-test
-  # on_boot:
-  #   - priority: 400
-  #     then:
-  #       - script.execute: update_loading_page
+  comment: "ESPHome HomeAssistant General Purpose Interface Panel"
+  
+# Webserver is exposed under regular use
+#web_server:
+#  version: 3
+#  port: 80
+  # Disable OTA updates for web_server only
+  # Captive portal will still have OTA access since it auto-loads the web server OTA platform
+#  ota: false
 
 logger:
   level: debug
 
 packages:
+  # Packages edited from the great
+  #    https://github.com/agillis/esphome-modular-lvgl-buttons
+  # project:
+
   # 1000s of glyphs
   glyphs: !include include/mdi_glyph_substitutions.yaml
   # Some basic sensors
-  sensors: !include include/sensors_base-SDL.yaml
+  base_sensors: !include include/sensors_base-SDL.yaml
   # Get the time from HA
   #time: !include esphome-modular-lvgl-buttons/common/time_homeassistant.yaml
   # Styles + Themes
   theme_style: !include include/theme_style.yaml
 
-  # Include if your touch screen has a backlight. Also sets the time from HA
+  # Backlight control with screen saver
   backlight: !include include/backlight.yaml
 
-  # Harware description file
+  # Hardware description file
   hardware: !include include/hw_sdl.yaml
 
   # MAIN UI DESIGN
+  # The core part of this project:
   font: !include include/font.yaml
   images: !include include/images.yaml
   scripts: !include include/scripts.yaml
