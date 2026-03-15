@@ -26,7 +26,12 @@ screw_spacing = 83.6;     // vertical center-to-center distance
 screw_diameter = 6;       // this is the screw head max diameter
 corner_radius = 3;        // rounded corners
 
-// Hollow box (INNER usable dimensions)
+// Hollow box 
+// The following are the INNER usable dimensions and they
+// match almost exactly the dimensions of the WaveShare 3.5'' 
+// Touch LCD; about 0.5mm have been added as buffer to allow
+// the screen to enter the inner hollow box despite mechanical
+// tolerances
 box_inner_width = 93;
 box_inner_height = 62;
 box_inner_depth = 13;
@@ -93,7 +98,7 @@ difference() {
             // ---- Top Dent ----
             translate([top_dent_x_offset,
                       box_inner_height/2 + wall_thickness/2,
-                      box_inner_depth/2])
+                      box_inner_depth/2])In this 
                 cube([dent_width,
                       wall_thickness*1.5,
                       dent_depth*2],

@@ -7,9 +7,12 @@ This project is based on the [esphome-modular-lvgl-buttons library][1].
 
 Check the [esphome-modular-lvgl-buttons library][1] project for a list of supported (touch)screens.
 
-To use this project you should have an ESP32-powered board with an LCD screen of roughly 3.5 inches.
+To use this project you should have an ESP32-powered board with an LCD screen of roughly 3.5 inches, with touchscreen support.
 I'm currently using the [WaveShare ESP32-S3-Touch-LCD-3.5B][2].
-Alternatives include the `Guition`  and `Sunton` devices.
+This a good board with a capacitive touchscreen, which feels good even in the
+era of smartphones equipped with super accurate, multitouch screens.
+Alternatives include the `Guition`  and `Sunton` devices,
+but I have no experience with those.
 
 <table><tr>
   <td width="50%"><img src="./docs/waveshare-photo1.png" width="400px"></td>
