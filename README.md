@@ -12,9 +12,9 @@ I'm currently using the [WaveShare ESP32-S3-Touch-LCD-3.5B][2].
 Alternatives include the `Guition`  and `Sunton` devices.
 
 <table><tr>
-  <td><img src="./docs/waveshare-photo1.png"></td>
-  <td><img src="./docs/waveshare-photo2.png">
-        <img src="./docs/waveshare-photo2-legend.png">
+  <td><img src="./docs/waveshare-photo1.png" width="100%"></td>
+  <td><img src="./docs/waveshare-photo2.png" width="100%">
+        <img src="./docs/waveshare-photo2-legend.png" width="100%">
         </td>
 </tr></table>
 

@@ -2,8 +2,8 @@
 
 # Overview
 
-<img src="./docs/waveshare-photo2.png">
-<img src="./docs/waveshare-photo2-legend.png">
+<img src="./waveshare-photo2.png">
+<img src="./waveshare-photo2-legend.png">
 
 
 # Details
