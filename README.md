@@ -11,13 +11,20 @@ To use this project you should have an ESP32-powered board with an LCD screen of
 I'm currently using the [WaveShare ESP32-S3-Touch-LCD-3.5B][2].
 Alternatives include the `Guition`  and `Sunton` devices.
 
-<img src="./docs/waveshare-photo1.png">
+<table><tr>
+  <td><img src="./docs/waveshare-photo1.png"></td>
+  <td><img src="./docs/waveshare-photo2.png">
+        <img src="./docs/waveshare-photo2-legend.png">
+        </td>
+</tr></table>
 
+## Mechanical Details
 
-## Hardware Details
+See [Mechanical Details page](./docs/mechanical.md)
 
-See [Hardware Details page](./docs/hardware.md)
+## Electronics Details
 
+See [Electronics Details page](./docs/electronics.md)
 
 ## Software/Firmware Overview
 
@@ -110,7 +117,7 @@ Run `make flash-main LOCALLY_ATTACHED=1` to do an update via an USB cable.
 
 ## Installation within the electrical/wall box
 
-See [Hardware Install](./docs/hardware-install.md).
+See [Mechanical Install](./docs/mechanical-install.md).
 
 
 ## Screenshots & Photos

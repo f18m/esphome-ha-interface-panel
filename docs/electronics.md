@@ -1,4 +1,12 @@
-# Hardware Details
+# Electronics Details
+
+# Overview
+
+<img src="./docs/waveshare-photo2.png">
+<img src="./docs/waveshare-photo2-legend.png">
+
+
+# Details
 
 The [WaveShare ESP32-S3-Touch-LCD-3.5B][2] board is equipped with:
 
