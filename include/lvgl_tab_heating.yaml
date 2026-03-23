@@ -4,18 +4,18 @@
     y: 0
     scrollable: true
     # total height computed as: 
-    #   80px [row] + 8px [padding] +
-    #   80px [row] + 8px [padding] +
-    #   80px [row] + 8px [padding] +
+    #   70px [row] + 4px [padding] +
+    #   70px [row] + 4px [padding] +
+    #   70px [row] + 4px [padding] +
     #   220px [row]
-    height: 484
+    height: 450
     layout:
       type: GRID
 
-      grid_rows: [ FR(10),FR(10),FR(10),FR(25) ]
+      grid_rows: [ FR(10),FR(10),FR(10),FR(30) ]
       grid_columns: [ FR(1) ]
       pad_column: 0
-      pad_row: 8
+      pad_row: 4
       # type: flex
       # flex_flow: column
       # #flex_align_main: space_evenly
@@ -23,7 +23,7 @@
       # flex_align_track: start
       # flex_align_cross: start
     widgets:
-      # this is 80px height
+      # this is 70px height
       - !include { 
           file: lvgl_row_set_temperature.yaml, 
           vars: { 
@@ -33,7 +33,7 @@
             ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
           } 
         }
-      # this is 80px height
+      # this is 70px height
       - !include { 
           file: lvgl_row_set_temperature.yaml, 
           vars: { 
@@ -43,7 +43,7 @@
             ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
           } 
         }
-        # this is 80px height
+        # this is 70px height
       - !include { 
           file: lvgl_row_current_temperature.yaml, 
           vars: { 
