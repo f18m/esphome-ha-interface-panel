@@ -123,11 +123,17 @@ See [Mechanical Install](./docs/mechanical-install.md).
 
 ## Screenshots & Photos
 
-<img src="./docs/esphome-ha-interface-panel-photo1.jpg" width="400px">
 
-<img src="./docs/esphome-ha-interface-panel-screenshot1.png" width="400px">
-<img src="./docs/esphome-ha-interface-panel-screenshot2.png" width="400px">
-<img src="./docs/esphome-ha-interface-panel-screenshot3.png" width="400px">
+<table><tr>
+  <td width="50%">
+    <img src="./docs/esphome-ha-interface-panel-photo1.jpg" width="400px">
+    <img src="./docs/esphome-ha-interface-panel-screenshot1.png" width="400px">
+  </td>
+  <td width="50%">
+    <img src="./docs/esphome-ha-interface-panel-screenshot2.png" width="400px">
+    <img src="./docs/esphome-ha-interface-panel-screenshot3.png" width="400px">
+  </td>
+</tr></table>
 
 
 ## How to Develop
