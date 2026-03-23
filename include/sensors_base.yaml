@@ -25,7 +25,7 @@ sensor:
   - platform: internal_temperature
     id: cpu_temperature
     name: "CPU Temperature"
-    unit_of_measurement: "°C"
+    #unit_of_measurement: "°C"
     icon: mdi:thermometer
     entity_category: diagnostic    
 
@@ -39,6 +39,7 @@ sensor:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
       - throttle: 60s
     unit_of_measurement: "%"
+    device_class: none
     entity_category: diagnostic
     on_value:
         then:
