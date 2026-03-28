@@ -6,6 +6,12 @@ In my country (Italy), the typical wall box is the so-called `503` model, with d
 * height: 70mm
 * depth: 48mm
 
+Here's a couple of pics of the wall box to get an idea:
+
+<img src="./wall_box_503.webp">
+
+<img src="./wall_box_503_dimensions.webp">
+
 These play well with the Waveshare 3.5'' board which has dimensions:
 
 * width: 95mm

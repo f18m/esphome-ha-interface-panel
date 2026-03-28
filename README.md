@@ -118,7 +118,7 @@ Run `make flash-main LOCALLY_ATTACHED=1` to do an update via an USB cable.
 
 ## Installation within the electrical/wall box
 
-See [Mechanical Install](./docs/mechanical-install.md).
+See [Installation into wall box](./docs/mechanical-install.md).
 
 
 ## Screenshots & Photos

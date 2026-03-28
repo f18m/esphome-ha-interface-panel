@@ -36,8 +36,9 @@ box_outer_width  = box_inner_width  + 2*box_wall_thickness;
 box_outer_height = box_inner_height + 2*box_wall_thickness;
 box_outer_depth  = box_inner_depth  + box_wall_thickness;
 // Hollow box finger dents (to extract the LCD panel easily)
-dent_width = 24;     // horizontal opening width
-dent_depth = 8;      // how deep into the wall
+dent_width = 24;          // horizontal opening width
+dent_depth = 8;           // how deep into the wall
+dent_corner_radius = 2;   // make the dents softer
 // The top dent must be aligned with Waveshare BOOT/RST/PWR buttons
 top_dent_x_offset = 16;
 // Rear connector opening
@@ -60,6 +61,18 @@ module rounded_box(w, h, d, r) {
     minkowski() {
         cube([w - 2*r, h - 2*r, d], center = true);
         cylinder(r = r, h = 0.001, center = true);
+    }
+}
+// A box with rounded edges along the Y axis, centered at origin.
+// w/h/d = full outer dimensions; r = corner radius
+module rounded_box_y(w, h, d, r) {
+    // Minkowski sum of a smaller box with a cylinder along Y
+    // produces rounded edges on the top/bottom/front/back faces,
+    // leaving the left/right (Y-facing) faces flat.
+    minkowski() {
+        cube([w - 2*r, h, d - 2*r], center = true);
+        rotate([90, 0, 0])
+            cylinder(r = r, h = 0.001, center = true);
     }
 }
 
@@ -88,22 +101,8 @@ difference() {
                             box_inner_height,
                             box_inner_depth + 1, // ensures full subtraction
                             max(0.1, box_corner_radius - box_wall_thickness));
-            // ---- Bottom Dent ----
-            translate([0,
-                      -box_inner_height/2 - box_wall_thickness/2,
-                      box_inner_depth/2])
-                cube([dent_width,
-                      box_wall_thickness*1.5,
-                      dent_depth*2],
-                      center = true);
-            // ---- Top Dent ----
-            translate([top_dent_x_offset,
-                      box_inner_height/2 + box_wall_thickness/2,
-                      box_inner_depth/2])
-                cube([dent_width,
-                      box_wall_thickness*1.5,
-                      dent_depth*2],
-                      center = true);
+            
+            
         }
         
         // --- Version Info ---
@@ -112,6 +111,22 @@ difference() {
                 linear_extrude(text_thickness)
                     text("WaveShare adapter v1", font="Nimbus Mono PS", size=4);
     }
+    // ---- Bottom Dent ----
+    translate([0,
+              -box_inner_height/2 - box_wall_thickness/2,
+              plate_thickness+box_inner_depth])
+        rounded_box_y(dent_width,
+                    box_wall_thickness*3,
+                    dent_depth*2,
+                    dent_corner_radius);
+    // ---- Top Dent ----
+    translate([top_dent_x_offset,
+              box_inner_height/2 + box_wall_thickness/2,
+              plate_thickness+box_inner_depth])
+        rounded_box_y(dent_width,
+                    box_wall_thickness*3,
+                    dent_depth*2,
+                    dent_corner_radius);
     
     // Screw holes
     for (y = [-screw_spacing/2, screw_spacing/2]) {
