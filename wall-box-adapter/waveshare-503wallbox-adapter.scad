@@ -109,7 +109,7 @@ difference() {
         translate([32, 0, -text_thickness])
             mirror([1,0,0])
                 linear_extrude(text_thickness)
-                    text("WaveShare adapter v1", font="Nimbus Mono PS", size=4);
+                    text("WaveShare adapter v2", font="Nimbus Mono PS", size=4);
     }
     // ---- Bottom Dent ----
     translate([0,
