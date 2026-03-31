@@ -46,28 +46,33 @@ lvgl:
               items:
                 bg_color: $border_color
                 text_color: $label_tabs_color
+                text_font: $icon_font
             tabs:
 
               # each of this tab has 
               # FULL WIDTH AVAILABLE: 480px
               # HEIGHT AVAILABLE: 240px
 
-              - name: Stanze
+              - name: "${mdi_thermometer_water}"
                 scrollable: false
                 widgets: !include lvgl_tab_rooms.yaml
 
-              - name: Riscald.
-                scrollable: true
-                widgets: !include lvgl_tab_heating.yaml
+              - name: "${mdi_thermometer_chevron_up}"
+                scrollable: false
+                widgets: !include lvgl_tab_heating_set_temp.yaml
 
-              - name: Tapparelle
+              - name: "${mdi_radiator}"
+                scrollable: false
+                widgets: !include lvgl_tab_heating_details.yaml
+
+              - name: "${mdi_window_shutter}"
                 scrollable: false
                 widgets: !include lvgl_tab_covers.yaml
 
-              - name: Scene
+              - name: "${mdi_cog}"
                 scrollable: false
                 widgets: !include lvgl_tab_scenes.yaml
 
-              - name: Info
+              - name: "${mdi_information}"
                 scrollable: false
                 widgets: !include lvgl_tab_info.yaml

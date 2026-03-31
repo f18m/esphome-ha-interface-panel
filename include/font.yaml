@@ -99,6 +99,11 @@ font:
       $mdi_thermometer,
       $mdi_water_percent,
       $mdi_wifi,
+      $mdi_thermometer_water,
+      $mdi_thermometer_chevron_up,
+      $mdi_window_shutter,
+      $mdi_cog,
+      $mdi_information,
     ]
   - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
     id: mdi_icons_20

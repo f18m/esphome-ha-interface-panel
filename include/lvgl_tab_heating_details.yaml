@@ -2,17 +2,13 @@
 - obj:
     x: 0
     y: 0
-    scrollable: true
+    scrollable: false
     # total height computed as: 
-    #   70px [row] + 4px [padding] +
-    #   70px [row] + 4px [padding] +
-    #   70px [row] + 4px [padding] +
     #   220px [row]
-    height: 450
+    height: 240
     layout:
       type: GRID
-
-      grid_rows: [ FR(10),FR(10),FR(10),FR(30) ]
+      grid_rows: [ FR(11) ]
       grid_columns: [ FR(1) ]
       pad_column: 0
       pad_row: 4
@@ -23,34 +19,6 @@
       # flex_align_track: start
       # flex_align_cross: start
     widgets:
-      # this is 70px height
-      - !include { 
-          file: lvgl_row_set_temperature.yaml, 
-          vars: { 
-            id: "diurno_p1", 
-            icon: "$mdi_sun_thermometer",
-            time_schedule: "Giorno", 
-            ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
-          } 
-        }
-      # this is 70px height
-      - !include { 
-          file: lvgl_row_set_temperature.yaml, 
-          vars: { 
-            id: "notturno_p1", 
-            icon: "$mdi_coolant_temperature",
-            time_schedule: "Notte", 
-            ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
-          } 
-        }
-        # this is 70px height
-      - !include { 
-          file: lvgl_row_current_temperature.yaml, 
-          vars: { 
-            id: "p1", 
-          } 
-        }
-        # this is 220px height
       - obj:
           scrollable: false
           layout: horizontal

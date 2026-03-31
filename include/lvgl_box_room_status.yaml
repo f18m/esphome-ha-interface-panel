@@ -61,7 +61,7 @@ obj:
     - label:
         id: lbl_current_humidity_${room_id}
         x: 30
-        y: 110
+        y: 115
         width: 60
         height: 50
         text: "55%"
@@ -73,7 +73,7 @@ obj:
     - label:
         id: lbl_icon_window_${room_id}
         x: 30
-        y: 150
+        y: 160
         width: 50
         height: 30
         text: "${mdi_window_closed_variant}"
