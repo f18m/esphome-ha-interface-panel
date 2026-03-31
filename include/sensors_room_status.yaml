@@ -96,6 +96,18 @@ binary_sensor:
               return "${mdi_window_open_variant}";
             }
             return "${mdi_window_closed_variant}";
+      - if:
+          condition:
+            lambda: |-
+              return x;
+          then:
+            - lvgl.label.update:
+                id: lbl_icon_window_${room_id}
+                text_color: red
+          else:
+            - lvgl.label.update:
+                id: lbl_icon_window_${room_id}
+                text_color: $icon_on_color
 
 switch:
     # FLOOR HEATING SWITCH
