@@ -14,7 +14,7 @@
     bg_color: $bg_color
     layout:
       type: GRID
-      grid_rows: [ content,content,content,content,content,content,content,content,content,content,content,content,content,content,content,content ]
+      grid_rows: [ content,content,content,content,content,content,content,content,content,content,content,content,content,content,content,content,content ]
       grid_columns: [ FR(45), FR(55) ]
       pad_column: 4
       pad_row: 5
@@ -24,26 +24,41 @@
           grid_cell_row_pos: 1
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
-          text: "ESPHome Version:"
+          text: "Uptime:"
           text_color: $label_description_color
       - label:
-          id: lbl_esphome_version
+          id: lbl_uptime
           grid_cell_column_pos: 1
           grid_cell_row_pos: 1
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
-          text: "Loading..."
+          text: "N/A"
           text_color: $label_on_color
       - label:
           grid_cell_column_pos: 0
           grid_cell_row_pos: 2
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
+          text: "ESPHome Version:"
+          text_color: $label_description_color
+      - label:
+          id: lbl_esphome_version
+          grid_cell_column_pos: 1
+          grid_cell_row_pos: 2
+          grid_cell_x_align: STRETCH
+          grid_cell_y_align: CENTER
+          text: "Loading..."
+          text_color: $label_on_color
+      - label:
+          grid_cell_column_pos: 0
+          grid_cell_row_pos: 3
+          grid_cell_x_align: STRETCH
+          grid_cell_y_align: CENTER
           text: "Build Date:"
           text_color: $label_description_color
       - label:
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 2
+          grid_cell_row_pos: 3
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text:
@@ -52,7 +67,7 @@
           text_color: $label_on_color
       - label:
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 3
+          grid_cell_row_pos: 4
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "MAC Address:"
@@ -60,14 +75,14 @@
       - label:
           id: lbl_connected_mac
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 3
+          grid_cell_row_pos: 4
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "00:00:00:00:00:00"
           text_color: $label_on_color
       - label:
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 4
+          grid_cell_row_pos: 5
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "IP Address:"
@@ -75,14 +90,14 @@
       - label:
           id: lbl_ip_address
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 4
+          grid_cell_row_pos: 5
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "0.0.0.0"
           text_color: $label_on_color
       - label:
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 5
+          grid_cell_row_pos: 6
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "Connected SSID"
@@ -90,14 +105,14 @@
       - label:
           id: lbl_connected_ssid
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 5
+          grid_cell_row_pos: 6
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "Updating..."
           text_color: $label_on_color
       - label:
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 6
+          grid_cell_row_pos: 7
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "WiFi Strength"
@@ -105,14 +120,14 @@
       - label:
           id: lbl_wifi_signal_db_percent
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 6
+          grid_cell_row_pos: 7
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "Updating..."
           text_color: $label_on_color
       - label:
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 7
+          grid_cell_row_pos: 8
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "Device Name:"
@@ -120,7 +135,7 @@
       - label:
           id: lbl_device_name
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 7
+          grid_cell_row_pos: 8
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "Updating..."
@@ -129,19 +144,19 @@
       # SPACER
       - obj:
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 8
+          grid_cell_row_pos: 9
           height: 20
 
       - label:
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 9
+          grid_cell_row_pos: 10
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "Captive Portal Wi-Fi"
           text_color: $label_on_color
       - label:
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 9
+          grid_cell_row_pos: 10
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "This device URL"
@@ -149,7 +164,7 @@
       - qrcode:
           id: qrcode_login
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 10
+          grid_cell_row_pos: 11
           grid_cell_x_align: START
           grid_cell_y_align: CENTER
           pad_left: 10
@@ -159,7 +174,7 @@
       - qrcode:
           id: qrcode_ip_address
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 10
+          grid_cell_row_pos: 11
           grid_cell_x_align: START
           grid_cell_y_align: CENTER
           pad_left: 10
@@ -171,19 +186,19 @@
       # SPACER
       - obj:
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 11
+          grid_cell_row_pos: 12
           height: 20
 
       - label:
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 12
+          grid_cell_row_pos: 13
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
           text: "Project website"
           text_color: $label_on_color
       - qrcode:
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 13
+          grid_cell_row_pos: 14
           grid_cell_x_align: START
           grid_cell_y_align: CENTER
           pad_left: 10
@@ -194,12 +209,12 @@
       # SPACER
       - obj:
           grid_cell_column_pos: 1
-          grid_cell_row_pos: 14
+          grid_cell_row_pos: 15
           height: 20
 
       - image:
           grid_cell_column_pos: 0
-          grid_cell_row_pos: 15
+          grid_cell_row_pos: 16
           grid_cell_column_span: 2
           grid_cell_x_align: CENTER
           grid_cell_y_align: CENTER

@@ -5,6 +5,34 @@
 #   - none
 
 ---
+sensor:
+  - platform: uptime
+    id: uptime_seconds
+    name: "Uptime"
+    update_interval: 5s
+    internal: true
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: lbl_uptime
+            text: !lambda |-
+              const uint32_t total_seconds = static_cast<uint32_t>(x);
+              const uint32_t days = total_seconds / 86400;
+              const uint32_t hours = (total_seconds % 86400) / 3600;
+              const uint32_t minutes = (total_seconds % 3600) / 60;
+              const uint32_t seconds = total_seconds % 60;
+              char buf[32];
+              if (days > 0) {
+                snprintf(buf, sizeof(buf), "%ud %uh %um", days, hours, minutes);
+              } else if (hours > 0) {
+                snprintf(buf, sizeof(buf), "%uh %um", hours, minutes);
+              } else if (minutes > 0) {
+                snprintf(buf, sizeof(buf), "%um %us", minutes, seconds);
+              } else {
+                snprintf(buf, sizeof(buf), "%us", seconds);
+              }
+              return std::string(buf);
+
 binary_sensor:
   - platform: status
     name: "Status"
