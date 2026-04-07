@@ -7,7 +7,7 @@ OPTIONS:=--device /dev/ttyACM0
 else
 # to upload to a device that has already been flashed with this project
 # and needs just to be updated over the network:
-OPTIONS:= --device 192.168.1.97
+OPTIONS:= --device smarthome-hmi-waveshare-lcd-p2.lan
 endif
 
 ifeq ($(CONFIG_FILE),)

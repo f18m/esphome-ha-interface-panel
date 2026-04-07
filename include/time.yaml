@@ -1,0 +1,24 @@
+# File: time.yaml
+# Purpose: Manages system time and updates related sensors.
+
+time:
+  - platform: homeassistant
+    id: system_time
+    on_time_sync:
+      - script.execute: time_update
+      
+      # Update last restart time (only once)
+      - if:
+          condition:
+            lambda: 'return id(device_last_restart).state == "";'
+          then:
+            - text_sensor.template.publish:
+                id: device_last_restart
+                state: !lambda 'return id(system_time).now().strftime("%a %d %b %Y - %I:%M:%S %p");'
+
+    on_time:
+      # Update time display every minute
+      - seconds: 0
+        minutes: '*'
+        then:
+          - script.execute: time_update

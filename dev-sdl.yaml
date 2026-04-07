@@ -113,3 +113,5 @@ packages:
   ui_design: !include include/lvgl_page_main.yaml
   heating_sensors: !include include/sensors.yaml
   api: !include include/api.yaml
+  time: !include include/time.yaml
+
