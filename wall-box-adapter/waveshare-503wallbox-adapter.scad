@@ -8,6 +8,15 @@
 // within an hollow box (no screws). Behind the hollow box there
 // are screw holes to mount the plate on the 503 wall box.
 //
+
+// Part selection:
+// - ADAPTER
+// - DENT_COVER
+// - OVERVIEW  (both parts above)
+
+PART = "ADAPTER";
+
+
 // ------------------
 // --- Parameters ---
 // ------------------
@@ -79,67 +88,97 @@ module rounded_box_y(w, h, d, r) {
 // ------------------
 // --- Main model ---
 // ------------------
-difference() {
-    union() {
-        // Base plate (2D rounded rectangle extruded)
-        linear_extrude(height = plate_thickness)
-            offset(r = plate_corner_radius)
-                square([plate_width - 2*plate_corner_radius,
-                        plate_height - 2*plate_corner_radius],
-                        center = true);
-        // ---- Hollow Box (Centered) ----
-        translate([0, 0, box_inner_depth/2 + plate_thickness])
-        difference() {
-            // Outer shell — rounded vertical corners
-            rounded_box(box_outer_width,
-                        box_outer_height,
-                        box_outer_depth,
-                        box_corner_radius);
-            // Inner cavity (open top) — rounded to match wall thickness
-            translate([0, 0, box_wall_thickness])
-                rounded_box(box_inner_width,
-                            box_inner_height,
-                            box_inner_depth + 1, // ensures full subtraction
-                            max(0.1, box_corner_radius - box_wall_thickness));
+module adapter() {
+    difference() {
+        union() {
+            // Base plate (2D rounded rectangle extruded)
+            linear_extrude(height = plate_thickness)
+                offset(r = plate_corner_radius)
+                    square([plate_width - 2*plate_corner_radius,
+                            plate_height - 2*plate_corner_radius],
+                            center = true);
+            // ---- Hollow Box (Centered) ----
+            translate([0, 0, box_inner_depth/2 + plate_thickness])
+            difference() {
+                // Outer shell — rounded vertical corners
+                rounded_box(box_outer_width,
+                            box_outer_height,
+                            box_outer_depth,
+                            box_corner_radius);
+                // Inner cavity (open top) — rounded to match wall thickness
+                translate([0, 0, box_wall_thickness])
+                    rounded_box(box_inner_width,
+                                box_inner_height,
+                                box_inner_depth + 1, // ensures full subtraction
+                                max(0.1, box_corner_radius - box_wall_thickness));
+                
+                
+            }
             
-            
+            // --- Version Info ---
+    //        translate([32, 0, -text_thickness])
+    //            mirror([1,0,0])
+    //                linear_extrude(text_thickness)
+    //                    text("WaveShare adapter v2", font="Nimbus Mono PS", size=4);
+        }
+        // ---- Bottom Dent ----
+        translate([0,
+                  -box_inner_height/2 - box_wall_thickness/2,
+                  plate_thickness+box_inner_depth])
+            rounded_box_y(dent_width,
+                        box_wall_thickness*3,
+                        dent_depth*2,
+                        dent_corner_radius);
+        // ---- Top Dent ----
+        translate([top_dent_x_offset,
+                  box_inner_height/2 + box_wall_thickness/2,
+                  plate_thickness+box_inner_depth])
+            rounded_box_y(dent_width,
+                        box_wall_thickness*3,
+                        dent_depth*2,
+                        dent_corner_radius);
+        
+        // Screw holes
+        for (y = [-screw_spacing/2, screw_spacing/2]) {
+            translate([y, 0, +plate_thickness])
+                cylinder(d=screw_diameter, h=plate_thickness*1.9);
+            translate([y, 0, -plate_thickness])
+                cylinder(d=screw_diameter*0.6, h=plate_thickness*4);
         }
         
-        // --- Version Info ---
-        translate([32, 0, -text_thickness])
-            mirror([1,0,0])
-                linear_extrude(text_thickness)
-                    text("WaveShare adapter v2", font="Nimbus Mono PS", size=4);
+        // rear connector (for power)
+        translate([0, -rear_connector_y_offset, 0])
+            cube([rear_connector_width*1.2,
+                  rear_connector_height*1.5,
+                  plate_thickness*4],
+                  center = true);
     }
-    // ---- Bottom Dent ----
-    translate([0,
-              -box_inner_height/2 - box_wall_thickness/2,
-              plate_thickness+box_inner_depth])
-        rounded_box_y(dent_width,
-                    box_wall_thickness*3,
-                    dent_depth*2,
-                    dent_corner_radius);
-    // ---- Top Dent ----
+}
+
+module dent_cover() {
+    // ---- Dent Cover ----
     translate([top_dent_x_offset,
-              box_inner_height/2 + box_wall_thickness/2,
-              plate_thickness+box_inner_depth])
+              box_inner_height/2 + box_wall_thickness*4,
+              plate_thickness+box_wall_thickness+dent_depth*0.8])
         rounded_box_y(dent_width,
-                    box_wall_thickness*3,
-                    dent_depth*2,
+                    box_wall_thickness*2,
+                    dent_depth*0.8,
                     dent_corner_radius);
-    
-    // Screw holes
-    for (y = [-screw_spacing/2, screw_spacing/2]) {
-        translate([y, 0, +plate_thickness])
-            cylinder(d=screw_diameter, h=plate_thickness*1.9);
-        translate([y, 0, -plate_thickness])
-            cylinder(d=screw_diameter*0.6, h=plate_thickness*4);
-    }
-    
-    // rear connector (for power)
-    translate([0, -rear_connector_y_offset, 0])
-        cube([rear_connector_width*1.2,
-              rear_connector_height*1.5,
-              plate_thickness*4],
-              center = true);
+
+    translate([0,
+              box_inner_height/2 + box_wall_thickness*4 + box_wall_thickness,
+              plate_thickness+box_wall_thickness/2+box_inner_depth/2])
+        cube([box_inner_width - box_corner_radius*2, box_wall_thickness, box_inner_depth], center = true);
+}
+
+
+// ============================================================
+// PART SELECTION
+// ============================================================
+
+if      (PART == "ADAPTER")    adapter();
+else if (PART == "DENT_COVER") dent_cover();
+else if (PART == "OVERVIEW") {
+    adapter();
+    dent_cover();
 }
