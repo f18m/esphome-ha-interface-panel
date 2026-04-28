@@ -76,7 +76,7 @@ display:
     # better suited for an horizontal installation rather than a vertical
     # install. If you plan to install this vertically, just remove the following
     # line and the "transform" block in the "touchscreen" section below in this file.
-    rotation: 90
+    #rotation: 0
     color_order: rgb
     cs_pin: GPIO12      # LCD_CS
     # FIXME TO TEST: reset pin should be avail via GPIO port expander pin 1
@@ -110,10 +110,10 @@ touchscreen:
 
     # this "transform" block is required to "align" the touch interface
     # to the 90degrees rotation of the screen (see "display" definition)
-    transform:
-      swap_xy: true
-      mirror_x: false
-      mirror_y: true
+    #transform:
+    #  swap_xy: true
+    #  mirror_x: false
+    #  mirror_y: true
     # Uncomment the following block to log coordinates of touch points:
     # this is useful to e.g. debug the mirror_x|y configs above
     # on_update:

@@ -4,6 +4,11 @@
 #
 
 lvgl:
+  # rotate the screen by 90 degrees as personally I found this screen to be
+  # better suited for an horizontal installation rather than a vertical
+  # install. If you plan to install this vertically, just remove the following
+  # line and the "transform" block in the "touchscreen" section below in this file.
+  rotation: 90
   pages:
     - id: page_main
       bg_color: 0x0F172A
