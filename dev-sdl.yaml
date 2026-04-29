@@ -49,6 +49,7 @@ substitutions:
   # Screen Size
   screen_height: '320'
   screen_width: '480'
+  display_rotation: '0'
 
 
 # SDL does not support OTA

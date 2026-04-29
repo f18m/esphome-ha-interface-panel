@@ -48,6 +48,11 @@ substitutions:
   # Screen Size
   screen_height: '320'
   screen_width: '480'
+  # rotate the screen by 90 degrees as personally I found this screen to be
+  # better suited for an horizontal installation rather than a vertical
+  # install. If you plan to install this vertically, just remove the following
+  # line and the "transform" block in the "touchscreen" section below in this file.
+  display_rotation: '90'
 
 
 # ESPHome configuration specific to REAL DEVICE (not SDL)
