@@ -19,6 +19,76 @@ substitutions:
   wifi_ap_password: "your_wifi_ap_password_here"
 
   # --------------------------------------------------------------------------
+  # Room configuration
+  # Each room needs an internal ID (used as widget ID prefix), a display name,
+  # and Home Assistant entity IDs for its sensors/actuators.
+  # --------------------------------------------------------------------------
+
+  # Room 1
+  room1_id: "room1"
+  room1_name: "Room 1"
+  room1_ha_temperature_sensor: "sensor.room1_temperature"
+  room1_ha_humidity_sensor: "sensor.room1_humidity"
+  room1_ha_window_contact_sensor: "binary_sensor.room1_window_contact"
+  room1_ha_floor_heating_switch: "switch.room1_floor_heating"
+  room1_ha_cover: "cover.room1_cover"
+
+  # Room 2
+  room2_id: "room2"
+  room2_name: "Room 2"
+  room2_ha_temperature_sensor: "sensor.room2_temperature"
+  room2_ha_humidity_sensor: "sensor.room2_humidity"
+  room2_ha_window_contact_sensor: "binary_sensor.room2_window_contact"
+  room2_ha_floor_heating_switch: "switch.room2_floor_heating"
+  room2_ha_cover: "cover.room2_cover"
+
+  # Room 3
+  room3_id: "room3"
+  room3_name: "Room 3"
+  room3_ha_temperature_sensor: "sensor.room3_temperature"
+  room3_ha_humidity_sensor: "sensor.room3_humidity"
+  room3_ha_window_contact_sensor: "binary_sensor.room3_window_contact"
+  room3_ha_floor_heating_switch: "switch.room3_floor_heating"
+  room3_ha_cover: "cover.room3_cover"
+
+  # Room 4
+  room4_id: "room4"
+  room4_name: "Room 4"
+  room4_ha_temperature_sensor: "sensor.room4_temperature"
+  room4_ha_humidity_sensor: "sensor.room4_humidity"
+  room4_ha_window_contact_sensor: "binary_sensor.room4_window_contact"
+  room4_ha_floor_heating_switch: "switch.room4_floor_heating"
+  room4_ha_cover: "cover.room4_cover"
+
+  # --------------------------------------------------------------------------
+  # Temperature setting helpers (e.g. daytime / nighttime setpoints)
+  # --------------------------------------------------------------------------
+
+  # Temperature setting 1
+  temp_setting1_id: "temp_setting1"
+  temp_setting1_label: "Setting 1"
+  temp_setting1_icon: "$mdi_sun_thermometer"
+  temp_setting1_ha_sensor: "input_number.temp_setting1"
+
+  # Temperature setting 2
+  temp_setting2_id: "temp_setting2"
+  temp_setting2_label: "Setting 2"
+  temp_setting2_icon: "$mdi_coolant_temperature"
+  temp_setting2_ha_sensor: "input_number.temp_setting2"
+
+  # Current target temperature sensor
+  ha_temperature_target_sensor: "sensor.temperature_target"
+
+  # --------------------------------------------------------------------------
+  # Scene configuration
+  # --------------------------------------------------------------------------
+
+  scene1_entity_id: "scene.scene1"
+  scene1_name: "Scene 1"
+  scene2_entity_id: "scene.scene2"
+  scene2_name: "Scene 2"
+
+  # --------------------------------------------------------------------------
   # Everything below this line is not really meant to be overridden by the user, but you can if you want to
   # --------------------------------------------------------------------------
 

@@ -2,7 +2,17 @@
 # Purpose: Defines Home Assistant sensor integrations that update LVGL room
 # temperature and heating controls.
 # List of subtitutions:
-#   - none
+#   - room1_id, room1_ha_temperature_sensor, room1_ha_humidity_sensor,
+#     room1_ha_window_contact_sensor, room1_ha_floor_heating_switch, room1_ha_cover
+#   - room2_id, room2_ha_temperature_sensor, room2_ha_humidity_sensor,
+#     room2_ha_window_contact_sensor, room2_ha_floor_heating_switch, room2_ha_cover
+#   - room3_id, room3_ha_temperature_sensor, room3_ha_humidity_sensor,
+#     room3_ha_window_contact_sensor, room3_ha_floor_heating_switch, room3_ha_cover
+#   - room4_id, room4_ha_temperature_sensor, room4_ha_humidity_sensor,
+#     room4_ha_window_contact_sensor, room4_ha_floor_heating_switch, room4_ha_cover
+#   - temp_setting1_id, temp_setting1_ha_sensor
+#   - temp_setting2_id, temp_setting2_ha_sensor
+#   - ha_temperature_target_sensor
 
 #
 # SENSORS
@@ -15,45 +25,45 @@ packages:
   room1: !include { 
       file: sensors_room_status.yaml, 
       vars: { 
-        room_id: "bagno_p1", 
-        ha_temperature_sensor_id: "sensor.lumi_sensore_ambientale_bagno_p1_temperature", 
-        ha_humidity_sensor_id: "sensor.lumi_sensore_ambientale_bagno_p1_humidity",
-        ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_finestra_bagno_p1_contact",
-        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_bagno",
-        ha_cover_id: "cover.tapparella_bagno_piano_primo"
+        room_id: "${room1_id}", 
+        ha_temperature_sensor_id: "${room1_ha_temperature_sensor}", 
+        ha_humidity_sensor_id: "${room1_ha_humidity_sensor}",
+        ha_window_contact_sensor_id: "${room1_ha_window_contact_sensor}",
+        ha_floor_heating_switch_id: "${room1_ha_floor_heating_switch}",
+        ha_cover_id: "${room1_ha_cover}"
       } 
     }
   room2: !include { 
       file: sensors_room_status.yaml, 
       vars: { 
-        room_id: "cameretta_verde",
-        ha_temperature_sensor_id: "sensor.lumi_sensore_ambientale_cameretta_verde_temperature",
-        ha_humidity_sensor_id: "sensor.lumi_sensore_ambientale_cameretta_verde_humidity",
-        ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_portafinestra_cam_verde_contact",
-        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_verde",
-        ha_cover_id: "cover.tapparella_cameretta_verde"
+        room_id: "${room2_id}",
+        ha_temperature_sensor_id: "${room2_ha_temperature_sensor}",
+        ha_humidity_sensor_id: "${room2_ha_humidity_sensor}",
+        ha_window_contact_sensor_id: "${room2_ha_window_contact_sensor}",
+        ha_floor_heating_switch_id: "${room2_ha_floor_heating_switch}",
+        ha_cover_id: "${room2_ha_cover}"
       }
     }
   room3: !include { 
       file: sensors_room_status.yaml, 
       vars: { 
-        room_id: "cameretta_gialla",
-        ha_temperature_sensor_id: "sensor.tasmota_sht4x_temperature",
-        ha_humidity_sensor_id: "sensor.tasmota_sht4x_humidity",
-        ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_cameretta_gialla_contact",
-        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_gialla",
-        ha_cover_id: "cover.tapparella_cameretta_gialla"
+        room_id: "${room3_id}",
+        ha_temperature_sensor_id: "${room3_ha_temperature_sensor}",
+        ha_humidity_sensor_id: "${room3_ha_humidity_sensor}",
+        ha_window_contact_sensor_id: "${room3_ha_window_contact_sensor}",
+        ha_floor_heating_switch_id: "${room3_ha_floor_heating_switch}",
+        ha_cover_id: "${room3_ha_cover}"
       }
     }
   room4: !include { 
       file: sensors_room_status.yaml, 
       vars: { 
-        room_id: "cameretta_arancione",
-        ha_temperature_sensor_id: "sensor.broadlink_smart_ir_remote_p1_cameretta_arancione_temperatura",
-        ha_humidity_sensor_id: "sensor.broadlink_smart_ir_remote_p1_cameretta_arancione_umidita",
-        ha_window_contact_sensor_id: "binary_sensor.lumi_contatto_cameretta_arancione_contact",
-        ha_floor_heating_switch_id: "switch.floorheating_p1_relay_camera_arancione",
-        ha_cover_id: "cover.tapparella_cameretta_arancione_2"
+        room_id: "${room4_id}",
+        ha_temperature_sensor_id: "${room4_ha_temperature_sensor}",
+        ha_humidity_sensor_id: "${room4_ha_humidity_sensor}",
+        ha_window_contact_sensor_id: "${room4_ha_window_contact_sensor}",
+        ha_floor_heating_switch_id: "${room4_ha_floor_heating_switch}",
+        ha_cover_id: "${room4_ha_cover}"
       }
     }
 
@@ -64,20 +74,20 @@ packages:
   temp_setting1: !include { 
       file: sensors_temperature_settings.yaml, 
       vars: { 
-        id: "diurno_p1",
-        ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1",
+        id: "${temp_setting1_id}",
+        ha_temperature_sensor_id: "${temp_setting1_ha_sensor}",
       }
     }
   temp_setting2: !include { 
       file: sensors_temperature_settings.yaml, 
       vars: { 
-        id: "notturno_p1",
-        ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1",
+        id: "${temp_setting2_id}",
+        ha_temperature_sensor_id: "${temp_setting2_ha_sensor}",
       }
     }
   temp_target: !include { 
       file: sensors_temperature_target.yaml, 
       vars: { 
-        ha_temperature_sensor_id: "sensor.temperatura_target_attuale_p1",
+        ha_temperature_sensor_id: "${ha_temperature_target_sensor}",
       }
     }

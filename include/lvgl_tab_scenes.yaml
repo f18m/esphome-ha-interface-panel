@@ -25,7 +25,7 @@
             - homeassistant.action:
                 action: scene.turn_on
                 data:
-                  entity_id: scene.tapparelle_aperte_max
+                  entity_id: ${scene1_entity_id}
           widgets:
             - label:
                 text: "$mdi_white_balance_sunny"
@@ -34,7 +34,7 @@
                 text_font: $icon_font
                 align: CENTER
             - label:
-                text: "Tapparelle Aperte Max"
+                text: "${scene1_name}"
                 text_align: CENTER
                 text_color: $label_spinbtn_color
                 align: CENTER
@@ -55,7 +55,7 @@
             - homeassistant.action:
                 action: scene.turn_on
                 data:
-                  entity_id: scene.riposino
+                  entity_id: ${scene2_entity_id}
           widgets:
             - label:
                 text: "$mdi_bed"
@@ -64,7 +64,7 @@
                 text_font: $icon_font
                 align: CENTER
             - label:
-                text: "Riposino"
+                text: "${scene2_name}"
                 text_align: CENTER
                 text_color: $label_spinbtn_color
                 align: CENTER

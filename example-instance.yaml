@@ -9,5 +9,63 @@ packages:
           wifi_password: "supersecretpassword"
           wifi_ap_password: "deadbeefdead"
           ota_password: "deadbeefdeadbeefdeadbeefdeadbeef"
+
+          # Room 1
+          room1_id: "bagno_p1"
+          room1_name: "Bagno"
+          room1_ha_temperature_sensor: "sensor.lumi_sensore_ambientale_bagno_p1_temperature"
+          room1_ha_humidity_sensor: "sensor.lumi_sensore_ambientale_bagno_p1_humidity"
+          room1_ha_window_contact_sensor: "binary_sensor.lumi_contatto_finestra_bagno_p1_contact"
+          room1_ha_floor_heating_switch: "switch.floorheating_p1_relay_bagno"
+          room1_ha_cover: "cover.tapparella_bagno_piano_primo"
+
+          # Room 2
+          room2_id: "cameretta_verde"
+          room2_name: "Cam. Verde"
+          room2_ha_temperature_sensor: "sensor.lumi_sensore_ambientale_cameretta_verde_temperature"
+          room2_ha_humidity_sensor: "sensor.lumi_sensore_ambientale_cameretta_verde_humidity"
+          room2_ha_window_contact_sensor: "binary_sensor.lumi_contatto_portafinestra_cam_verde_contact"
+          room2_ha_floor_heating_switch: "switch.floorheating_p1_relay_camera_verde"
+          room2_ha_cover: "cover.tapparella_cameretta_verde"
+
+          # Room 3
+          room3_id: "cameretta_gialla"
+          room3_name: "Cam. Gialla"
+          room3_ha_temperature_sensor: "sensor.tasmota_sht4x_temperature"
+          room3_ha_humidity_sensor: "sensor.tasmota_sht4x_humidity"
+          room3_ha_window_contact_sensor: "binary_sensor.lumi_contatto_cameretta_gialla_contact"
+          room3_ha_floor_heating_switch: "switch.floorheating_p1_relay_camera_gialla"
+          room3_ha_cover: "cover.tapparella_cameretta_gialla"
+
+          # Room 4
+          room4_id: "cameretta_arancione"
+          room4_name: "Cam. Arancio"
+          room4_ha_temperature_sensor: "sensor.broadlink_smart_ir_remote_p1_cameretta_arancione_temperatura"
+          room4_ha_humidity_sensor: "sensor.broadlink_smart_ir_remote_p1_cameretta_arancione_umidita"
+          room4_ha_window_contact_sensor: "binary_sensor.lumi_contatto_cameretta_arancione_contact"
+          room4_ha_floor_heating_switch: "switch.floorheating_p1_relay_camera_arancione"
+          room4_ha_cover: "cover.tapparella_cameretta_arancione_2"
+
+          # Temperature setting 1 (daytime)
+          temp_setting1_id: "diurno_p1"
+          temp_setting1_label: "Giorno"
+          temp_setting1_icon: "$mdi_sun_thermometer"
+          temp_setting1_ha_sensor: "input_number.temperatura_riscaldamento_diurno_stanze_p1"
+
+          # Temperature setting 2 (nighttime)
+          temp_setting2_id: "notturno_p1"
+          temp_setting2_label: "Notte"
+          temp_setting2_icon: "$mdi_coolant_temperature"
+          temp_setting2_ha_sensor: "input_number.temperatura_riscaldamento_notturno_stanze_p1"
+
+          # Current target temperature sensor
+          ha_temperature_target_sensor: "sensor.temperatura_target_attuale_p1"
+
+          # Scenes
+          scene1_entity_id: "scene.tapparelle_aperte_max"
+          scene1_name: "Tapparelle Aperte Max"
+          scene2_entity_id: "scene.riposino"
+          scene2_name: "Riposino"
+
     ref: main  # optional
     refresh: 1d  # optional

@@ -9,20 +9,20 @@
       - !include { 
           file: lvgl_row_set_temperature.yaml, 
           vars: { 
-            id: "diurno_p1", 
-            icon: "$mdi_sun_thermometer",
-            time_schedule: "Giorno", 
-            ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_diurno_stanze_p1" 
+            id: "${temp_setting1_id}", 
+            icon: "${temp_setting1_icon}",
+            time_schedule: "${temp_setting1_label}", 
+            ha_temperature_sensor_id: "${temp_setting1_ha_sensor}" 
           } 
         }
       # this is 70px height
       - !include { 
           file: lvgl_row_set_temperature.yaml, 
           vars: { 
-            id: "notturno_p1", 
-            icon: "$mdi_coolant_temperature",
-            time_schedule: "Notte", 
-            ha_temperature_sensor_id: "input_number.temperatura_riscaldamento_notturno_stanze_p1" 
+            id: "${temp_setting2_id}", 
+            icon: "${temp_setting2_icon}",
+            time_schedule: "${temp_setting2_label}", 
+            ha_temperature_sensor_id: "${temp_setting2_ha_sensor}" 
           } 
         }
         # this is 70px height
