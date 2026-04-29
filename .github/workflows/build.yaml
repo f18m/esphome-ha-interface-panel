@@ -41,7 +41,7 @@ jobs:
           yaml-file: example-instance.yaml
           version: stable
       - name: Upload files to release
-        uses: softprops/action-gh-release@v2.4.2
+        uses: softprops/action-gh-release@v2.6.2
         if: github.ref_type == 'tag'
         with:
           files: |
