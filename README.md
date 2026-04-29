@@ -35,7 +35,7 @@ There are 2 ways to develop software for Waveshare devices, as suggested by Wave
 2. Arduino IDE
 
 However I've chosen a third way: using **ESPHome**.
-[ESPHome](esphome.io) has support for all chips installed on the Waveshare device, see [Hardware Details page](./docs/hardware.md) and offers seamless integration
+[ESPHome](https://www.esphome.io) has support for all chips installed on the Waveshare device, see [Electronics Details page](./docs/electronics.md) and offers seamless integration
 with [Home Assistant](https://www.home-assistant.io/)
 
 This repository contains a working [main.yaml](./main.yaml) ESPHome configuration file that can be used to generate the actual firmware binary and flash it on the board.
@@ -70,7 +70,7 @@ follow this step by step procedure:
 ```yaml
 packages:
   remote_package_files:
-    url: https://github.com/f18m/floor-heating-controller/
+    url: https://github.com/f18m/esphome-ha-interface-panel
     files: 
       - path: main.yaml
         vars:
