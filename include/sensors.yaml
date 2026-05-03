@@ -91,3 +91,5 @@ packages:
         ha_temperature_sensor_id: "${ha_temperature_target_sensor}",
       }
     }
+
+  import_health: !include sensors_import_health.yaml

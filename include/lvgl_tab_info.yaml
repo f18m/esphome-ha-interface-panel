@@ -21,6 +21,22 @@
     widgets:
       - label:
           grid_cell_column_pos: 0
+          grid_cell_row_pos: 0
+          grid_cell_x_align: STRETCH
+          grid_cell_y_align: CENTER
+          text: "Invalid HA imports:"
+          text_color: $label_description_color
+      - label:
+          id: lbl_invalid_ha_import_count
+          grid_cell_column_pos: 1
+          grid_cell_row_pos: 0
+          grid_cell_x_align: STRETCH
+          grid_cell_y_align: CENTER
+          text: "0"
+          text_color: $icon_on_color
+
+      - label:
+          grid_cell_column_pos: 0
           grid_cell_row_pos: 1
           grid_cell_x_align: STRETCH
           grid_cell_y_align: CENTER
