@@ -144,6 +144,14 @@ esphome:
   name: "waveshare-esp32-s3-touch-v2"
   friendly_name: "Waveshare ESP32-S3-Touch-LCD-3.5B"
   comment: "ESPHome HomeAssistant General Purpose Interface Panel"
+  on_boot:
+    then:
+      - if:
+          condition:
+            lambda: |-
+              return std::string("${room1_ha_cover}").empty();
+          then:
+            - lvgl.widget.hide: cover_box_container_${room1_id}
 
 # Webserver is exposed under regular use
 web_server:
