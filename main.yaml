@@ -23,6 +23,8 @@ substitutions:
   # and Home Assistant entity IDs for its sensors/actuators.
   # --------------------------------------------------------------------------
 
+  num_rooms: '4'
+
   # Room 1
   room1_id: "room1"
   room1_name: "Room 1"
