@@ -94,4 +94,4 @@ packages:
       }
     }
 
-  import_health: !include sensors_import_health.yaml
+  import_health: !include sensors_import_health_${num_rooms}.yaml
