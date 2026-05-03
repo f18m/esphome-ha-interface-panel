@@ -3,28 +3,6 @@
 # components for the panel.
 #
 
-substitutions:
-  tab_rooms_4: !include 
-    file: lvgl_tab_rooms_4rooms.yaml
-    vars:
-      room1_id: "${room1_id}"
-      room1_name: "${room1_name}"
-      room2_id: "${room2_id}"
-      room2_name: "${room2_name}"
-      room3_id: "${room3_id}"
-      room3_name: "${room3_name}"
-      room4_id: "${room4_id}"
-      room4_name: "${room4_name}"
-  tab_rooms_3: !include
-    file: lvgl_tab_rooms_3rooms.yaml
-    vars:
-      room1_id: "${room1_id}"
-      room1_name: "${room1_name}"
-      room2_id: "${room2_id}"
-      room2_name: "${room2_name}"
-      room3_id: "${room3_id}"
-      room3_name: "${room3_name}"
-
 lvgl:
   rotation: ${display_rotation}
   pages:
@@ -78,7 +56,7 @@ lvgl:
 
               - name: "${mdi_thermometer_water}"
                 scrollable: false
-                widgets: ${tab_rooms_4 if room_4_enabled else tab_rooms_3}
+                widgets: ${tab_rooms}
 
               - name: "${mdi_thermometer_chevron_up}"
                 scrollable: false
