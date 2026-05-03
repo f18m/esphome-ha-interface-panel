@@ -1,4 +1,12 @@
+# File: lvgl_tab_rooms.yaml
+# Purpose: Defines widgets shown in the Rooms tab, including room status
+# labels and controls.
+# List of subtitutions:
+#   - none
 
+#
+# ROOMS TAB
+#
 - obj:
     x: 0
     y: 0
