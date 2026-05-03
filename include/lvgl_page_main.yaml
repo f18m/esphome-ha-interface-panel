@@ -60,7 +60,7 @@ lvgl:
 
               - name: "${mdi_thermometer_water}"
                 scrollable: false
-                widgets: ${room_4_enabled ? tab_rooms_4 : tab_rooms_3}
+                widgets: ${tab_rooms_4 if room_4_enabled else tab_rooms_3}
 
               - name: "${mdi_thermometer_chevron_up}"
                 scrollable: false
