@@ -67,13 +67,11 @@ substitutions:
   # Temperature setting 1
   temp_setting1_id: "temp_setting1"
   temp_setting1_label: "Setting 1"
-  temp_setting1_icon: "$mdi_sun_thermometer"
   temp_setting1_ha_sensor: "input_number.temp_setting1"
 
   # Temperature setting 2
   temp_setting2_id: "temp_setting2"
   temp_setting2_label: "Setting 2"
-  temp_setting2_icon: "$mdi_coolant_temperature"
   temp_setting2_ha_sensor: "input_number.temp_setting2"
 
   # Current target temperature sensor

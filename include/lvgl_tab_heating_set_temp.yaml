@@ -10,7 +10,7 @@
           file: lvgl_row_set_temperature.yaml, 
           vars: { 
             id: "${temp_setting1_id}", 
-            icon: "${temp_setting1_icon}",
+            icon: "$mdi_sun_thermometer",
             time_schedule: "${temp_setting1_label}", 
             ha_temperature_sensor_id: "${temp_setting1_ha_sensor}" 
           } 
@@ -20,7 +20,7 @@
           file: lvgl_row_set_temperature.yaml, 
           vars: { 
             id: "${temp_setting2_id}", 
-            icon: "${temp_setting2_icon}",
+            icon: "$mdi_coolant_temperature",
             time_schedule: "${temp_setting2_label}", 
             ha_temperature_sensor_id: "${temp_setting2_ha_sensor}" 
           } 

@@ -4,7 +4,12 @@
 sensor:
   - platform: template
     id: sensor_invalid_ha_import_count
-    name: "Invalid HA Imported Sensors"
+    # if this sensor ever shows a value > 0, it means that some of the expected 
+    # Home Assistant sensors are misconfigured (e.g. wrong entity ID)
+    # Check the "substitutions" list in the main.yaml as example and make sure
+    # that all the entity IDs are correct and that the corresponding entities 
+    # exist in Home Assistant.
+    name: "Invalid Imported Sensors"
     icon: "mdi:alert-circle-check-outline"
     unit_of_measurement: "count"
     accuracy_decimals: 0

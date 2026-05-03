@@ -49,13 +49,11 @@ packages:
           # Temperature setting 1 (daytime)
           temp_setting1_id: "diurno_p1"
           temp_setting1_label: "Giorno"
-          temp_setting1_icon: "$mdi_sun_thermometer"
           temp_setting1_ha_sensor: "input_number.temperatura_riscaldamento_diurno_stanze_p1"
 
           # Temperature setting 2 (nighttime)
           temp_setting2_id: "notturno_p1"
           temp_setting2_label: "Notte"
-          temp_setting2_icon: "$mdi_coolant_temperature"
           temp_setting2_ha_sensor: "input_number.temperatura_riscaldamento_notturno_stanze_p1"
 
           # Current target temperature sensor
