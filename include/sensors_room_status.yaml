@@ -82,9 +82,13 @@ sensor:
       #     format: "Updated labels for UP/DOWN btns for cover of room ${room_id} to %d"
       #     args: [ 'id(cover_position_${room_id}).state' ]
 
+# Supporting script for the initialization of the ROOM WINDOW CONTACT SENSOR
 script:
   - id: sync_window_contact_ui_${room_id}
     then:
+      - logger.log:
+          level: INFO
+          format: "Running sync_window_contact_ui_${room_id}"
       - lvgl.label.update:
           id: lbl_icon_window_${room_id}
           text: !lambda |-
@@ -109,7 +113,6 @@ script:
                 text_color: $icon_on_color
 
 binary_sensor:
-
     # ROOM WINDOW CONTACT SENSOR
   - platform: homeassistant
     entity_id: ${ha_window_contact_sensor_id}
