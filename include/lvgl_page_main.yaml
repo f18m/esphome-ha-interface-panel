@@ -55,14 +55,17 @@ lvgl:
               # HEIGHT AVAILABLE: 240px
 
               - name: "${mdi_thermometer_water}"
+                id: tab_rooms
                 scrollable: false
                 widgets: !include lvgl_tab_rooms.yaml
 
               - name: "${mdi_thermometer_chevron_up}"
+                id: tab_heating_set_temp
                 scrollable: false
                 widgets: !include lvgl_tab_heating_set_temp.yaml
 
               - name: "${mdi_radiator}"
+                id: tab_heating_details
                 scrollable: false
                 widgets: !include lvgl_tab_heating_details.yaml
 
@@ -72,9 +75,11 @@ lvgl:
                 widgets: !include lvgl_tab_covers.yaml
 
               - name: "${mdi_cog}"
+                id: tab_scenes
                 scrollable: false
                 widgets: !include lvgl_tab_scenes.yaml
 
               - name: "${mdi_information}"
+                id: tab_info
                 scrollable: false
                 widgets: !include lvgl_tab_info.yaml

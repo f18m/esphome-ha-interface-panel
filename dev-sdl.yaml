@@ -19,12 +19,18 @@ substitutions:
   wifi_ap_password: "your_wifi_ap_password_here"
 
 
+
   # --------------------------------------------------------------------------
   # Features
   # --------------------------------------------------------------------------
 
-  tab_cover_enabled: "true"
-  
+  tab_rooms_enabled: "1"
+  tab_heating_set_temp_enabled: "1"
+  tab_heating_details_enabled: "1"
+  tab_cover_enabled: "1"
+  tab_scenes_enabled: "1"
+  tab_info_enabled: "1"
+
   # --------------------------------------------------------------------------
   # Room configuration
   # Each room needs an internal ID (used as widget ID prefix), a display name,
