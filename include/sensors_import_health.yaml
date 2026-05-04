@@ -1,0 +1,66 @@
+# File: sensors_import_health.yaml
+# Purpose: Expose diagnostics about imported Home Assistant numeric sensors.
+
+sensor:
+  - platform: template
+    id: sensor_invalid_ha_import_count
+    # if this sensor ever shows a value > 0, it means that some of the expected 
+    # Home Assistant sensors are misconfigured (e.g. wrong entity ID)
+    # Check the "substitutions" list in the main.yaml as example and make sure
+    # that all the entity IDs are correct and that the corresponding entities 
+    # exist in Home Assistant.
+    name: "Invalid Imported Sensors"
+    icon: "mdi:alert-circle-check-outline"
+    unit_of_measurement: "count"
+    accuracy_decimals: 0
+    state_class: measurement
+    update_interval: 30s
+    on_value:
+      - lvgl.label.update:
+          id: lbl_invalid_ha_import_count
+          text: !lambda |-
+            char buf[8];
+            sprintf(buf, "%.0f", x);
+            return std::string(buf);
+      - if:
+          condition:
+            lambda: |-
+              return x > 0.0f;
+          then:
+            - lvgl.label.update:
+                id: lbl_invalid_ha_import_count
+                text_color: $icon_off_color
+          else:
+            - lvgl.label.update:
+                id: lbl_invalid_ha_import_count
+                text_color: $icon_on_color
+    lambda: |-
+      int invalid_count = 0;
+
+      std::string num_rooms_str = to_string(${num_rooms});
+
+      // Room sensors.
+      if (std::isnan(id(sensor_temp_${room1_id}).state)) invalid_count++;
+      if (std::isnan(id(sensor_humidity_${room1_id}).state)) invalid_count++;
+      if (std::isnan(id(cover_position_${room1_id}).state)) invalid_count++;
+
+      if (std::isnan(id(sensor_temp_${room2_id}).state)) invalid_count++;
+      if (std::isnan(id(sensor_humidity_${room2_id}).state)) invalid_count++;
+      if (std::isnan(id(cover_position_${room2_id}).state)) invalid_count++;
+
+      if (std::isnan(id(sensor_temp_${room3_id}).state)) invalid_count++;
+      if (std::isnan(id(sensor_humidity_${room3_id}).state)) invalid_count++;
+      if (std::isnan(id(cover_position_${room3_id}).state)) invalid_count++;
+
+      if (num_rooms_str == "4") {
+         if (std::isnan(id(sensor_temp_${room4_id}).state)) invalid_count++;
+         if (std::isnan(id(sensor_humidity_${room4_id}).state)) invalid_count++;
+         if (std::isnan(id(cover_position_${room4_id}).state)) invalid_count++;
+      }
+
+      // Heating helpers imported from Home Assistant.
+      if (std::isnan(id(sensor_temp_${temp_setting_daytime_id}).state)) invalid_count++;
+      if (std::isnan(id(sensor_temp_${temp_setting_nighttime_id}).state)) invalid_count++;
+      if (std::isnan(id(sensor_temp_target_now).state)) invalid_count++;
+
+      return invalid_count;

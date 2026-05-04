@@ -9,13 +9,105 @@
 
 # Substitution variables used through the codebase
 substitutions:
-  # secrets -- these allow the ESPHome device to "talk" to your Wifi and
+
+  # --------------------------------------------------------------------------
+  # Secrets
+  # --------------------------------------------------------------------------
+
+  # these allow the ESPHome device to "talk" to your Wifi and
   # your HomeAssistant instance
   encryption_key: "your_encryption_key_here"
   ota_password: "your_ota_password_here"
   wifi_ssid: "your_wifi_ssid_here"
   wifi_password: "your_wifi_password_here"
   wifi_ap_password: "your_wifi_ap_password_here"
+
+
+  # --------------------------------------------------------------------------
+  # Features
+  # --------------------------------------------------------------------------
+
+  tab_rooms_enabled: "1"
+  tab_heating_set_temp_enabled: "1"
+  tab_heating_details_enabled: "1"
+  tab_cover_enabled: "1"
+  tab_scenes_enabled: "1"
+  tab_info_enabled: "1"
+ 
+
+  # --------------------------------------------------------------------------
+  # Room configuration
+  # Each room needs an internal ID (used as widget ID prefix), a display name,
+  # and Home Assistant entity IDs for its sensors/actuators.
+  # --------------------------------------------------------------------------
+
+  # Number of rooms to display. Currently only the values '3' and '4' are supported,
+  # as the UI is designed for a maximum of 4 rooms.
+  # Note that if you use value "3" the 4th room will still be created but hidden;
+  # please set room4_id to "hidden" and room4_ha_* entity IDs to non-existing entities.
+  num_rooms: '4'
+
+  # Room 1
+  room1_id: "room1"
+  room1_name: "Room 1"
+  room1_ha_temperature_sensor: "sensor.room1_temperature"
+  room1_ha_humidity_sensor: "sensor.room1_humidity"
+  room1_ha_window_contact_sensor: "binary_sensor.room1_window_contact"
+  room1_ha_floor_heating_switch: "switch.room1_floor_heating"
+  room1_ha_cover: "cover.room1_cover"
+
+  # Room 2
+  room2_id: "room2"
+  room2_name: "Room 2"
+  room2_ha_temperature_sensor: "sensor.room2_temperature"
+  room2_ha_humidity_sensor: "sensor.room2_humidity"
+  room2_ha_window_contact_sensor: "binary_sensor.room2_window_contact"
+  room2_ha_floor_heating_switch: "switch.room2_floor_heating"
+  room2_ha_cover: "cover.room2_cover"
+
+  # Room 3
+  room3_id: "room3"
+  room3_name: "Room 3"
+  room3_ha_temperature_sensor: "sensor.room3_temperature"
+  room3_ha_humidity_sensor: "sensor.room3_humidity"
+  room3_ha_window_contact_sensor: "binary_sensor.room3_window_contact"
+  room3_ha_floor_heating_switch: "switch.room3_floor_heating"
+  room3_ha_cover: "cover.room3_cover"
+
+  # Room 4
+  room4_id: "room4"
+  room4_name: "Room 4"
+  room4_ha_temperature_sensor: "sensor.room4_temperature"
+  room4_ha_humidity_sensor: "sensor.room4_humidity"
+  room4_ha_window_contact_sensor: "binary_sensor.room4_window_contact"
+  room4_ha_floor_heating_switch: "switch.room4_floor_heating"
+  room4_ha_cover: "cover.room4_cover"
+
+  # --------------------------------------------------------------------------
+  # Temperature setting helpers (e.g. daytime / nighttime setpoints)
+  # --------------------------------------------------------------------------
+
+  # Temperature setting 1
+  temp_setting_daytime_id: "temp_setting_daytime"
+  temp_setting_daytime_label: "Setting 1"
+  temp_setting_daytime_ha_sensor: "input_number.temp_setting_daytime"
+
+  # Temperature setting 2
+  temp_setting_nighttime_id: "temp_setting_nighttime"
+  temp_setting_nighttime_label: "Setting 2"
+  temp_setting_nighttime_ha_sensor: "input_number.temp_setting_nighttime"
+
+  # Current target temperature sensor
+  ha_temperature_target_sensor: "sensor.temperature_target"
+
+  # --------------------------------------------------------------------------
+  # Scene configuration
+  # --------------------------------------------------------------------------
+
+  scene1_entity_id: "scene.scene1"
+  scene1_name: "Scene 1"
+  scene2_entity_id: "scene.scene2"
+  scene2_name: "Scene 2"
 
   # --------------------------------------------------------------------------
   # Everything below this line is not really meant to be overridden by the user, but you can if you want to
@@ -76,6 +168,10 @@ esphome:
   name: "waveshare-esp32-s3-touch-v2"
   friendly_name: "Waveshare ESP32-S3-Touch-LCD-3.5B"
   comment: "ESPHome HomeAssistant General Purpose Interface Panel"
+  on_boot:
+    then:
+      - script.execute: hide_unwanted_rooms
+      - script.execute: hide_unwanted_tabs
 
 # Webserver is exposed under regular use
 web_server:

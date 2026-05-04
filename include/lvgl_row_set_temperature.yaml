@@ -1,8 +1,8 @@
-# File: lvgl_set_temperature_row.yaml
+# File: lvgl_row_set_temperature.yaml
 # Purpose: Defines a reusable temperature-control row with icon, label,
 # spinbox, and +/- buttons, to control one single temperature.
 #
-# List of subtitutions:
+# List of substitutions:
 #   - id
 #   - icon
 #   - time_schedule

@@ -15,3 +15,76 @@ script:
       - logger.log:
           level: INFO
           format: "Time label updated"
+
+  - id: hide_unwanted_rooms
+    then:
+      - lambda: |-
+          ESP_LOGI("script", "Running hide_unwanted_rooms script");
+          std::string num_rooms_str = to_string(${num_rooms});
+          if (num_rooms_str == "4") {
+            // nothing to do in this case, all rooms are shown
+            return;
+          } else {
+            ESP_LOGI("script", "Hiding the 4th room since num_rooms is set to %s", num_rooms_str.c_str());
+
+            // hide the 4th room in all tabs
+            lv_obj_add_flag(id(box_room_status_${room4_id}), LV_OBJ_FLAG_HIDDEN);
+            lv_obj_add_flag(id(box_room_heating_status_${room4_id}), LV_OBJ_FLAG_HIDDEN);
+            lv_obj_add_flag(id(lbl_target_temp_heating_${room4_id}), LV_OBJ_FLAG_HIDDEN);
+            lv_obj_add_flag(id(cover_box_container_${room4_id}), LV_OBJ_FLAG_HIDDEN);
+          }
+
+  - id: hide_unwanted_tabs
+    then:
+      - lambda: |-
+          ESP_LOGI("script", "Running hide_unwanted_tabs script");
+
+          std::string tab_cover_enabled_str = to_string(${tab_cover_enabled});
+          std::string tab_scenes_enabled_str = to_string(${tab_scenes_enabled});
+          std::string tab_info_enabled_str = to_string(${tab_info_enabled});
+          std::string tab_heating_details_enabled_str = to_string(${tab_heating_details_enabled});
+          std::string tab_heating_set_temp_enabled_str = to_string(${tab_heating_set_temp_enabled});
+          std::string tab_rooms_enabled_str = to_string(${tab_rooms_enabled});
+
+          const int idx_tab_rooms = 0;
+          const int idx_tab_heating_set_temp = 1;
+          const int idx_tab_heating_details = 2;
+          const int idx_tab_covers = 3;
+          const int idx_tab_scenes = 4;
+          const int idx_tab_info = 5;
+
+          // please note that hiding buttons in the tabview's button matrix does not seem to work with ESPHome 2026.04
+          auto *tab_buttons = lv_tabview_get_tab_btns(id(tabview_main));
+          lv_buttonmatrix_ctrl_t hidden_state = (lv_buttonmatrix_ctrl_t)(LV_BTNMATRIX_CTRL_HIDDEN | LV_BTNMATRIX_CTRL_DISABLED);
+
+          if (tab_cover_enabled_str == "0") {
+            ESP_LOGI("script", "Hiding the 'Cover' tab since tab_cover_enabled is set to %s", tab_cover_enabled_str.c_str());
+            lv_obj_add_flag(id(tab_covers), LV_OBJ_FLAG_HIDDEN);
+            lv_btnmatrix_set_btn_ctrl(tab_buttons, idx_tab_covers, hidden_state);
+          }
+          if (tab_scenes_enabled_str == "0") {
+            ESP_LOGI("script", "Hiding the 'Scenes' tab since tab_scenes_enabled is set to %s", tab_scenes_enabled_str.c_str());
+            lv_obj_add_flag(id(tab_scenes), LV_OBJ_FLAG_HIDDEN);
+            lv_btnmatrix_set_btn_ctrl(tab_buttons, idx_tab_scenes, hidden_state);
+          }
+          if (tab_info_enabled_str == "0") {
+            ESP_LOGI("script", "Hiding the 'Info' tab since tab_info_enabled is set to %s", tab_info_enabled_str.c_str());
+            lv_obj_add_flag(id(tab_info), LV_OBJ_FLAG_HIDDEN);
+            lv_btnmatrix_set_btn_ctrl(tab_buttons, idx_tab_info, hidden_state);
+          }
+          if (tab_heating_details_enabled_str == "0") {
+            ESP_LOGI("script", "Hiding the 'Heating Details' tab since tab_heating_details_enabled is set to %s", tab_heating_details_enabled_str.c_str());
+            lv_obj_add_flag(id(tab_heating_details), LV_OBJ_FLAG_HIDDEN);
+            lv_btnmatrix_set_btn_ctrl(tab_buttons, idx_tab_heating_details, hidden_state);
+          }
+          if (tab_heating_set_temp_enabled_str == "0") {
+            ESP_LOGI("script", "Hiding the 'Heating Set Temp' tab since tab_heating_set_temp_enabled is set to %s", tab_heating_set_temp_enabled_str.c_str());
+            lv_obj_add_flag(id(tab_heating_set_temp), LV_OBJ_FLAG_HIDDEN);
+            lv_btnmatrix_set_btn_ctrl(tab_buttons, idx_tab_heating_set_temp, hidden_state);
+          }
+          if (tab_rooms_enabled_str == "0") {
+            ESP_LOGI("script", "Hiding the 'Rooms' tab since tab_rooms_enabled is set to %s", tab_rooms_enabled_str.c_str());
+            lv_obj_add_flag(id(tab_rooms), LV_OBJ_FLAG_HIDDEN);
+            lv_btnmatrix_set_btn_ctrl(tab_buttons, idx_tab_rooms, hidden_state);
+          }
+

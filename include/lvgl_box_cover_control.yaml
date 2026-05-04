@@ -8,6 +8,7 @@
 #   - ha_cover_id
 
 obj:
+  id: cover_box_container_${room_id}
   bg_color: $bg_color
   border_width: 2
   border_color: $border_color

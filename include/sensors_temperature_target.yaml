@@ -4,7 +4,7 @@ sensor:
     id: sensor_temp_target_now
     entity_id: ${ha_temperature_sensor_id}
     on_value:
-      # update target temperature on the "Riscaldamento" tab ROW
+      # update target temperature on the "Heating" tab ROW
       - lvgl.label.update:
           id: lbl_current_target_temperature
           text: !lambda |-
@@ -14,7 +14,7 @@ sensor:
       - lvgl.label.update:
           id: lbl_current_target_temperature_icon
           text: !lambda |-
-            float diff = x - id(sensor_temp_diurno_p1).state;
+            float diff = x - id(sensor_temp_${temp_setting_daytime_id}).state;
             if (diff < 0) {
               diff = -diff;
             }
@@ -23,32 +23,26 @@ sensor:
             }
             return "${mdi_coolant_temperature}";
 
-      # update target temperature on the "Riscaldamento" tab,
+      # update target temperature on the "Heating" tab,
       # inside the box dedicated to each room
-      - lvgl.label.update:
-          id: lbl_target_temp_heating_bagno_p1
-          text: !lambda |-
-            char buf[32];
-            sprintf(buf, "%.1f°C", x);
-            return std::string(buf);
-      - lvgl.label.update:
-          id: lbl_target_temp_heating_cameretta_gialla
-          text: !lambda |-
-            char buf[32];
-            sprintf(buf, "%.1f°C", x);
-            return std::string(buf);
-      - lvgl.label.update:
-          id: lbl_target_temp_heating_cameretta_verde
-          text: !lambda |-
-            char buf[32];
-            sprintf(buf, "%.1f°C", x);
-            return std::string(buf);
-      - lvgl.label.update:
-          id: lbl_target_temp_heating_cameretta_arancione
-          text: !lambda |-
-            char buf[32];
-            sprintf(buf, "%.1f°C", x);
-            return std::string(buf);
+      - lambda: |-
+          lv_obj_t *room_labels[] = {
+            id(lbl_target_temp_heating_${room1_id}),
+            id(lbl_target_temp_heating_${room2_id}),
+            id(lbl_target_temp_heating_${room3_id}),
+            nullptr,
+          };
+          if (to_string(${num_rooms}) == "4") {
+            room_labels[3] = id(lbl_target_temp_heating_${room4_id});
+          }
+
+          char buf[32];
+          snprintf(buf, sizeof(buf), "%.1f°C", x);
+          for (auto *label : room_labels) {
+            if (label != nullptr) {
+              lv_label_set_text(label, buf);
+            }
+          }
 
       - logger.log:
           format: "Updated current target temperature to value %f"

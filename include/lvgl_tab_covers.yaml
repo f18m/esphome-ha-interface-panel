@@ -1,3 +1,12 @@
+# File: lvgl_tab_covers.yaml
+# Purpose: Defines a reusable tab for controlling covers (blinds, shutters, etc.)
+#
+# List of substitutions:
+#   - room1_id, room1_name, room1_ha_cover
+#   - room2_id, room2_name, room2_ha_cover
+#   - room3_id, room3_name, room3_ha_cover
+#   - room4_id, room4_name, room4_ha_cover
+#
 
 - obj:
     scrollable: false
@@ -13,32 +22,32 @@
       - !include { 
           file: lvgl_box_cover_control.yaml, 
           vars: { 
-            room_id: "bagno_p1", 
-            room_name: "Bagno", 
-            ha_cover_id: "cover.tapparella_bagno_piano_primo"
+            room_id: "${room1_id}", 
+            room_name: "${room1_name}", 
+            ha_cover_id: "${room1_ha_cover}"
           } 
         }
       - !include { 
           file: lvgl_box_cover_control.yaml, 
           vars: { 
-            room_id: "cameretta_gialla", 
-            room_name: "Cam. Gialla", 
-            ha_cover_id: "cover.tapparella_cameretta_gialla"
+            room_id: "${room2_id}", 
+            room_name: "${room2_name}", 
+            ha_cover_id: "${room2_ha_cover}"
           } 
         }
       - !include { 
           file: lvgl_box_cover_control.yaml, 
           vars: { 
-            room_id: "cameretta_arancione", 
-            room_name: "Cam. Arancio", 
-            ha_cover_id: "cover.tapparella_cameretta_arancione_2"
+            room_id: "${room3_id}", 
+            room_name: "${room3_name}", 
+            ha_cover_id: "${room3_ha_cover}"
           } 
         }
       - !include { 
           file: lvgl_box_cover_control.yaml, 
           vars: { 
-            room_id: "cameretta_verde", 
-            room_name: "Cam. Verde", 
-            ha_cover_id: "cover.tapparella_cameretta_verde"
+            room_id: "${room4_id}", 
+            room_name: "${room4_name}", 
+            ha_cover_id: "${room4_ha_cover}"
           } 
         }

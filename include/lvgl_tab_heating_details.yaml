@@ -1,4 +1,13 @@
-
+# File: lvgl_tab_heating_details_4.yaml
+# Purpose: Defines a reusable tab for displaying heating details for 
+#          4 rooms, including current target temperature and controls.
+#
+# List of substitutions:
+#   - room1_id, room1_name, room1_ha_cover
+#   - room2_id, room2_name, room2_ha_cover
+#   - room3_id, room3_name, room3_ha_cover
+#   - room4_id, room4_name, room4_ha_cover
+#
 - obj:
     x: 0
     y: 0
@@ -27,28 +36,28 @@
             - !include { 
                 file: lvgl_box_room_heating_status.yaml, 
                 vars: { 
-                  room_id: "bagno_p1", 
-                  room_name: "Bagno", 
+                  room_id: "${room1_id}", 
+                  room_name: "${room1_name}", 
                 } 
               }
             - !include { 
                 file: lvgl_box_room_heating_status.yaml, 
                 vars: { 
-                  room_id: "cameretta_gialla", 
-                  room_name: "Cam. Gialla", 
+                  room_id: "${room2_id}", 
+                  room_name: "${room2_name}", 
                 } 
               }
             - !include { 
                 file: lvgl_box_room_heating_status.yaml, 
                 vars: { 
-                  room_id: "cameretta_arancione", 
-                  room_name: "Cam. Arancio", 
+                  room_id: "${room3_id}", 
+                  room_name: "${room3_name}", 
                 } 
               }
             - !include { 
                 file: lvgl_box_room_heating_status.yaml, 
                 vars: { 
-                  room_id: "cameretta_verde", 
-                  room_name: "Cam. Verde", 
+                  room_id: "${room4_id}", 
+                  room_name: "${room4_name}", 
                 } 
               }

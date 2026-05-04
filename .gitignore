@@ -8,3 +8,6 @@
 # local secrets file, not to be committed to version control
 secrets.yaml
 interface-panel*.yaml
+
+# the esphome venv
+venv
