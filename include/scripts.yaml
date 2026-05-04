@@ -88,3 +88,15 @@ script:
             lv_btnmatrix_set_btn_ctrl(tab_buttons, idx_tab_rooms, hidden_state);
           }
 
+  - id: sync_all_window_contact_ui
+    then:
+      - script.execute: sync_window_contact_ui_${room1_id}
+      - script.execute: sync_window_contact_ui_${room2_id}
+      - script.execute: sync_window_contact_ui_${room3_id}
+      - if:
+          condition:
+            lambda: |-
+              return std::string("${num_rooms}") == "4";
+          then:
+            - script.execute: sync_window_contact_ui_${room4_id}
+

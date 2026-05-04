@@ -2,6 +2,7 @@
 # Purpose: Defines Home Assistant sensor integrations that update LVGL room
 # temperature and heating controls.
 # List of subtitutions:
+#   - target_platform
 #   - room1_id, room1_ha_temperature_sensor, room1_ha_humidity_sensor,
 #     room1_ha_window_contact_sensor, room1_ha_floor_heating_switch, room1_ha_cover
 #   - room2_id, room2_ha_temperature_sensor, room2_ha_humidity_sensor,
@@ -19,6 +20,13 @@
 #
 
 packages:
+
+  # import basic sensors depending on the target platform
+  basic: !include { 
+      file: "sensors_basic_${target_platform}.yaml",
+      vars: {}
+    }
+
 
   # Import from HA the room sensors
 

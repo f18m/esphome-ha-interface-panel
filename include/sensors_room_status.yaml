@@ -82,24 +82,20 @@ sensor:
       #     format: "Updated labels for UP/DOWN btns for cover of room ${room_id} to %d"
       #     args: [ 'id(cover_position_${room_id}).state' ]
 
-binary_sensor:
-
-    # ROOM WINDOW CONTACT SENSOR
-  - platform: homeassistant
-    entity_id: ${ha_window_contact_sensor_id}
-    id: sensor_contact_${room_id}
-    on_state:
+script:
+  - id: sync_window_contact_ui_${room_id}
+    then:
       - lvgl.label.update:
           id: lbl_icon_window_${room_id}
           text: !lambda |-
-            if (x) {
+            if (id(sensor_contact_${room_id}).state) {
               return "${mdi_window_open_variant}";
             }
             return "${mdi_window_closed_variant}";
       - if:
           condition:
             lambda: |-
-              return x;
+              return id(sensor_contact_${room_id}).state;
           then:
             - lvgl.label.update:
                 id: lbl_icon_window_${room_id}
@@ -111,6 +107,15 @@ binary_sensor:
             - lvgl.label.update:
                 id: lbl_icon_window_${room_id}
                 text_color: $icon_on_color
+
+binary_sensor:
+
+    # ROOM WINDOW CONTACT SENSOR
+  - platform: homeassistant
+    entity_id: ${ha_window_contact_sensor_id}
+    id: sensor_contact_${room_id}
+    on_state:
+      - script.execute: sync_window_contact_ui_${room_id}
 
 switch:
     # FLOOR HEATING SWITCH

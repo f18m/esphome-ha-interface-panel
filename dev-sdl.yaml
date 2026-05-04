@@ -10,14 +10,23 @@
 
 # Substitution variables used through the codebase
 substitutions:
-  # secrets -- these allow the ESPHome device to "talk" to your Wifi and
+  # --------------------------------------------------------------------------
+  # Target platform
+  # --------------------------------------------------------------------------
+
+  target_platform: "sdl"
+  
+  # --------------------------------------------------------------------------
+  # Secrets
+  # --------------------------------------------------------------------------
+
+  # these allow the ESPHome device to "talk" to your Wifi and
   # your HomeAssistant instance
   encryption_key: "I445Nv3wkiOT85A1hLs1PZZB3orL15TB9W6K6Jc9tmE="
   ota_password: "your_ota_password_here"
   wifi_ssid: "your_wifi_ssid_here"
   wifi_password: "your_wifi_password_here"
   wifi_ap_password: "your_wifi_ap_password_here"
-
 
 
   # --------------------------------------------------------------------------
@@ -162,6 +171,8 @@ esphome:
     then:
       - script.execute: hide_unwanted_rooms
       - script.execute: hide_unwanted_tabs
+      - delay: 2s
+      - script.execute: sync_all_window_contact_ui
   
 # Webserver is exposed under regular use
 #web_server:
@@ -181,8 +192,6 @@ packages:
 
   # 1000s of glyphs
   glyphs: !include include/mdi_glyph_substitutions.yaml
-  # Some basic sensors
-  base_sensors: !include include/sensors_base-SDL.yaml
   # Get the time from HA
   #time: !include esphome-modular-lvgl-buttons/common/time_homeassistant.yaml
   # Styles + Themes

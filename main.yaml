@@ -11,6 +11,12 @@
 substitutions:
 
   # --------------------------------------------------------------------------
+  # Target platform
+  # --------------------------------------------------------------------------
+
+  target_platform: "esp32"
+
+  # --------------------------------------------------------------------------
   # Secrets
   # --------------------------------------------------------------------------
 
@@ -172,6 +178,8 @@ esphome:
     then:
       - script.execute: hide_unwanted_rooms
       - script.execute: hide_unwanted_tabs
+      - delay: 2s
+      - script.execute: sync_all_window_contact_ui
 
 # Webserver is exposed under regular use
 web_server:
@@ -190,8 +198,6 @@ packages:
 
   # 1000s of glyphs
   glyphs: !include include/mdi_glyph_substitutions.yaml
-  # Some basic sensors
-  base_sensors: !include include/sensors_base.yaml
   # Styles + Themes
   theme_style: !include include/theme_style.yaml
   # Backlight control with screen saver
