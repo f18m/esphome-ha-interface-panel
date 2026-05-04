@@ -1,0 +1,47 @@
+
+- obj:
+    x: 0
+    y: 0
+    scrollable: false
+    # total height computed as: 
+    #   220px [row]
+    height: 240
+    layout:
+      type: GRID
+      grid_rows: [ FR(11) ]
+      grid_columns: [ FR(1) ]
+      pad_column: 0
+      pad_row: 4
+      # type: flex
+      # flex_flow: column
+      # #flex_align_main: space_evenly
+      # flex_align_main: start
+      # flex_align_track: start
+      # flex_align_cross: start
+    widgets:
+      - obj:
+          scrollable: false
+          layout: horizontal
+          height: 220
+          widgets:
+            - !include { 
+                file: lvgl_box_room_heating_status.yaml, 
+                vars: { 
+                  room_id: "${room1_id}", 
+                  room_name: "${room1_name}", 
+                } 
+              }
+            - !include { 
+                file: lvgl_box_room_heating_status.yaml, 
+                vars: { 
+                  room_id: "${room2_id}", 
+                  room_name: "${room2_name}", 
+                } 
+              }
+            - !include { 
+                file: lvgl_box_room_heating_status.yaml, 
+                vars: { 
+                  room_id: "${room3_id}", 
+                  room_name: "${room3_name}", 
+                } 
+              }

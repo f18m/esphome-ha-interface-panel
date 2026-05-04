@@ -56,19 +56,7 @@ lvgl:
 
               - name: "${mdi_thermometer_water}"
                 scrollable: false
-                #widgets: !include lvgl_tab_rooms_${num_rooms}.yaml
-                widgets:
-                  - !include { 
-                      file: lvgl_tab_rooms_generic.yaml, 
-                      vars: { 
-                        room1_id: "${room1_id}", 
-                        room1_name: "${room1_name}", 
-                        room2_id: "${room2_id}", 
-                        room2_name: "${room2_name}", 
-                        room3_id: "${room3_id}", 
-                        room3_name: "${room3_name}", 
-                      } 
-                    }
+                widgets: !include lvgl_tab_rooms_${num_rooms}.yaml
 
               - name: "${mdi_thermometer_chevron_up}"
                 scrollable: false
@@ -76,7 +64,8 @@ lvgl:
 
               - name: "${mdi_radiator}"
                 scrollable: false
-                widgets: !include lvgl_tab_heating_details.yaml
+                #widgets: !include lvgl_tab_heating_details.yaml
+                widgets: !include lvgl_tab_heating_details_${num_rooms}.yaml
 
               - name: "${mdi_window_shutter}"
                 scrollable: false
