@@ -19,7 +19,7 @@ script:
   - id: hide_unwanted_rooms
     then:
       - lambda: |-
-          if (${num_rooms} == "4") {
+          if (to_string(${num_rooms}) == "4") {
             // nothing to do in this case, all rooms are shown
             return;
           } else {
