@@ -30,12 +30,18 @@ sensor:
             id(lbl_target_temp_heating_${room1_id}),
             id(lbl_target_temp_heating_${room2_id}),
             id(lbl_target_temp_heating_${room3_id}),
-            id(lbl_target_temp_heating_${room4_id}),
+            nullptr,
           };
+          if (${num_rooms} == "4") {
+            room_labels[3] = id(lbl_target_temp_heating_${room4_id});
+          }
+
           char buf[32];
           snprintf(buf, sizeof(buf), "%.1f°C", x);
           for (auto *label : room_labels) {
-            lv_label_set_text(label, buf);
+            if (label != nullptr) {
+              lv_label_set_text(label, buf);
+            }
           }
 
       - logger.log:
