@@ -37,6 +37,8 @@ sensor:
     lambda: |-
       int invalid_count = 0;
 
+      std::string num_rooms_str = to_string(${num_rooms});
+
       // Room sensors.
       if (std::isnan(id(sensor_temp_${room1_id}).state)) invalid_count++;
       if (std::isnan(id(sensor_humidity_${room1_id}).state)) invalid_count++;
@@ -49,6 +51,12 @@ sensor:
       if (std::isnan(id(sensor_temp_${room3_id}).state)) invalid_count++;
       if (std::isnan(id(sensor_humidity_${room3_id}).state)) invalid_count++;
       if (std::isnan(id(cover_position_${room3_id}).state)) invalid_count++;
+
+      if (num_rooms_str == "4") {
+         if (std::isnan(id(sensor_temp_${room4_id}).state)) invalid_count++;
+         if (std::isnan(id(sensor_humidity_${room4_id}).state)) invalid_count++;
+         if (std::isnan(id(cover_position_${room4_id}).state)) invalid_count++;
+      }
 
       // Heating helpers imported from Home Assistant.
       if (std::isnan(id(sensor_temp_${temp_setting1_id}).state)) invalid_count++;
