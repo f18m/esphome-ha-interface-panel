@@ -40,9 +40,9 @@ script:
           ESP_LOGI("script", "Running hide_unwanted_tabs script");
 
           std::string tab_cover_enabled_str = to_string(${tab_cover_enabled});
-          std::string tab_cover_enabled_str = to_string(${tab_scenes_enabled});
+          std::string tab_scenes_enabled_str = to_string(${tab_scenes_enabled});
           std::string tab_info_enabled_str = to_string(${tab_info_enabled});
-          std::stirng tab_heating_details_enabled_str = to_string(${tab_heating_details_enabled});
+          std::string tab_heating_details_enabled_str = to_string(${tab_heating_details_enabled});
           std::string tab_heating_set_temp_enabled_str = to_string(${tab_heating_set_temp_enabled});
           std::string tab_rooms_enabled_str = to_string(${tab_rooms_enabled});
 
