@@ -4,7 +4,7 @@
 #
 # List of substitutions:
 #   - temp_setting_daytime_id, temp_setting_daytime_ha_sensor, temp_setting_daytime_label
-#   - temp_setting2_id, temp_setting2_ha_sensor, temp_setting2_label
+#   - temp_setting_nighttime_id, temp_setting_nighttime_ha_sensor, temp_setting_nighttime_label
 #
 - obj:
     x: 0
@@ -26,10 +26,10 @@
       - !include { 
           file: lvgl_row_set_temperature.yaml, 
           vars: { 
-            id: "${temp_setting2_id}", 
+            id: "${temp_setting_nighttime_id}", 
             icon: "$mdi_coolant_temperature",
-            time_schedule: "${temp_setting2_label}", 
-            ha_temperature_sensor_id: "${temp_setting2_ha_sensor}" 
+            time_schedule: "${temp_setting_nighttime_label}", 
+            ha_temperature_sensor_id: "${temp_setting_nighttime_ha_sensor}" 
           } 
         }
         # this is 70px height

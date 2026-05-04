@@ -52,9 +52,9 @@ packages:
           temp_setting_daytime_ha_sensor: "input_number.temperatura_riscaldamento_diurno_stanze_p1"
 
           # Temperature setting 2 (nighttime)
-          temp_setting2_id: "notturno_p1"
-          temp_setting2_label: "Notte"
-          temp_setting2_ha_sensor: "input_number.temperatura_riscaldamento_notturno_stanze_p1"
+          temp_setting_nighttime_id: "notturno_p1"
+          temp_setting_nighttime_label: "Notte"
+          temp_setting_nighttime_ha_sensor: "input_number.temperatura_riscaldamento_notturno_stanze_p1"
 
           # Current target temperature sensor
           ha_temperature_target_sensor: "sensor.temperatura_target_attuale_p1"

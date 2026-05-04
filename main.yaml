@@ -93,9 +93,9 @@ substitutions:
   temp_setting_daytime_ha_sensor: "input_number.temp_setting_daytime"
 
   # Temperature setting 2
-  temp_setting2_id: "temp_setting2"
-  temp_setting2_label: "Setting 2"
-  temp_setting2_ha_sensor: "input_number.temp_setting2"
+  temp_setting_nighttime_id: "temp_setting_nighttime"
+  temp_setting_nighttime_label: "Setting 2"
+  temp_setting_nighttime_ha_sensor: "input_number.temp_setting_nighttime"
 
   # Current target temperature sensor
   ha_temperature_target_sensor: "sensor.temperature_target"
