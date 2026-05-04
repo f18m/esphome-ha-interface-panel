@@ -104,6 +104,9 @@ binary_sensor:
             - lvgl.label.update:
                 id: lbl_icon_window_${room_id}
                 text_color: red
+            - logger.log:
+                level: INFO
+                format: "Room ${room_id} contact sensor is OPEN"
           else:
             - lvgl.label.update:
                 id: lbl_icon_window_${room_id}

@@ -17,18 +17,6 @@
 #
 # SENSORS
 #
-substitutions:
-  sensors_rooms_4: !include { 
-      file: sensors_room_status.yaml, 
-      vars: { 
-        room_id: "${room4_id}",
-        ha_temperature_sensor_id: "${room4_ha_temperature_sensor}",
-        ha_humidity_sensor_id: "${room4_ha_humidity_sensor}",
-        ha_window_contact_sensor_id: "${room4_ha_window_contact_sensor}",
-        ha_floor_heating_switch_id: "${room4_ha_floor_heating_switch}",
-        ha_cover_id: "${room4_ha_cover}"
-      }
-    }
 
 packages:
 
@@ -67,7 +55,6 @@ packages:
         ha_cover_id: "${room3_ha_cover}"
       }
     }
-  #room4: ${sensors_rooms_4 if num_rooms == '4' else {} }
   room4: !include { 
       file: sensors_room_status.yaml, 
       vars: { 
