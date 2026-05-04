@@ -8,6 +8,7 @@
 #   - room_name
 
 obj:
+  id: "box_room_status_${room_id}"
   bg_color: $bg_color
   border_width: 2
   border_color: $border_color
