@@ -19,15 +19,33 @@ script:
   - id: hide_unwanted_rooms
     then:
       - lambda: |-
+          ESP_LOGI("script", "Running hide_unwanted_rooms script");
           std::string num_rooms_str = to_string(${num_rooms});
           if (num_rooms_str == "4") {
             // nothing to do in this case, all rooms are shown
             return;
           } else {
-            ESP_LOGI("script hide_unwanted_rooms", "Hiding the 4th room since num_rooms is set to %s", num_rooms_str.c_str());
+            ESP_LOGI("script", "Hiding the 4th room since num_rooms is set to %s", num_rooms_str.c_str());
 
             // hide the 4th room in all tabs
             lv_obj_add_flag(id(box_room_status_${room4_id}), LV_OBJ_FLAG_HIDDEN);
             lv_obj_add_flag(id(box_room_heating_status_${room4_id}), LV_OBJ_FLAG_HIDDEN);
             lv_obj_add_flag(id(lbl_target_temp_heating_${room4_id}), LV_OBJ_FLAG_HIDDEN);
+            lv_obj_add_flag(id(cover_box_container_${room4_id}), LV_OBJ_FLAG_HIDDEN);
           }
+
+  - id: hide_unwanted_tabs
+    then:
+      - lambda: |-
+          ESP_LOGI("script", "Running hide_unwanted_tabs script");
+          std::string tab_cover_enabled_str = to_string(${tab_cover_enabled});
+          if (tab_cover_enabled_str == "1") {
+            // nothing to do in this case, the "Cover" tab is shown
+            return;
+          } else {
+            ESP_LOGI("script", "Hiding the 'Cover' tab since tab_cover_enabled is set to %s", tab_cover_enabled_str.c_str());
+
+            // hide the "Cover" tab
+            lv_obj_add_flag(id(tab_covers), LV_OBJ_FLAG_HIDDEN);
+          }
+

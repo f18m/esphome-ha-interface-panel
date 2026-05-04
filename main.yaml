@@ -9,13 +9,25 @@
 
 # Substitution variables used through the codebase
 substitutions:
-  # secrets -- these allow the ESPHome device to "talk" to your Wifi and
+
+  # --------------------------------------------------------------------------
+  # Secrets
+  # --------------------------------------------------------------------------
+
+  # these allow the ESPHome device to "talk" to your Wifi and
   # your HomeAssistant instance
   encryption_key: "your_encryption_key_here"
   ota_password: "your_ota_password_here"
   wifi_ssid: "your_wifi_ssid_here"
   wifi_password: "your_wifi_password_here"
   wifi_ap_password: "your_wifi_ap_password_here"
+
+
+  # --------------------------------------------------------------------------
+  # Features
+  # --------------------------------------------------------------------------
+
+  tab_cover_enabled: "true"
 
   # --------------------------------------------------------------------------
   # Room configuration
@@ -25,6 +37,8 @@ substitutions:
 
   # Number of rooms to display. Currently only the values '3' and '4' are supported,
   # as the UI is designed for a maximum of 4 rooms.
+  # Note that if you use value "3" the 4th room will still be created but hidden;
+  # please set room4_id to "hidden" and room4_ha_* entity IDs to non-existing entities.
   num_rooms: '4'
 
   # Room 1
@@ -151,6 +165,7 @@ esphome:
   on_boot:
     then:
       - script.execute: hide_unwanted_rooms
+      - script.execute: hide_unwanted_tabs
 
 # Webserver is exposed under regular use
 web_server:

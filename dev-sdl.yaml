@@ -18,6 +18,13 @@ substitutions:
   wifi_password: "your_wifi_password_here"
   wifi_ap_password: "your_wifi_ap_password_here"
 
+
+  # --------------------------------------------------------------------------
+  # Features
+  # --------------------------------------------------------------------------
+
+  tab_cover_enabled: "true"
+  
   # --------------------------------------------------------------------------
   # Room configuration
   # Each room needs an internal ID (used as widget ID prefix), a display name,
@@ -148,6 +155,7 @@ esphome:
   on_boot:
     then:
       - script.execute: hide_unwanted_rooms
+      - script.execute: hide_unwanted_tabs
   
 # Webserver is exposed under regular use
 #web_server:
