@@ -47,9 +47,9 @@ packages:
           room4_ha_cover: "cover.tapparella_cameretta_arancione_2"
 
           # Temperature setting 1 (daytime)
-          temp_setting1_id: "diurno_p1"
-          temp_setting1_label: "Giorno"
-          temp_setting1_ha_sensor: "input_number.temperatura_riscaldamento_diurno_stanze_p1"
+          temp_setting_daytime_id: "diurno_p1"
+          temp_setting_daytime_label: "Giorno"
+          temp_setting_daytime_ha_sensor: "input_number.temperatura_riscaldamento_diurno_stanze_p1"
 
           # Temperature setting 2 (nighttime)
           temp_setting2_id: "notturno_p1"

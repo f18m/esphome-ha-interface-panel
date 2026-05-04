@@ -3,7 +3,7 @@
 #          with spinboxes and +/- buttons.
 #
 # List of substitutions:
-#   - temp_setting1_id, temp_setting1_ha_sensor, temp_setting1_label
+#   - temp_setting_daytime_id, temp_setting_daytime_ha_sensor, temp_setting_daytime_label
 #   - temp_setting2_id, temp_setting2_ha_sensor, temp_setting2_label
 #
 - obj:
@@ -16,10 +16,10 @@
       - !include { 
           file: lvgl_row_set_temperature.yaml, 
           vars: { 
-            id: "${temp_setting1_id}", 
+            id: "${temp_setting_daytime_id}", 
             icon: "$mdi_sun_thermometer",
-            time_schedule: "${temp_setting1_label}", 
-            ha_temperature_sensor_id: "${temp_setting1_ha_sensor}" 
+            time_schedule: "${temp_setting_daytime_label}", 
+            ha_temperature_sensor_id: "${temp_setting_daytime_ha_sensor}" 
           } 
         }
       # this is 70px height

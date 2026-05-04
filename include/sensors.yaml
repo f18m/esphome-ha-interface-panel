@@ -10,7 +10,7 @@
 #     room3_ha_window_contact_sensor, room3_ha_floor_heating_switch, room3_ha_cover
 #   - room4_id, room4_ha_temperature_sensor, room4_ha_humidity_sensor,
 #     room4_ha_window_contact_sensor, room4_ha_floor_heating_switch, room4_ha_cover
-#   - temp_setting1_id, temp_setting1_ha_sensor
+#   - temp_setting_daytime_id, temp_setting_daytime_ha_sensor
 #   - temp_setting2_id, temp_setting2_ha_sensor
 #   - ha_temperature_target_sensor
 
@@ -84,11 +84,11 @@ packages:
 
   # Import from HA the helpers that drive heating automations
 
-  temp_setting1: !include { 
+  temp_setting_daytime: !include { 
       file: sensors_temperature_settings.yaml, 
       vars: { 
-        id: "${temp_setting1_id}",
-        ha_temperature_sensor_id: "${temp_setting1_ha_sensor}",
+        id: "${temp_setting_daytime_id}",
+        ha_temperature_sensor_id: "${temp_setting_daytime_ha_sensor}",
       }
     }
   temp_setting2: !include { 

@@ -59,7 +59,7 @@ sensor:
       }
 
       // Heating helpers imported from Home Assistant.
-      if (std::isnan(id(sensor_temp_${temp_setting1_id}).state)) invalid_count++;
+      if (std::isnan(id(sensor_temp_${temp_setting_daytime_id}).state)) invalid_count++;
       if (std::isnan(id(sensor_temp_${temp_setting2_id}).state)) invalid_count++;
       if (std::isnan(id(sensor_temp_target_now).state)) invalid_count++;
 

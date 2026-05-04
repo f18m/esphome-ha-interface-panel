@@ -88,9 +88,9 @@ substitutions:
   # --------------------------------------------------------------------------
 
   # Temperature setting 1
-  temp_setting1_id: "temp_setting1"
-  temp_setting1_label: "Setting 1"
-  temp_setting1_ha_sensor: "input_number.temp_setting1"
+  temp_setting_daytime_id: "temp_setting_daytime"
+  temp_setting_daytime_label: "Setting 1"
+  temp_setting_daytime_ha_sensor: "input_number.temp_setting_daytime"
 
   # Temperature setting 2
   temp_setting2_id: "temp_setting2"
