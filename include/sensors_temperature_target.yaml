@@ -32,7 +32,7 @@ sensor:
             id(lbl_target_temp_heating_${room3_id}),
             nullptr,
           };
-          if (${num_rooms} == "4") {
+          if (to_string(${num_rooms}) == "4") {
             room_labels[3] = id(lbl_target_temp_heating_${room4_id});
           }
 

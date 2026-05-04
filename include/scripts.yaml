@@ -24,6 +24,6 @@ script:
             return;
           } else {
             // hide the 4th room in all tabs
-            lvgl.widget.hide(id(box_room_heating_status_${room4_id}));
-            lvgl.widget.hide(id(lbl_target_temp_heating_${room4_id}));
+            lv_obj_add_flag(id(box_room_heating_status_${room4_id}), LV_OBJ_FLAG_HIDDEN);
+            lv_obj_add_flag(id(lbl_target_temp_heating_${room4_id}), LV_OBJ_FLAG_HIDDEN);
           }
