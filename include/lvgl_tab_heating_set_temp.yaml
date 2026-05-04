@@ -1,4 +1,11 @@
-
+# File: lvgl_tab_heating_set_temp.yaml
+# Purpose: Defines a reusable tab for setting heating target temperature
+#          with spinboxes and +/- buttons.
+#
+# List of substitutions:
+#   - temp_setting1_id, temp_setting1_ha_sensor, temp_setting1_label
+#   - temp_setting2_id, temp_setting2_ha_sensor, temp_setting2_label
+#
 - obj:
     x: 0
     y: 0

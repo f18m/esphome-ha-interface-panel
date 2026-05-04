@@ -1,5 +1,5 @@
-# File: lvgl_current_temperature_row.yaml
-# Purpose: A row of widegets showing current TARGET temp
+# File: lvgl_row_current_temperature.yaml
+# Purpose: A row of widgets showing the current TARGET temperature
 #
 # List of subtitutions:
 #   - id

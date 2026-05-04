@@ -23,6 +23,8 @@ substitutions:
   # and Home Assistant entity IDs for its sensors/actuators.
   # --------------------------------------------------------------------------
 
+  # Number of rooms to display. Currently only the values '3' and '4' are supported,
+  # as the UI is designed for a maximum of 4 rooms.
   num_rooms: '4'
 
   # Room 1

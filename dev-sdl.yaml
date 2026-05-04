@@ -23,6 +23,8 @@ substitutions:
   # Each room needs an internal ID (used as widget ID prefix), a display name,
   # and Home Assistant entity IDs for its sensors/actuators.
   # --------------------------------------------------------------------------
+  
+  num_rooms: '4'
 
   # Room 1
   room1_id: "room1"
@@ -59,6 +61,7 @@ substitutions:
   room4_ha_window_contact_sensor: "binary_sensor.room4_window_contact"
   room4_ha_floor_heating_switch: "switch.room4_floor_heating"
   room4_ha_cover: "cover.room4_cover"
+
 
   # --------------------------------------------------------------------------
   # Temperature setting helpers (e.g. daytime / nighttime setpoints)

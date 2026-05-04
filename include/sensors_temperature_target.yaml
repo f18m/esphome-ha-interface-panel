@@ -4,7 +4,7 @@ sensor:
     id: sensor_temp_target_now
     entity_id: ${ha_temperature_sensor_id}
     on_value:
-      # update target temperature on the "Riscaldamento" tab ROW
+      # update target temperature on the "Heating" tab ROW
       - lvgl.label.update:
           id: lbl_current_target_temperature
           text: !lambda |-
@@ -23,32 +23,20 @@ sensor:
             }
             return "${mdi_coolant_temperature}";
 
-      # update target temperature on the "Riscaldamento" tab,
+      # update target temperature on the "Heating" tab,
       # inside the box dedicated to each room
-      - lvgl.label.update:
-          id: lbl_target_temp_heating_${room1_id}
-          text: !lambda |-
-            char buf[32];
-            sprintf(buf, "%.1f°C", x);
-            return std::string(buf);
-      - lvgl.label.update:
-          id: lbl_target_temp_heating_${room2_id}
-          text: !lambda |-
-            char buf[32];
-            sprintf(buf, "%.1f°C", x);
-            return std::string(buf);
-      - lvgl.label.update:
-          id: lbl_target_temp_heating_${room3_id}
-          text: !lambda |-
-            char buf[32];
-            sprintf(buf, "%.1f°C", x);
-            return std::string(buf);
-      - lvgl.label.update:
-          id: lbl_target_temp_heating_${room4_id}
-          text: !lambda |-
-            char buf[32];
-            sprintf(buf, "%.1f°C", x);
-            return std::string(buf);
+      - lambda: |-
+          lv_obj_t *room_labels[] = {
+            id(lbl_target_temp_heating_${room1_id}),
+            id(lbl_target_temp_heating_${room2_id}),
+            id(lbl_target_temp_heating_${room3_id}),
+            id(lbl_target_temp_heating_${room4_id}),
+          };
+          char buf[32];
+          snprintf(buf, sizeof(buf), "%.1f°C", x);
+          for (auto *label : room_labels) {
+            lv_label_set_text(label, buf);
+          }
 
       - logger.log:
           format: "Updated current target temperature to value %f"

@@ -1,4 +1,12 @@
-
+# File: lvgl_tab_heating_details_3.yaml
+# Purpose: Defines a reusable tab for displaying heating details for 
+#          3 rooms, including current target temperature and controls.
+#
+# List of substitutions:
+#   - room1_id, room1_name, room1_ha_cover
+#   - room2_id, room2_name, room2_ha_cover
+#   - room3_id, room3_name, room3_ha_cover
+#
 - obj:
     x: 0
     y: 0

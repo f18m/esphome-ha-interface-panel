@@ -18,31 +18,37 @@ endif
 
 flash-main:
 	@echo "Flashing the MAIN firmware..."
-	esphome run $(OPTIONS) $(CONFIG_FILE)
+	source venv/bin/activate && \
+		esphome run $(OPTIONS) $(CONFIG_FILE)
 
 upload-main:
 	@echo "Uploading the MAIN firmware..."
-	esphome upload $(OPTIONS) $(CONFIG_FILE)
+	source venv/bin/activate && \
+		esphome upload $(OPTIONS) $(CONFIG_FILE)
 
 validate-main:
 	@echo "Validating the MAIN firmware..."
-	esphome config $(CONFIG_FILE) >$(CONFIG_FILE).validated
+	source venv/bin/activate && \
+		esphome config $(CONFIG_FILE) >$(CONFIG_FILE).validated
 
 
 # test with SDL emulator in local
 
 test-local:
 	@echo "Running local tests (without flashing)..."
-	esphome run --no-logs dev-sdl.yaml 
+	source venv/bin/activate && \
+		esphome run --no-logs dev-sdl.yaml 
 
 test-validate:
 	@echo "Validating the configuration files..."
 	#esphome config main.yaml
-	esphome config dev-sdl.yaml >dev-sdl.yaml.validated
+	source venv/bin/activate && \
+		esphome config dev-sdl.yaml >dev-sdl.yaml.validated
 
 
 # initial test, just for historical records:
 
 flash-self-contained:
 	@echo "Flashing the self-contained ESPHome device..."
-	esphome run $(OPTIONS) self-contained.yaml
+	source venv/bin/activate && \
+		esphome run $(OPTIONS) self-contained.yaml
