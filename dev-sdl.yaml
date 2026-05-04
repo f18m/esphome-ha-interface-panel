@@ -24,12 +24,12 @@ substitutions:
   # Features
   # --------------------------------------------------------------------------
 
-  tab_rooms_enabled: "1"
-  tab_heating_set_temp_enabled: "1"
-  tab_heating_details_enabled: "1"
-  tab_cover_enabled: "1"
-  tab_scenes_enabled: "1"
-  tab_info_enabled: "1"
+  tab_rooms_enabled: "0"
+  tab_heating_set_temp_enabled: "0"
+  tab_heating_details_enabled: "0"
+  tab_cover_enabled: "0"
+  tab_scenes_enabled: "0"
+  tab_info_enabled: "0"
 
   # --------------------------------------------------------------------------
   # Room configuration

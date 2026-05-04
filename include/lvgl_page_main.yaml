@@ -53,32 +53,41 @@ lvgl:
               # each of this tab has 
               # FULL WIDTH AVAILABLE: 480px
               # HEIGHT AVAILABLE: 240px
+              #
+              # IMPORTANT: if you change the tab order, please also 
+              # update the hide_unwanted_tabs script
 
+              # index:0
               - name: "${mdi_thermometer_water}"
                 id: tab_rooms
                 scrollable: false
                 widgets: !include lvgl_tab_rooms.yaml
 
+              # index:1
               - name: "${mdi_thermometer_chevron_up}"
                 id: tab_heating_set_temp
                 scrollable: false
                 widgets: !include lvgl_tab_heating_set_temp.yaml
 
+              # index:2
               - name: "${mdi_radiator}"
                 id: tab_heating_details
                 scrollable: false
                 widgets: !include lvgl_tab_heating_details.yaml
 
+              # index:3
               - name: "${mdi_window_shutter}"
                 id: tab_covers
                 scrollable: false
                 widgets: !include lvgl_tab_covers.yaml
 
+              # index:4
               - name: "${mdi_cog}"
                 id: tab_scenes
                 scrollable: false
                 widgets: !include lvgl_tab_scenes.yaml
 
+              # index:5
               - name: "${mdi_information}"
                 id: tab_info
                 scrollable: false
