@@ -67,6 +67,7 @@ lvgl:
                 widgets: !include lvgl_tab_heating_details.yaml
 
               - name: "${mdi_window_shutter}"
+                id: tab_covers
                 scrollable: false
                 widgets: !include lvgl_tab_covers.yaml
 

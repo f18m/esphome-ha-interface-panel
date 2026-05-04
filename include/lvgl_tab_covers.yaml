@@ -9,7 +9,6 @@
 #
 
 - obj:
-    id: tab_covers
     scrollable: false
     layout:
       type: flex
