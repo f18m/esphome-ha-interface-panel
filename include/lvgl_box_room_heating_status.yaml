@@ -11,7 +11,7 @@ obj:
   # the height of this OBJ is declared in the parent container!
   # I couldn't get layout to render correctly if I put the height here
   # (not sure why)
-
+  id: "box_room_heating_status_${room_id}"
   bg_color: $bg_color
   border_width: 2
   border_color: $border_color

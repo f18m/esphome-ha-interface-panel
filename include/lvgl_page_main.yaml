@@ -64,8 +64,8 @@ lvgl:
 
               - name: "${mdi_radiator}"
                 scrollable: false
-                #widgets: !include lvgl_tab_heating_details.yaml
-                widgets: !include lvgl_tab_heating_details_${num_rooms}.yaml
+                widgets: !include lvgl_tab_heating_details_4.yaml
+                #widgets: !include lvgl_tab_heating_details_${num_rooms}.yaml
 
               - name: "${mdi_window_shutter}"
                 scrollable: false

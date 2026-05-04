@@ -150,12 +150,7 @@ esphome:
   comment: "ESPHome HomeAssistant General Purpose Interface Panel"
   on_boot:
     then:
-      - if:
-          condition:
-            lambda: |-
-              return std::string("${room1_ha_cover}").empty();
-          then:
-            - lvgl.widget.hide: cover_box_container_${room1_id}
+      - script.execute: hide_unwanted_rooms
 
 # Webserver is exposed under regular use
 web_server:

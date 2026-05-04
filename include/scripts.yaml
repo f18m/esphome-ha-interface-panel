@@ -15,3 +15,15 @@ script:
       - logger.log:
           level: INFO
           format: "Time label updated"
+
+  - id: hide_unwanted_rooms
+    then:
+      - lambda: |-
+          if (${num_rooms} == "4") {
+            // nothing to do in this case, all rooms are shown
+            return;
+          } else {
+            // hide the 4th room in all tabs
+            lvgl.widget.hide(id(box_room_heating_status_${room4_id}));
+            lvgl.widget.hide(id(lbl_target_temp_heating_${room4_id}));
+          }
