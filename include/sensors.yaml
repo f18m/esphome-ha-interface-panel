@@ -67,7 +67,7 @@ packages:
         ha_cover_id: "${room3_ha_cover}"
       }
     }
-  room4: ${sensors_rooms_4 if room_4_enabled else {} }
+  room4: ${sensors_rooms_4 if num_rooms == '4' else {} }
 
 
 
