@@ -30,7 +30,14 @@ validate-main:
 	@echo "Validating the MAIN firmware..."
 	source venv/bin/activate && \
 		esphome config $(CONFIG_FILE) >$(CONFIG_FILE).validated
+	@echo "Compiling the MAIN firmware..."
+	source venv/bin/activate && \
+		esphome compile $(CONFIG_FILE)
 
+clean:
+	@echo "Cleaning build files..."
+	source venv/bin/activate && \
+		esphome clean $(CONFIG_FILE)
 
 # test with SDL emulator in local
 

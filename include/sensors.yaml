@@ -20,16 +20,16 @@
 #
 
 packages:
-
   # import basic sensors depending on the target platform
   basic: !include { 
       file: "sensors_basic_${target_platform}.yaml",
       vars: {}
     }
 
+  # helper to troubleshoot misconfigurations:
+  import_health: !include sensors_import_health.yaml
 
   # Import from HA the room sensors
-
   room1: !include { 
       file: sensors_room_status.yaml, 
       vars: { 
@@ -75,10 +75,7 @@ packages:
       }
     }
 
-
-
   # Import from HA the helpers that drive heating automations
-
   temp_setting_daytime: !include { 
       file: sensors_temperature_settings.yaml, 
       vars: { 
@@ -99,5 +96,3 @@ packages:
         ha_temperature_sensor_id: "${ha_temperature_target_sensor}",
       }
     }
-
-  import_health: !include sensors_import_health.yaml
