@@ -104,13 +104,28 @@ substitutions:
   temp_current_target_label: "Target Temperature"
 
   # --------------------------------------------------------------------------
-  # Scene configuration
+  # Scene/Script configuration
   # --------------------------------------------------------------------------
 
+  scene1_action_type: "scene.turn_on"
   scene1_entity_id: "scene.scene1"
   scene1_name: "Scene 1"
-  scene2_entity_id: "scene.scene2"
+  scene1_icon: "$mdi_white_balance_sunny"
+
+  scene2_action_type: "scene.turn_on"
+  scene2_entity_id: "" # leave empty to hide the whole button
   scene2_name: "Scene 2"
+  scene2_icon: "$mdi_bed"
+
+  scene3_action_type: "scene.turn_on"
+  scene3_entity_id: "" # leave empty to hide the whole button
+  scene3_name: "Scene 3"
+  scene3_icon: "$mdi_floor_lamp"
+
+  scene4_action_type: "scene.turn_on"
+  scene4_entity_id: "" # leave empty to hide the whole button
+  scene4_name: "Scene 4"
+  scene4_icon: "$mdi_ceiling_light"
 
   # --------------------------------------------------------------------------
   # Everything below this line is not really meant to be overridden by the user, but you can if you want to

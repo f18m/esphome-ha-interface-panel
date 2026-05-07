@@ -1,7 +1,11 @@
 # File: lvgl_tab_scenes.yaml
 # Purpose: creates a tab for controlling scenes, displaying scene buttons.
 # List of subtitutions:
-#   - none
+#   - scene1_icon
+#   - scene1_name
+#   - scene1_action_type
+#   - scene1_entity_id
+#   - .... all repeated for scene2 and scene3 ...
 
 - obj:
     width: 100%
@@ -14,6 +18,7 @@
       flex_align_cross: center
     widgets:
       - button:
+          id: btn_scene1
           width: 100%
           height: 60
           bg_color: $icon_temp_color
@@ -27,13 +32,16 @@
             flex_align_track: center
             pad_column: 10
           on_click:
+            - logger.log:
+                level: INFO
+                format: "Scene button clicked: ${scene1_name} (${scene1_entity_id})"
             - homeassistant.action:
-                action: scene.turn_on
+                action: ${scene1_action_type}
                 data:
                   entity_id: ${scene1_entity_id}
           widgets:
             - label:
-                text: "$mdi_white_balance_sunny"
+                text: "${scene1_icon}"
                 text_align: CENTER
                 text_color: $label_spinbtn_color
                 text_font: $icon_font
@@ -44,6 +52,7 @@
                 text_color: $label_spinbtn_color
                 align: CENTER
       - button:
+          id: btn_scene2
           width: 100%
           height: 60
           bg_color: $icon_temp_color
@@ -57,19 +66,90 @@
             flex_align_track: center
             pad_column: 10
           on_click:
+            - logger.log:
+                level: INFO
+                format: "Scene button clicked: ${scene2_name} (${scene2_entity_id})"
             - homeassistant.action:
-                action: scene.turn_on
+                action: ${scene2_action_type}
                 data:
                   entity_id: ${scene2_entity_id}
           widgets:
             - label:
-                text: "$mdi_bed"
+                text: "${scene2_icon}"
                 text_align: CENTER
                 text_color: $label_spinbtn_color
                 text_font: $icon_font
                 align: CENTER
             - label:
                 text: "${scene2_name}"
+                text_align: CENTER
+                text_color: $label_spinbtn_color
+                align: CENTER
+      - button:
+          id: btn_scene3
+          width: 100%
+          height: 60
+          bg_color: $icon_temp_color
+          pressed:
+            bg_color: darkorange
+          layout:
+            type: flex
+            flex_flow: row
+            flex_align_main: center
+            flex_align_cross: center
+            flex_align_track: center
+            pad_column: 10
+          on_click:
+            - logger.log:
+                level: INFO
+                format: "Scene button clicked: ${scene3_name} (${scene3_entity_id})"
+            - homeassistant.action:
+                action: ${scene3_action_type}
+                data:
+                  entity_id: ${scene3_entity_id}
+          widgets:
+            - label:
+                text: "${scene3_icon}"
+                text_align: CENTER
+                text_color: $label_spinbtn_color
+                text_font: $icon_font
+                align: CENTER
+            - label:
+                text: "${scene3_name}"
+                text_align: CENTER
+                text_color: $label_spinbtn_color
+                align: CENTER
+      - button:
+          id: btn_scene4
+          width: 100%
+          height: 60
+          bg_color: $icon_temp_color
+          pressed:
+            bg_color: darkorange
+          layout:
+            type: flex
+            flex_flow: row
+            flex_align_main: center
+            flex_align_cross: center
+            flex_align_track: center
+            pad_column: 10
+          on_click:
+            - logger.log:
+                level: INFO
+                format: "Scene button clicked: ${scene4_name} (${scene4_entity_id})"
+            - homeassistant.action:
+                action: ${scene4_action_type}
+                data:
+                  entity_id: ${scene4_entity_id}
+          widgets:
+            - label:
+                text: "${scene4_icon}"
+                text_align: CENTER
+                text_color: $label_spinbtn_color
+                text_font: $icon_font
+                align: CENTER
+            - label:
+                text: "${scene4_name}"
                 text_align: CENTER
                 text_color: $label_spinbtn_color
                 align: CENTER

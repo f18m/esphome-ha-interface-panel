@@ -11,6 +11,7 @@ script:
       - delay: 2s
       - script.execute: hide_unwanted_rooms
       - script.execute: hide_unwanted_tabs
+      - script.execute: hide_unwanted_scenes
       - script.execute: sync_all_window_contact_ui
       
   - id: time_update
@@ -102,6 +103,30 @@ script:
             ESP_LOGI("script", "Hiding the 'Info' tab since tab_info_enabled is set to %s", tab_info_enabled_str.c_str());
             lv_obj_add_flag(id(tab_info), LV_OBJ_FLAG_HIDDEN);
             lv_obj_add_flag(button_tab_info, LV_OBJ_FLAG_HIDDEN);
+          }
+
+  - id: hide_unwanted_scenes
+    then:
+      - lambda: |-
+          std::string scene1_entity_id = "${scene1_entity_id}";
+          if (scene1_entity_id.empty()) {
+            ESP_LOGI("script", "Hiding scene1 button because scene1_entity_id is empty");
+            lv_obj_add_flag(id(btn_scene1), LV_OBJ_FLAG_HIDDEN);
+          }
+          std::string scene2_entity_id = "${scene2_entity_id}";
+          if (scene2_entity_id.empty()) {
+            ESP_LOGI("script", "Hiding scene2 button because scene2_entity_id is empty");
+            lv_obj_add_flag(id(btn_scene2), LV_OBJ_FLAG_HIDDEN);
+          }
+          std::string scene3_entity_id = "${scene3_entity_id}";
+          if (scene3_entity_id.empty()) {
+            ESP_LOGI("script", "Hiding scene3 button because scene3_entity_id is empty");
+            lv_obj_add_flag(id(btn_scene3), LV_OBJ_FLAG_HIDDEN);
+          }
+          std::string scene4_entity_id = "${scene4_entity_id}";
+          if (scene4_entity_id.empty()) {
+            ESP_LOGI("script", "Hiding scene4 button because scene4_entity_id is empty");
+            lv_obj_add_flag(id(btn_scene4), LV_OBJ_FLAG_HIDDEN);
           }
 
   - id: sync_all_window_contact_ui
