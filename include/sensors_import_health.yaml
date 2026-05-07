@@ -14,7 +14,7 @@ sensor:
     unit_of_measurement: "count"
     accuracy_decimals: 0
     state_class: measurement
-    update_interval: 30s
+    update_interval: 300s
     on_value:
       - lvgl.label.update:
           id: lbl_invalid_ha_import_count
@@ -39,6 +39,8 @@ sensor:
 
       std::string num_rooms_str = to_string(${num_rooms});
       std::string tab_cover_enabled_str = to_string(${tab_cover_enabled});
+
+      // FIXME: add window contact sensors
 
       // Room sensors.
       if (std::isnan(id(sensor_temp_${room1_id}).state)) invalid_count++;
