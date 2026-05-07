@@ -21,6 +21,11 @@ ifeq ($(CONFIG_FILE),)
 CONFIG_FILE:=interface-panel.yaml
 endif
 
+create-venv:
+	@echo "Creating virtual environment and installing ESPHome..."
+	python3 -m venv venv
+	source venv/bin/activate && \
+		pip install --upgrade pip && pip install esphome
 
 flash-main:
 ifeq ($(LOCALLY_ATTACHED),0)
