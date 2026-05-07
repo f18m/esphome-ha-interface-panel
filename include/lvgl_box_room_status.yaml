@@ -13,13 +13,14 @@ obj:
   border_width: 2
   border_color: $border_color
   radius: 10
+  scrollable: false
   #width: 100%
   width: 100
+  layout: vertical
+  pad_all: 5
   widgets:
     - label:
-        x: 5
-        y: 5
-        width: 90
+        #width: 90
         #height: 50
         text: "${room_name}"
         text_font: visuelt_20
@@ -28,58 +29,68 @@ obj:
         long_mode: WRAP
 
       # TEMPERATURE
+    - obj:
+        width: 100%
+        layout:
+          type: flex
+          flex_flow: row
+          flex_align_main: center
+          flex_align_cross: center
+          flex_align_track: center
+          pad_column: 4
+        widgets:
+          - label:
+              width: 24 # this makes the icon a bit smaller to save some space
+              text: "${mdi_thermometer}"
+              text_font: $icon_font_small
+              text_color: $icon_temp_color
 
-    - label:
-        x: 0
-        y: 70
-        width: 50
-        height: 40
-        text: "${mdi_thermometer}"
-        text_font: $icon_font_small
-        text_color: $icon_temp_color
-
-    - label:
-        id: lbl_current_temp_${room_id}
-        x: 30
-        y: 70
-        width: 60
-        height: 50
-        text: "22.0°C"
-        text_font: nunito_18
-        text_color: $icon_temp_color
+          - label:
+              id: lbl_current_temp_${room_id}
+              #width: 60
+              text: "22.0°C"
+              text_font: nunito_18
+              text_color: $icon_temp_color
 
       # HUMIDITY
-
-    - label:
-        x: 0
-        y: 110
-        width: 50
-        height: 40
-        text: "${mdi_water_percent}"
-        text_font: $icon_font_small
-        text_color: $icon_humidity_color
-
-    - label:
-        id: lbl_current_humidity_${room_id}
-        x: 30
-        y: 115
-        width: 60
-        height: 50
-        text: "55%"
-        text_font: nunito_18
-        text_color: $icon_humidity_color
+    - obj:
+        width: 100%
+        layout:
+          type: flex
+          flex_flow: row
+          flex_align_main: center
+          flex_align_cross: center
+          flex_align_track: center
+          pad_column: 4
+        widgets:
+          - label:
+              width: 24 # this makes the icon a bit smaller to save some space
+              text: "${mdi_water_percent}"
+              text_font: $icon_font_small
+              text_color: $icon_humidity_color
+          - label:
+              id: lbl_current_humidity_${room_id}
+              #width: 60
+              text: "55%"
+              text_font: nunito_18
+              text_color: $icon_humidity_color
 
       # WINDOW CONTACT SENSOR
-
-    - label:
-        id: lbl_icon_window_${room_id}
-        x: 30
-        y: 160
-        width: 50
-        height: 30
-        text: "${mdi_window_closed_variant}"
-        text_font: $icon_font_small
-        text_color: $icon_on_color
+    - obj:
+        width: 100%
+        layout:
+          type: flex
+          flex_flow: row
+          flex_align_main: center
+          flex_align_cross: center
+          flex_align_track: center
+        widgets:
+          - label:
+              id: lbl_icon_window_${room_id}
+              width: 24 # this makes the icon a bit smaller to save some space
+              text: "${mdi_window_closed_variant}"
+              text_font: $icon_font_small
+              text_color: $icon_on_color
 
   # - label:
   #     id: lbl_window_status_${room_id}

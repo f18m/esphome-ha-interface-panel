@@ -10,38 +10,46 @@
 #
 
 obj:
-  x: 0
-  y: 0
   width: 450
   height: 70
+  layout: horizontal # a row
+  pad_all: 5
   bg_color: $bg_color
   border_color: $border_color
   border_width: 2
   radius: 10
+  scrollable: false
   widgets:
+    - obj: # this is a small spacer just to avoid the icon goes too close to the border
+        width: 10
+        flex_grow: 0 # do not grow at all
     - label:
         id: lbl_icon_${id}
-        x: 15
-        y: 15
+        #x: 15
+        #y: 15
         width: 40
         height: 30
+        flex_grow: 0 # do not grow at all
         text: "${icon}"
-        text_font: $icon_font
+        text_font: $icon_font_small
         text_color: $icon_temp_color
     - label:
         id: lbl_floor_${id}
-        x: 80
-        y: 20
-        width: 170
+        #x: 80
+        #y: 20
+        #width: 170
         height: 30
+        #width: 100%
+        flex_grow: 1 # only item that can grow in this row (horizontally)
         text: "${time_schedule}"
         text_color: $label_title_color
     - button:
         id: btn_spin_down_daytime_${id}
-        x: 180
-        y: 5
+        #x: 180
+        #y: 5
         width: 70
-        height: 55
+        height: 50
+        flex_grow: 0 # do not grow at all
         bg_color: $icon_temp_color
         pressed:
           bg_color: darkorange
@@ -56,10 +64,11 @@ obj:
               align: CENTER
     - spinbox:
         id: spinbox_temperature_${id}
-        x: 270
-        y: 15
+        #x: 270
+        #y: 10
         width: 70
         height: 40
+        flex_grow: 0 # do not grow at all
         value: 15
         range_from: 15
         range_to: 25
@@ -80,10 +89,11 @@ obj:
                   value: !lambda return x;
     - button:
         id: btn_spin_up_daytime_${id}
-        x: 355
-        y: 5
+        #x: 355
+        #y: 5
         width: 70
-        height: 55
+        height: 50
+        flex_grow: 0 # do not grow at all
         bg_color: $icon_temp_color
         pressed:
           bg_color: darkorange

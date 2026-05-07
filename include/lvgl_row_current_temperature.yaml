@@ -9,30 +9,33 @@
 #
 
 obj:
-  x: 0
-  y: 0
   width: 450
   height: 70
+  layout: horizontal # a row
+  pad_all: 5
   bg_color: $bg_color
   border_color: $border_color
   border_width: 2
   radius: 10
+  scrollable: false
   widgets:
     - label:
-        x: 0
-        y: 5
-        width: 220
-        height: 60
-        text: "Temperatura Target\nAttuale:"
+        #x: 0
+        #y: 5
+        #width: 220
+        height: 30
+        flex_grow: 1 # only item that can grow in this row (horizontally)
+        text: "${temp_current_target_label}"
         text_align: CENTER
         text_color: $label_description_color
         long_mode: WRAP
     - label:
         id: lbl_current_target_temperature
-        x: 250
-        y: 20
-        #width: 100%
+        #x: 250
+        #y: 20
+        width: 80
         height: 30
+        flex_grow: 0 # do not grow at all
         text: "20.0°C"
         text_align: CENTER
         text_color: $label_description_color
@@ -40,10 +43,14 @@ obj:
         #bg_color: $white
     - label:
         id: lbl_current_target_temperature_icon
-        x: 350
-        y: 15
+        #x: 350
+        #y: 15
         width: 40
         height: 30
+        flex_grow: 0 # do not grow at all
         text: "${mdi_sun_thermometer}"
-        text_font: $icon_font
+        text_font: $icon_font_small
         text_color: $icon_temp_color
+    - obj: # this is a small spacer just to avoid the icon goes too close to the border
+        width: 10
+        flex_grow: 0 # do not grow at all

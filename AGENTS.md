@@ -28,6 +28,7 @@ This repository contains an ESPHome-based Home Assistant interface panel for the
 ## Project Conventions
 
 - Prefer small YAML package edits over duplicating config blocks across entrypoints.
+- Use 2-spaces indentation in YAML files
 - Keep [main.yaml](./main.yaml) and [dev-sdl.yaml](./dev-sdl.yaml) aligned for shared substitutions, colors, fonts, and UI behavior unless the difference is strictly hardware-specific.
 - Put hardware-specific changes in [include/hw_waveshare-esp32-s3-touch-lcd-3.5b.yaml](./include/hw_waveshare-esp32-s3-touch-lcd-3.5b.yaml) or [include/hw_sdl.yaml](./include/hw_sdl.yaml), not in LVGL page files.
 - Keep secrets and deployment-specific values in consumer configs or `secrets.yaml`; do not hardcode real credentials in package files.
