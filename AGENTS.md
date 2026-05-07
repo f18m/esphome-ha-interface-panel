@@ -10,8 +10,7 @@ This repository contains an ESPHome-based Home Assistant interface panel for the
 
 ## Validate Changes
 
-- Run `make test-local` for UI/layout work; it renders via ESPHome SDL without reflashing hardware.
-- Run `make test-validate` to validate the SDL configuration.
+- Run `make test-validate` to validate configuration changes. This command can take several seconds and minutes to execute. It should print several lines ending with "Configuration is valid!" when the config changes are valid.
 - Run `esphome config example-instance.yaml` when changing package inputs or installation-facing behavior, because CI builds that file in [build.yaml](./.github/workflows/build.yaml).
 - Use `make flash-main` or `make upload-main` only for actual device deployment. The default target assumes OTA; set `LOCALLY_ATTACHED=1` for USB flashing.
 

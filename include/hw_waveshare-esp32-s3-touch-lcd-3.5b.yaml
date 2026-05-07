@@ -17,8 +17,12 @@ substitutions:
   screen_width: 320
   
 esphome:
-  name: waveshare-esp32-s3-touch
-  friendly_name: WaveShare ESP32-S3 Touch LCD 3.5B
+  name: "waveshare-esp32-s3-touch"
+  friendly_name: "Waveshare ESP32-S3-Touch-LCD-3.5B"
+  comment: "ESPHome HomeAssistant General Purpose Interface Panel"
+  on_boot:
+    then:
+      - script.execute: on_boot_scripts
 
 esp32:
   board: esp32-s3-devkitc-1

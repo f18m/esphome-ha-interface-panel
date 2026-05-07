@@ -16,6 +16,10 @@ api:
         condition:
           lambda: 'return (0 == client_info.find("Home Assistant "));'
         then:
+          - logger.log:
+              level: INFO
+              format: "Home Assistant connected, syncing window contact UI"
+          - script.execute: sync_all_window_contact_ui
           - lvgl.widget.show: lbl_wifi
           - lvgl.label.update:
               id: lbl_wifi

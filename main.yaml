@@ -171,14 +171,6 @@ wifi:
 
 captive_portal:
 
-esphome:
-  name: "waveshare-esp32-s3-touch-v2"
-  friendly_name: "Waveshare ESP32-S3-Touch-LCD-3.5B"
-  comment: "ESPHome HomeAssistant General Purpose Interface Panel"
-  on_boot:
-    then:
-      - script.execute: on_boot_scripts
-
 # Webserver is exposed under regular use
 web_server:
   version: 3
