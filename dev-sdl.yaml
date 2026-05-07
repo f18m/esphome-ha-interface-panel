@@ -170,10 +170,7 @@ esphome:
   comment: "ESPHome HomeAssistant General Purpose Interface Panel"
   on_boot:
     then:
-      - script.execute: hide_unwanted_rooms
-      - script.execute: hide_unwanted_tabs
-      - delay: 2s
-      - script.execute: sync_all_window_contact_ui
+      - script.execute: on_boot_scripts
   
 # Webserver is exposed under regular use
 #web_server:

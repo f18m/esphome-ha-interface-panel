@@ -6,6 +6,13 @@
 # Time update script 
 # This is run once per minute.
 script:
+  - id: on_boot_scripts
+    then:
+      - delay: 2s
+      - script.execute: hide_unwanted_rooms
+      - script.execute: hide_unwanted_tabs
+      - script.execute: sync_all_window_contact_ui
+      
   - id: time_update
     then:
         # The format %I:%M %p will display the time in a 12-hour format with "am" or "pm" included  

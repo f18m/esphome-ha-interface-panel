@@ -105,6 +105,7 @@ substitutions:
 
   # Current target temperature sensor
   ha_temperature_target_sensor: "sensor.temperature_target"
+  temp_current_target_label: "Target Temperature"
 
   # --------------------------------------------------------------------------
   # Scene configuration
@@ -176,10 +177,7 @@ esphome:
   comment: "ESPHome HomeAssistant General Purpose Interface Panel"
   on_boot:
     then:
-      - delay: 2s
-      - script.execute: hide_unwanted_rooms
-      - script.execute: hide_unwanted_tabs
-      - script.execute: sync_all_window_contact_ui
+      - script.execute: on_boot_scripts
 
 # Webserver is exposed under regular use
 web_server:
