@@ -1,13 +1,19 @@
 # Basic Makefile for this ESPHome project
 # Make sure you activate the ESPHome venv environment before running these commands
 
+
+ifeq ($(LOCALLY_ATTACHED),)
+# default value
+LOCALLY_ATTACHED:=0
+endif
+
 ifeq ($(LOCALLY_ATTACHED),1)
 # to upload to a device locally attached via USB:
 OPTIONS:=--device /dev/ttyACM0
 else
 # to upload to a device that has already been flashed with this project
 # and needs just to be updated over the network:
-OPTIONS:= --device smarthome-hmi-waveshare-lcd-p2.lan
+OPTIONS:= --device $(TARGET_DEVICE)
 endif
 
 ifeq ($(CONFIG_FILE),)
@@ -17,11 +23,21 @@ endif
 
 
 flash-main:
+ifeq ($(LOCALLY_ATTACHED),0)
+ifeq ($(TARGET_DEVICE),)
+	$(error "TARGET_DEVICE variable is not set. Please set it to the IP address of the device you want to flash.")
+endif
+endif
 	@echo "Flashing the MAIN firmware..."
 	source venv/bin/activate && \
 		esphome run $(OPTIONS) $(CONFIG_FILE)
 
 upload-main:
+ifeq ($(LOCALLY_ATTACHED),0)
+ifeq ($(TARGET_DEVICE),)
+	$(error "TARGET_DEVICE variable is not set. Please set it to the IP address of the device you want to flash.")
+endif
+endif
 	@echo "Uploading the MAIN firmware..."
 	source venv/bin/activate && \
 		esphome upload $(OPTIONS) $(CONFIG_FILE)
