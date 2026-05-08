@@ -8,7 +8,6 @@
 script:
   - id: on_boot_scripts
     then:
-      - delay: 2s
       - script.execute: hide_unwanted_rooms
       - script.execute: hide_unwanted_tabs
       - script.execute: hide_unwanted_scenes

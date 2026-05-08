@@ -117,6 +117,7 @@ binary_sensor:
   - platform: homeassistant
     entity_id: ${ha_window_contact_sensor_id}
     id: sensor_contact_${room_id}
+    trigger_on_initial_state: true
     on_state:
       - script.execute: sync_window_contact_ui_${room_id}
 

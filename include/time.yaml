@@ -22,3 +22,11 @@ time:
         minutes: '*'
         then:
           - script.execute: time_update
+
+      # Keep window contact UI in sync twice per minute
+      # The reason for this is that the ESPHome sensors created for the window contacts
+      # may not trigger their "on_state" actions for a long time... i.e. until the window
+      # is opened or closed. This can lead to the UI being out of sync with the actual state.
+      # - seconds: /30
+      #   then:
+      #     - script.execute: sync_all_window_contact_ui
