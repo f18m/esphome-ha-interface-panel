@@ -52,7 +52,8 @@ text_sensor:
             id: lbl_esphome_version
             text:
               format: "%s"
-              args: [ 'id(esphome_version).state.c_str()' ]
+              # ESPHome version is a string like "2026.4.5 (config hash ....)"... we keep only what comes before the first space
+              args: [ 'id(esphome_version).state.substr(0, id(esphome_version).state.find(" ")).c_str()' ]
 
   - platform: template
     id: device_last_restart
