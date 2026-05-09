@@ -1,0 +1,83 @@
+# File: sensors_info_tab.yaml
+# Purpose: Declares base sensors/text sensors for SDL mode and links values
+# to Info page widgets.
+# List of subtitutions:
+#   - none
+
+---
+sensor:
+  - platform: uptime
+    id: uptime_seconds
+    name: "Uptime"
+    update_interval: 360s
+    internal: true
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: lbl_uptime
+            text: !lambda |-
+              const uint32_t total_seconds = static_cast<uint32_t>(x);
+              const uint32_t days = total_seconds / 86400;
+              const uint32_t hours = (total_seconds % 86400) / 3600;
+              const uint32_t minutes = (total_seconds % 3600) / 60;
+              const uint32_t seconds = total_seconds % 60;
+              char buf[32];
+              if (days > 0) {
+                snprintf(buf, sizeof(buf), "%ud %uh %um", days, hours, minutes);
+              } else if (hours > 0) {
+                snprintf(buf, sizeof(buf), "%uh %um", hours, minutes);
+              } else if (minutes > 0) {
+                snprintf(buf, sizeof(buf), "%um %us", minutes, seconds);
+              } else {
+                snprintf(buf, sizeof(buf), "%us", seconds);
+              }
+              return std::string(buf);
+
+binary_sensor:
+  - platform: status
+    name: "Status"
+    icon: mdi:check-network-outline
+    entity_category: diagnostic
+
+text_sensor:
+  - platform: version
+    id: esphome_version
+    name: 'ESPHome Version'
+    hide_timestamp: true
+    icon: mdi:source-branch
+    entity_category: diagnostic
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: lbl_esphome_version
+            text:
+              format: "%s"
+              args: [ 'id(esphome_version).state.c_str()' ]
+
+  - platform: template
+    id: device_last_restart
+    name: 'Last Restart'
+    icon: mdi:clock
+    entity_category: diagnostic
+
+  - platform: template
+    name: "Device Name"
+    id: device_name
+    internal: true
+    lambda: |-
+      return {App.get_name().c_str()};
+    on_value:
+      then:
+        - lvgl.label.update:
+            id: lbl_device_name
+            text:
+              format: "%s"
+              args: [ 'id(device_name).state.c_str()' ]
+        - lvgl.qrcode.update:
+            id: qrcode_login
+            text:
+              format: "WIFI:S:%s;T:WPA;P:password;;"
+              args: [ 'id(device_name).state.c_str()' ]
+        - logger.log:
+            format: "Updated QRcode login info - WIFI:S:%s;T:WPA;P:password;;"
+            args: [ 'id(device_name).state.c_str()' ]
