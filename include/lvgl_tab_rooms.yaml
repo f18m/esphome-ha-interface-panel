@@ -9,8 +9,6 @@
 # ROOMS TAB
 #
 - obj:
-    x: 0
-    y: 0
     scrollable: false
     layout: horizontal
     widgets:

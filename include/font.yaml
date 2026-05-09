@@ -104,6 +104,8 @@ font:
       $mdi_window_shutter,
       $mdi_cog,
       $mdi_information,
+      $mdi_home_thermometer,
+      $mdi_tune,
     ]
   - file: 'https://github.com/Templarian/MaterialDesign-Webfont/raw/v7.4.47/fonts/materialdesignicons-webfont.ttf'
     id: mdi_icons_20

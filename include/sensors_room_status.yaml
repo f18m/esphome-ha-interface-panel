@@ -117,6 +117,10 @@ binary_sensor:
   - platform: homeassistant
     entity_id: ${ha_window_contact_sensor_id}
     id: sensor_contact_${room_id}
+    # trigger_on_initial_state is very important to ensure sync between UI and actual state of the window
+    # contact sensors. Without this setting, after a reboot of the ESPHome firmware, the "on_state" action 
+    # would be triggered only whenever the state changes... i.e. only when the window
+    # is opened or closed. This can lead to the UI being out of sync with the actual state for a long time.
     trigger_on_initial_state: true
     on_state:
       - script.execute: sync_window_contact_ui_${room_id}

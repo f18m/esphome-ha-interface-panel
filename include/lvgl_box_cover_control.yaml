@@ -16,25 +16,33 @@ obj:
   scrollable: false
 
   width: 110
-  height: 215
+  height: 100%
+  layout: vertical
+  pad_all: 5
 
   widgets:
     - label:
-        x: 5
-        y: 5
-        width: 100
+        width: 100%
+
+        # IMPORTANT: make the height of this label identical
+        # across all instances of lvgl_box_cover_control.yaml,
+        # since they will appear one next to each other in the UI, 
+        # and if one of them has a different height, the buttons
+        # will not be aligned across the different boxes.
+        height: 35
+
         text: "${room_name}"
         text_font: visuelt_16
         text_align: CENTER
         text_color: $label_title_color
         long_mode: WRAP
+        flex_grow: 0
 
     # UP BUTTON
     - button:
-        x: 5
-        y: 30
         width: 100
         height: 60
+        flex_grow: 1 # can grow in this column (vertically)
         bg_color: $icon_temp_color
         pressed:
           bg_color: darkorange
@@ -57,10 +65,9 @@ obj:
 
     # STOP BUTTON
     - button:
-        x: 5
-        y: 95
-        width: 100
+        width: 100%
         height: 50
+        flex_grow: 1 # can grow in this column (vertically)
         bg_color: $icon_temp_color
         pressed:
           bg_color: darkorange
@@ -82,10 +89,9 @@ obj:
 
     # DOWN BUTTON
     - button:
-        x: 5
-        y: 150
-        width: 100
+        width: 100%
         height: 60
+        flex_grow: 1 # can grow in this column (vertically)
         bg_color: $icon_temp_color
         pressed:
           bg_color: darkorange

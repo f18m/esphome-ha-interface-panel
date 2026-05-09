@@ -1,4 +1,4 @@
-# File: lvgl_room_status_box.yaml
+# File: lvgl_box_room_status.yaml
 # Purpose: Defines a reusable room-status card with room name, temperature,
 # humidity, and window status icon.
 # This looks like a ROUNDED VERTICAL BOX.

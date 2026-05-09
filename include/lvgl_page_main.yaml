@@ -41,7 +41,7 @@ lvgl:
             tab_style:
               #border_color: $icon_on_color
               #border_width: 6
-              # height must be enough to be confortable to press:
+              # height must be enough to be confortable to press the buttons to jump from a tab to another:
               height: 45
               bg_color: white
               items:
@@ -61,34 +61,44 @@ lvgl:
               - name: "${mdi_thermometer_water}"
                 id: tab_rooms
                 scrollable: false
+                pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_rooms.yaml
 
+              # TODO:
+              # HVAC mode tab
+              # mdi_tune icon
+
               # index:1
-              - name: "${mdi_thermometer_chevron_up}"
+              - name: "${mdi_home_thermometer}"
                 id: tab_heating_set_temp
                 scrollable: false
+                pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_heating_set_temp.yaml
 
               # index:2
               - name: "${mdi_radiator}"
                 id: tab_heating_details
                 scrollable: false
+                pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_heating_details.yaml
 
               # index:3
               - name: "${mdi_window_shutter}"
                 id: tab_covers
                 scrollable: false
+                pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_covers.yaml
 
               # index:4
               - name: "${mdi_cog}"
                 id: tab_scenes
                 scrollable: false
+                pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_scenes.yaml
 
               # index:5
               - name: "${mdi_information}"
                 id: tab_info
                 scrollable: false
+                pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_info.yaml
