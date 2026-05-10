@@ -10,7 +10,6 @@ sensor:
     id: uptime_seconds
     name: "Uptime"
     update_interval: 360s
-    internal: true
     on_value:
       then:
         - lvgl.label.update:
