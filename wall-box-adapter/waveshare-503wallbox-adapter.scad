@@ -14,7 +14,7 @@
 // - DENT_COVER
 // - OVERVIEW  (both parts above)
 
-PART = "ADAPTER";
+PART = "OVERVIEW";
 
 
 // ------------------
@@ -157,10 +157,11 @@ module adapter() {
 
 module dent_cover() {
     // ---- Dent Cover ----
-    translate([top_dent_x_offset,
-              box_inner_height/2 + box_wall_thickness*4,
-              plate_thickness+box_wall_thickness+dent_depth*0.8])
-        rounded_box_y(dent_width,
+    
+    translate([0,
+              0,
+              plate_thickness+box_inner_depth*2])
+   /*     rounded_box_y(dent_width,
                     box_wall_thickness*2,
                     dent_depth*0.8,
                     dent_corner_radius);
@@ -168,7 +169,23 @@ module dent_cover() {
     translate([0,
               box_inner_height/2 + box_wall_thickness*4 + box_wall_thickness,
               plate_thickness+box_wall_thickness/2+box_inner_depth/2])
-        cube([box_inner_width - box_corner_radius*2, box_wall_thickness, box_inner_depth], center = true);
+        //cube([box_inner_width - box_corner_radius*2, box_wall_thickness, box_inner_depth], center = true);
+    */
+        difference() {
+            // Outer shell — rounded vertical corners
+            rounded_box(box_outer_width+box_wall_thickness*2,
+                        box_outer_height+box_wall_thickness*2,
+                        box_outer_depth,
+                        box_corner_radius);
+            // Inner cavity (open top) — rounded to match wall thickness
+            translate([0, 0, 0])
+                rounded_box(box_inner_width+box_wall_thickness*2,
+                            box_inner_height+box_wall_thickness*2,
+                            box_inner_depth*1.2, // ensures full subtraction
+                            max(0.1, box_corner_radius - box_wall_thickness));
+            
+            
+        }
 }
 
 
