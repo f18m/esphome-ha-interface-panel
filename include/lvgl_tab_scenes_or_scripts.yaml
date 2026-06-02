@@ -1,0 +1,116 @@
+# File: lvgl_tab_scenes_or_scripts.yaml
+# Purpose: creates a tab for controlling scenes or scripts, displaying scene/script buttons.
+# List of subtitutions:
+#   - scene1_icon
+#   - scene1_name
+#   - scene1_action_type
+#   - scene1_entity_id
+#   - .... all repeated for scene2 .. scene8 ...
+
+- obj:
+    width: 100%
+    #height: 100%
+    height: 240px # set a fixed height to prevent the tab from resizing based on content
+    layout:
+      type: GRID
+      grid_rows: [ FR(1), FR(1), FR(1), FR(1) ]
+      grid_columns: [ FR(1), FR(1) ]
+      pad_column: 10
+      pad_row: 8
+    widgets:
+      - !include {
+          file: lvgl_box_scene_or_script.yaml,
+          vars: {
+            scene_id: "scene1",
+            scene_icon: "${scene1_icon}",
+            scene_name: "${scene1_name}",
+            scene_action_type: "${scene1_action_type}",
+            scene_entity_id: "${scene1_entity_id}",
+            scene_grid_column_pos: 0,
+            scene_grid_row_pos: 0
+          }
+        }
+      - !include {
+          file: lvgl_box_scene_or_script.yaml,
+          vars: {
+            scene_id: "scene2",
+            scene_icon: "${scene2_icon}",
+            scene_name: "${scene2_name}",
+            scene_action_type: "${scene2_action_type}",
+            scene_entity_id: "${scene2_entity_id}",
+            scene_grid_column_pos: 1,
+            scene_grid_row_pos: 0
+          }
+        }
+      - !include {
+          file: lvgl_box_scene_or_script.yaml,
+          vars: {
+            scene_id: "scene3",
+            scene_icon: "${scene3_icon}",
+            scene_name: "${scene3_name}",
+            scene_action_type: "${scene3_action_type}",
+            scene_entity_id: "${scene3_entity_id}",
+            scene_grid_column_pos: 0,
+            scene_grid_row_pos: 1
+          }
+        }
+      - !include {
+          file: lvgl_box_scene_or_script.yaml,
+          vars: {
+            scene_id: "scene4",
+            scene_icon: "${scene4_icon}",
+            scene_name: "${scene4_name}",
+            scene_action_type: "${scene4_action_type}",
+            scene_entity_id: "${scene4_entity_id}",
+            scene_grid_column_pos: 1,
+            scene_grid_row_pos: 1
+          }
+        }
+      - !include {
+          file: lvgl_box_scene_or_script.yaml,
+          vars: {
+            scene_id: "scene5",
+            scene_icon: "${scene5_icon}",
+            scene_name: "${scene5_name}",
+            scene_action_type: "${scene5_action_type}",
+            scene_entity_id: "${scene5_entity_id}",
+            scene_grid_column_pos: 0,
+            scene_grid_row_pos: 2
+          }
+        }
+      - !include {
+          file: lvgl_box_scene_or_script.yaml,
+          vars: {
+            scene_id: "scene6",
+            scene_icon: "${scene6_icon}",
+            scene_name: "${scene6_name}",
+            scene_action_type: "${scene6_action_type}",
+            scene_entity_id: "${scene6_entity_id}",
+            scene_grid_column_pos: 1,
+            scene_grid_row_pos: 2
+          }
+        }
+      - !include {
+          file: lvgl_box_scene_or_script.yaml,
+          vars: {
+            scene_id: "scene7",
+            scene_icon: "${scene7_icon}",
+            scene_name: "${scene7_name}",
+            scene_action_type: "${scene7_action_type}",
+            scene_entity_id: "${scene7_entity_id}",
+            scene_grid_column_pos: 0,
+            scene_grid_row_pos: 3
+          }
+        }
+      - !include {
+          file: lvgl_box_scene_or_script.yaml,
+          vars: {
+            scene_id: "scene8",
+            scene_icon: "${scene8_icon}",
+            scene_name: "${scene8_name}",
+            scene_action_type: "${scene8_action_type}",
+            scene_entity_id: "${scene8_entity_id}",
+            scene_grid_column_pos: 1,
+            scene_grid_row_pos: 3
+          }
+        }

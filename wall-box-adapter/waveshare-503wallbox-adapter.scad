@@ -14,7 +14,7 @@
 // - DENT_COVER
 // - OVERVIEW  (both parts above)
 
-PART = "OVERVIEW";
+PART = "DENT_COVER";
 
 
 // ------------------
@@ -54,6 +54,8 @@ top_dent_x_offset = 16;
 rear_connector_width = 44;
 rear_connector_height = 8;
 rear_connector_y_offset = 24;
+// Dent cover mechanical tolerance
+dent_cover_tolerance = 0.5;
 // Version info
 text_thickness = 1;
 $fn = 60; // smooth circles
@@ -157,24 +159,14 @@ module adapter() {
 
 module dent_cover() {
     // ---- Dent Cover ----
-    
+   
     translate([0,
               0,
-              plate_thickness+box_inner_depth*2])
-   /*     rounded_box_y(dent_width,
-                    box_wall_thickness*2,
-                    dent_depth*0.8,
-                    dent_corner_radius);
-
-    translate([0,
-              box_inner_height/2 + box_wall_thickness*4 + box_wall_thickness,
-              plate_thickness+box_wall_thickness/2+box_inner_depth/2])
-        //cube([box_inner_width - box_corner_radius*2, box_wall_thickness, box_inner_depth], center = true);
-    */
+              4+plate_thickness+box_inner_depth*2])
         difference() {
             // Outer shell — rounded vertical corners
-            rounded_box(box_outer_width+box_wall_thickness*2,
-                        box_outer_height+box_wall_thickness*2,
+            rounded_box(box_outer_width+box_wall_thickness*2+dent_cover_tolerance,
+                        box_outer_height+box_wall_thickness*2+dent_cover_tolerance,
                         box_outer_depth,
                         box_corner_radius);
             // Inner cavity (open top) — rounded to match wall thickness

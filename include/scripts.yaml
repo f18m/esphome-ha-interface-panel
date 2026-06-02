@@ -123,6 +123,26 @@ script:
             ESP_LOGI("script", "Hiding scene4 button because scene4_entity_id is empty");
             lv_obj_add_flag(id(btn_scene4), LV_OBJ_FLAG_HIDDEN);
           }
+          std::string scene5_entity_id = "${scene5_entity_id}";
+          if (scene5_entity_id.empty()) {
+            ESP_LOGI("script", "Hiding scene5 button because scene5_entity_id is empty");
+            lv_obj_add_flag(id(btn_scene5), LV_OBJ_FLAG_HIDDEN);
+          }
+          std::string scene6_entity_id = "${scene6_entity_id}";
+          if (scene6_entity_id.empty()) {
+            ESP_LOGI("script", "Hiding scene6 button because scene6_entity_id is empty");
+            lv_obj_add_flag(id(btn_scene6), LV_OBJ_FLAG_HIDDEN);
+          }
+          std::string scene7_entity_id = "${scene7_entity_id}";
+          if (scene7_entity_id.empty()) {
+            ESP_LOGI("script", "Hiding scene7 button because scene7_entity_id is empty");
+            lv_obj_add_flag(id(btn_scene7), LV_OBJ_FLAG_HIDDEN);
+          }
+          std::string scene8_entity_id = "${scene8_entity_id}";
+          if (scene8_entity_id.empty()) {
+            ESP_LOGI("script", "Hiding scene8 button because scene8_entity_id is empty");
+            lv_obj_add_flag(id(btn_scene8), LV_OBJ_FLAG_HIDDEN);
+          }
 
   - id: sync_all_window_contact_ui
     then:

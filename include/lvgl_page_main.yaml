@@ -94,7 +94,7 @@ lvgl:
                 id: tab_scenes
                 scrollable: false
                 pad_all: 10 # default padding would be 16px
-                widgets: !include lvgl_tab_scenes.yaml
+                widgets: !include lvgl_tab_scenes_or_scripts.yaml
 
               # index:5
               - name: "${mdi_information}"

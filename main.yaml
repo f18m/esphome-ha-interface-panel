@@ -131,6 +131,26 @@ substitutions:
   scene4_name: "Scene 4"
   scene4_icon: "\U000F05A8"
 
+  scene5_action_type: "scene.turn_on"
+  scene5_entity_id: "" # leave empty to hide the whole button
+  scene5_name: "Scene 5"
+  scene5_icon: "\U000F05A8"
+
+  scene6_action_type: "scene.turn_on"
+  scene6_entity_id: "" # leave empty to hide the whole button
+  scene6_name: "Scene 6"
+  scene6_icon: "\U000F05A8"
+
+  scene7_action_type: "scene.turn_on"
+  scene7_entity_id: "" # leave empty to hide the whole button
+  scene7_name: "Scene 7"
+  scene7_icon: "\U000F05A8"
+
+  scene8_action_type: "scene.turn_on"
+  scene8_entity_id: "" # leave empty to hide the whole button
+  scene8_name: "Scene 8"
+  scene8_icon: "\U000F05A8"
+
   # --------------------------------------------------------------------------
   # Everything below this line is not really meant to be overridden by the user, but you can if you want to
   # --------------------------------------------------------------------------

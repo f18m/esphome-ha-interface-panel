@@ -109,24 +109,44 @@ substitutions:
 
 
   scene1_action_type: "script.turn_on"
-  scene1_entity_id: "script.alexa_co2_elevata_soffitta"
-  scene1_name: "Alexa CO2 Elevata"
+  scene1_entity_id: "script.my_custom_script1"
+  scene1_name: "Custom Script 1"
   scene1_icon: "\U000F05A8"
 
   scene2_action_type: "scene.turn_on"
-  scene2_entity_id: ""
-  scene2_name: "Riposino"
+  scene2_entity_id: "scene.my_custom_scene_kitchen"
+  scene2_name: "Kitchen Scene"
   scene2_icon: "\U000F05A8"
 
   scene3_action_type: "scene.turn_on"
-  scene3_entity_id: "" # leave empty to hide the whole button
-  scene3_name: "Scene 3"
+  scene3_entity_id: "script.my_custom_script3" # leave empty to hide the whole button
+  scene3_name: "Custom Script 3"
   scene3_icon: "\U000F05A8"
 
   scene4_action_type: "scene.turn_on"
-  scene4_entity_id: "" # leave empty to hide the whole button
-  scene4_name: "Scene 4"
+  scene4_entity_id: "script.my_custom_script4" # leave empty to hide the whole button
+  scene4_name: "Custom Script 4"
   scene4_icon: "\U000F05A8"
+
+  scene5_action_type: "scene.turn_on"
+  scene5_entity_id: "script.my_custom_script5" # leave empty to hide the whole button
+  scene5_name: "Last Script 5"
+  scene5_icon: "\U000F05A8"
+
+  scene6_action_type: "scene.turn_on"
+  scene6_entity_id: "" # leave empty to hide the whole button
+  scene6_name: "Scene 6"
+  scene6_icon: "\U000F05A8"
+
+  scene7_action_type: "scene.turn_on"
+  scene7_entity_id: "" # leave empty to hide the whole button
+  scene7_name: "Scene 7"
+  scene7_icon: "\U000F05A8"
+
+  scene8_action_type: "scene.turn_on"
+  scene8_entity_id: "" # leave empty to hide the whole button
+  scene8_name: "Scene 8"
+  scene8_icon: "\U000F05A8"
 
 
   # --------------------------------------------------------------------------

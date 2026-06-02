@@ -7,11 +7,18 @@
 #   - scene_name
 #   - scene_action_type
 #   - scene_entity_id
+#   - scene_grid_column_pos
+#   - scene_grid_row_pos
 
 button:
   id: btn_${scene_id}
   width: 100%
-  height: 60
+  #height: 100%
+  height: 60px # set a fixed height to prevent the tab from resizing based on content
+  grid_cell_column_pos: ${scene_grid_column_pos}
+  grid_cell_row_pos: ${scene_grid_row_pos}
+  grid_cell_x_align: STRETCH
+  grid_cell_y_align: CENTER
   bg_color: $icon_temp_color
   pressed:
     bg_color: darkorange
