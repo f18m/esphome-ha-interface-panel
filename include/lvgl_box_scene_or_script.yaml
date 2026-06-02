@@ -1,0 +1,44 @@
+# File: lvgl_box_scene_or_script.yaml
+# Purpose: Defines a reusable button for triggering a Home Assistant scene/script.
+#
+# List of substitutions:
+#   - scene_id
+#   - scene_icon
+#   - scene_name
+#   - scene_action_type
+#   - scene_entity_id
+
+button:
+  id: btn_${scene_id}
+  width: 100%
+  height: 60
+  bg_color: $icon_temp_color
+  pressed:
+    bg_color: darkorange
+  layout:
+    type: flex
+    flex_flow: row
+    flex_align_main: center
+    flex_align_cross: center
+    flex_align_track: center
+    pad_column: 10
+  on_click:
+    - logger.log:
+        level: INFO
+        format: "Scene button clicked: ${scene_name} (${scene_entity_id})"
+    - homeassistant.action:
+        action: ${scene_action_type}
+        data:
+          entity_id: ${scene_entity_id}
+  widgets:
+    - label:
+        text: "${scene_icon}"
+        text_align: CENTER
+        text_color: $label_spinbtn_color
+        text_font: $icon_font
+        align: CENTER
+    - label:
+        text: "${scene_name}"
+        text_align: CENTER
+        text_color: $label_spinbtn_color
+        align: CENTER
