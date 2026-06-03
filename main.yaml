@@ -111,6 +111,10 @@ substitutions:
   # Scene/Script configuration
   # --------------------------------------------------------------------------
 
+  # Shared confirmation popup title used by all scene/script buttons
+  popup_confirm_title: "Confirm action"
+  popup_confirm_body: "Run"
+  
   scene1_action_type: "scene.turn_on"
   scene1_entity_id: "scene.scene1"
   scene1_name: "Scene 1"

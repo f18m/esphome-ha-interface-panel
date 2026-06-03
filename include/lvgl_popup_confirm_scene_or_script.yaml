@@ -1,0 +1,104 @@
+# File: lvgl_popup_confirm_scene_or_script.yaml
+# Purpose: Reusable confirmation popup for scene/script execution.
+#
+# List of substitutions:
+#   - scene_id
+#   - scene_name
+#   - scene_action_type
+#   - scene_entity_id
+#   - popup_title
+#   - popup_body
+
+obj:
+  id: scene_confirm_overlay_${scene_id}
+  hidden: true
+  width: 100%
+  height: 100%
+  align: CENTER
+  bg_color: black
+  bg_opa: 100%
+  border_width: 2
+  border_color: red
+  clickable: true
+  scrollable: false
+  layout:
+    type: flex
+    flex_flow: column
+    flex_align_main: center
+    flex_align_cross: center
+    flex_align_track: center
+  widgets:
+    - obj:
+        width: 85%
+        #bg_color: white
+        pad_all: 12
+        radius: 10
+        border_width: 2
+        border_color: red
+        scrollable: false
+        layout:
+          type: flex
+          flex_flow: column
+          flex_align_main: center
+          flex_align_cross: center
+          flex_align_track: center
+          pad_row: 12
+        widgets:
+          - label:
+              text: "${popup_title}"
+              text_color: white
+              #text_font: $text_font
+              text_align: CENTER
+              height: 45px
+          - label:
+              text: "${popup_body}"
+              text_color: white
+              text_align: CENTER
+              height: 45px
+          - obj:
+              width: 100%
+              bg_opa: TRANSP
+              border_width: 2
+              border_color: red
+              pad_all: 0
+              scrollable: false
+              height: 50px
+              layout:
+                type: flex
+                flex_flow: row
+                flex_align_main: space_evenly
+                flex_align_cross: center
+                flex_align_track: center
+                pad_column: 12
+              widgets:
+                - button:
+                    id: btn_scene_confirm_no_${scene_id}
+                    width: 45%
+                    height: 45px
+                    bg_color: gray
+                    on_click:
+                      - lvgl.widget.hide: scene_confirm_overlay_${scene_id}
+                    widgets:
+                      - label:
+                          text: "NO"
+                          text_color: white
+                          align: CENTER
+                - button:
+                    id: btn_scene_confirm_yes_${scene_id}
+                    width: 45%
+                    height: 45px
+                    bg_color: green
+                    on_click:
+                      - logger.log:
+                          level: INFO
+                          format: "Scene confirmed: ${scene_name} (${scene_entity_id})"
+                      - homeassistant.action:
+                          action: ${scene_action_type}
+                          data:
+                            entity_id: ${scene_entity_id}
+                      - lvgl.widget.hide: scene_confirm_overlay_${scene_id}
+                    widgets:
+                      - label:
+                          text: "YES"
+                          text_color: white
+                          align: CENTER

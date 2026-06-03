@@ -114,3 +114,94 @@
             scene_grid_row_pos: 3
           }
         }
+
+  # HIDDEN POPUP CONFIRMATIONS FOR EACH SCENE/SCRIPT
+
+- !include {
+    file: lvgl_popup_confirm_scene_or_script.yaml,
+    vars: {
+      scene_id: "scene1",
+      scene_name: "${scene1_name}",
+      scene_action_type: "${scene1_action_type}",
+      scene_entity_id: "${scene1_entity_id}",
+      popup_title: "${popup_confirm_title}",
+      popup_body: "${popup_confirm_body} ${scene1_name}?"
+    }
+  }
+- !include {
+    file: lvgl_popup_confirm_scene_or_script.yaml,
+    vars: {
+      scene_id: "scene2",
+      scene_name: "${scene2_name}",
+      scene_action_type: "${scene2_action_type}",
+      scene_entity_id: "${scene2_entity_id}",
+      popup_title: "${popup_confirm_title}",
+      popup_body: "${popup_confirm_body} ${scene2_name}?"
+    }
+  }
+- !include {
+    file: lvgl_popup_confirm_scene_or_script.yaml,
+    vars: {
+      scene_id: "scene3",
+      scene_name: "${scene3_name}",
+      scene_action_type: "${scene3_action_type}",
+      scene_entity_id: "${scene3_entity_id}",
+      popup_title: "${popup_confirm_title}",
+      popup_body: "${popup_confirm_body} ${scene3_name}?"
+    }
+  }
+- !include {
+    file: lvgl_popup_confirm_scene_or_script.yaml,
+    vars: {
+      scene_id: "scene4",
+      scene_name: "${scene4_name}",
+      scene_action_type: "${scene4_action_type}",
+      scene_entity_id: "${scene4_entity_id}",
+      popup_title: "${popup_confirm_title}",
+      popup_body: "${popup_confirm_body} ${scene4_name}?"
+    }
+  }
+- !include {
+    file: lvgl_popup_confirm_scene_or_script.yaml,
+    vars: {
+      scene_id: "scene5",
+      scene_name: "${scene5_name}",
+      scene_action_type: "${scene5_action_type}",
+      scene_entity_id: "${scene5_entity_id}",
+      popup_title: "${popup_confirm_title}",
+      popup_body: "${popup_confirm_body} ${scene5_name}?"
+    }
+  }
+- !include {
+    file: lvgl_popup_confirm_scene_or_script.yaml,
+    vars: {
+      scene_id: "scene6",
+      scene_name: "${scene6_name}",
+      scene_action_type: "${scene6_action_type}",
+      scene_entity_id: "${scene6_entity_id}",
+      popup_title: "${popup_confirm_title}",
+      popup_body: "${popup_confirm_body} ${scene6_name}?"
+    }
+  }
+- !include {
+    file: lvgl_popup_confirm_scene_or_script.yaml,
+    vars: {
+      scene_id: "scene7",
+      scene_name: "${scene7_name}",
+      scene_action_type: "${scene7_action_type}",
+      scene_entity_id: "${scene7_entity_id}",
+      popup_title: "${popup_confirm_title}",
+      popup_body: "${popup_confirm_body} ${scene7_name}?"
+    }
+  }
+- !include {
+    file: lvgl_popup_confirm_scene_or_script.yaml,
+    vars: {
+      scene_id: "scene8",
+      scene_name: "${scene8_name}",
+      scene_action_type: "${scene8_action_type}",
+      scene_entity_id: "${scene8_entity_id}",
+      popup_title: "${popup_confirm_title}",
+      popup_body: "${popup_confirm_body} ${scene8_name}?"
+    }
+  }

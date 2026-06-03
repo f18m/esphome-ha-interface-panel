@@ -32,11 +32,8 @@ button:
   on_click:
     - logger.log:
         level: INFO
-        format: "Scene button clicked: ${scene_name} (${scene_entity_id})"
-    - homeassistant.action:
-        action: ${scene_action_type}
-        data:
-          entity_id: ${scene_entity_id}
+        format: "Scene button clicked, showing confirmation: ${scene_name} (${scene_entity_id})"
+    - lvgl.widget.show: scene_confirm_overlay_${scene_id}
   widgets:
     - label:
         text: "${scene_icon}"
