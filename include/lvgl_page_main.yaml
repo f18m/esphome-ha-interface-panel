@@ -30,6 +30,12 @@ lvgl:
             text_align: RIGHT
             text_color: ${icon_off_color}
 
+        # see https://lvgl.io/docs/open/9.2/widgets/tabview
+        # for detailed info
+        # Swipe-based tab switching is intentionally disabled at boot in
+        # include/scripts.yaml for the reason that it makes the UI "jumpy"
+        # and some times touches trigger a tab change when the user just wants
+        # to click a button
         - tabview:
             id: tabview_main
             x: 0

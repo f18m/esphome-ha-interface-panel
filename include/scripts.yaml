@@ -8,10 +8,19 @@
 script:
   - id: on_boot_scripts
     then:
+      - script.execute: disable_tabview_swipe
       - script.execute: hide_unwanted_rooms
       - script.execute: hide_unwanted_tabs
       - script.execute: hide_unwanted_scenes
       - script.execute: sync_all_window_contact_ui
+
+  - id: disable_tabview_swipe
+    then:
+      - lambda: |-
+          auto* content = lv_tabview_get_content(id(tabview_main));
+          // Keep tab changes only via tab buttons/actions, not horizontal swipe.
+          lv_obj_clear_flag(content, LV_OBJ_FLAG_SCROLLABLE);
+          lv_obj_set_scrollbar_mode(content, LV_SCROLLBAR_MODE_OFF);
       
   - id: time_update
     then:
