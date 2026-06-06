@@ -17,8 +17,6 @@ obj:
   align: CENTER
   bg_color: black
   bg_opa: 100%
-  border_width: 2
-  border_color: red
   clickable: true
   scrollable: false
   layout:
@@ -33,8 +31,6 @@ obj:
         #bg_color: white
         pad_all: 12
         radius: 10
-        border_width: 2
-        border_color: red
         scrollable: false
         layout:
           type: flex
@@ -58,8 +54,6 @@ obj:
           - obj:
               width: 100%
               bg_opa: TRANSP
-              border_width: 2
-              border_color: red
               pad_all: 0
               scrollable: false
               height: 50px
