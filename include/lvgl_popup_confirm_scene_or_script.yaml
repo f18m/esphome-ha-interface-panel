@@ -83,14 +83,24 @@ obj:
                     height: 45px
                     bg_color: green
                     on_click:
+                      # IMPORTANT: first hide the popup, otherwise the Home Assistant action 
+                      # may take a long time to execute and the popup will remain visible until 
+                      # the action is completed, which is not a good user experience.
+                      - lvgl.widget.hide: scene_confirm_overlay_${scene_id}
                       - logger.log:
                           level: INFO
                           format: "Scene confirmed: ${scene_name} (${scene_entity_id})"
+
+                      # IMPORTANT: depending on the number of entities that need to be updated in
+                      # Home Assistant, the execution of the action may take a long time and 
+                      # also cause a storm of high-frequency UI updates. On ESP32-S3 + LVGL 
+                      # this can intermittently stall UI for a few seconds, then watchdog-reset.
+                      # See mitigation approach in the implementation of the Home Assistant action,
+                      # in the sensors_room_status.yaml file
                       - homeassistant.action:
                           action: ${scene_action_type}
                           data:
                             entity_id: ${scene_entity_id}
-                      - lvgl.widget.hide: scene_confirm_overlay_${scene_id}
                     widgets:
                       - label:
                           text: "YES"

@@ -46,37 +46,59 @@ sensor:
     id: cover_position_${room_id}
     entity_id: ${ha_cover_id}
     attribute: current_position
+    filters:
+      - lambda: |-
+          // When some HomeAssistant action trigger multiple covers to move all at once, 
+          // this sensor code path will be invoked at high-frequency.
+          // This can intermittently stall UI for a few seconds, then watchdog-reset.
+          // To mitigate this issue, we only keep edge transitions that matter for UI button opacity.
+          // 0 = fully closed, 100 = fully open, 50 = in-between.
+          if (x <= 0.5f) {
+            return 0.0f;
+          }
+          if (x >= 99.5f) {
+            return 100.0f;
+          }
+          return 50.0f;
+      - delta: 0.5
     on_value:
       - if:
-          # is 100% open?
+          # Fully open: UP cannot move further.
           condition:
             lambda: |-
-              return x == 100;
+              return x >= 99.5f;
           then:
-            # yes: then make a bit transparent the UP button, to give a visual
-            # feedback that it's not possible to open more
+              # make a bit transparent the UP button, to give a visual
+              # feedback that it's not possible to open more
             - lvgl.widget.update:
                 id: cover_up_${room_id}
                 text_opa: 60%
-          else:
-            - lvgl.widget.update:
-                id: cover_up_${room_id}
-                text_opa: 100%
-      - if:
-          # is 100% closed?
-          condition:
-            lambda: |-
-              return x == 0;
-          then:
-            # yes: then make a bit transparent the DOWN button, to give a visual
-            # feedback that it's not possible to close more
-            - lvgl.widget.update:
-                id: cover_down_${room_id}
-                text_opa: 60%
-          else:
             - lvgl.widget.update:
                 id: cover_down_${room_id}
                 text_opa: 100%
+          else:
+            - if:
+                # Fully closed: DOWN cannot move further.
+                condition:
+                  lambda: |-
+                    return x <= 0.5f;
+                then:
+                  - lvgl.widget.update:
+                      id: cover_up_${room_id}
+                      text_opa: 100%
+                  # make a bit transparent the DOWN button, to give a visual
+                  # feedback that it's not possible to close more
+                  - lvgl.widget.update:
+                      id: cover_down_${room_id}
+                      text_opa: 60%
+                else:
+                  # Moving/in-between: both directions available.
+                  - lvgl.widget.update:
+                      id: cover_up_${room_id}
+                      text_opa: 100%
+                  - lvgl.widget.update:
+                      id: cover_down_${room_id}
+                      text_opa: 100%
 
       # - logger.log:
       #     format: "Updated labels for UP/DOWN btns for cover of room ${room_id} to %d"
