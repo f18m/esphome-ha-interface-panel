@@ -1,0 +1,135 @@
+# File: lvgl_tab_ac_floor.yaml
+# Purpose: Controls whole-floor AC power and fan speed presets.
+# List of substitutions:
+#   - ac_climate_entity_id
+#   - ac_turn_on_action_type
+#   - ac_turn_off_action_type
+#   - ac_set_fan_mode_action_type
+#   - ac_fan_mode_low
+#   - ac_fan_mode_medium
+#   - ac_fan_mode_high
+
+- obj:
+    width: 100%
+    height: 240
+    scrollable: false
+    layout:
+      type: flex
+      flex_flow: column
+      flex_align_main: center
+      flex_align_cross: center
+      flex_align_track: center
+      pad_row: 16
+    widgets:
+      - label:
+          text: "Floor AC"
+          text_color: $label_title_color
+          text_font: visuelt_20
+
+      - obj:
+          width: 100%
+          height: 120
+          scrollable: false
+          bg_opa: TRANSP
+          layout:
+            type: flex
+            flex_flow: row
+            flex_align_main: space_evenly
+            flex_align_cross: center
+            flex_align_track: center
+            pad_column: 8
+          widgets:
+            - button:
+                id: btn_ac_floor_off
+                width: 110
+                height: 80
+                bg_color: $icon_off_color
+                pressed:
+                  bg_color: darkred
+                on_click:
+                  - logger.log:
+                      format: "AC selector: OFF (${ac_climate_entity_id})"
+                  - homeassistant.action:
+                      action: ${ac_turn_off_action_type}
+                      data:
+                        entity_id: ${ac_climate_entity_id}
+                widgets:
+                  - label:
+                      text: "OFF"
+                      text_color: $label_on_color
+                      align: CENTER
+
+            - button:
+                id: btn_ac_floor_low
+                width: 110
+                height: 80
+                bg_color: $icon_temp_color
+                pressed:
+                  bg_color: darkorange
+                on_click:
+                  - logger.log:
+                      format: "AC selector: LOW (${ac_climate_entity_id})"
+                  - homeassistant.action:
+                      action: ${ac_turn_on_action_type}
+                      data:
+                        entity_id: ${ac_climate_entity_id}
+                  - homeassistant.action:
+                      action: ${ac_set_fan_mode_action_type}
+                      data:
+                        entity_id: ${ac_climate_entity_id}
+                        fan_mode: ${ac_fan_mode_low}
+                widgets:
+                  - label:
+                      text: "LOW"
+                      text_color: $label_spinbtn_color
+                      align: CENTER
+
+            - button:
+                id: btn_ac_floor_medium
+                width: 110
+                height: 80
+                bg_color: $icon_temp_color
+                pressed:
+                  bg_color: darkorange
+                on_click:
+                  - logger.log:
+                      format: "AC selector: MEDIUM (${ac_climate_entity_id})"
+                  - homeassistant.action:
+                      action: ${ac_turn_on_action_type}
+                      data:
+                        entity_id: ${ac_climate_entity_id}
+                  - homeassistant.action:
+                      action: ${ac_set_fan_mode_action_type}
+                      data:
+                        entity_id: ${ac_climate_entity_id}
+                        fan_mode: ${ac_fan_mode_medium}
+                widgets:
+                  - label:
+                      text: "MEDIUM"
+                      text_color: $label_spinbtn_color
+                      align: CENTER
+
+            - button:
+                id: btn_ac_floor_high
+                width: 110
+                height: 80
+                bg_color: $icon_temp_color
+                pressed:
+                  bg_color: darkorange
+                on_click:
+                  - logger.log:
+                      format: "AC selector: HIGH (${ac_climate_entity_id})"
+                  - homeassistant.action:
+                      action: ${ac_turn_on_action_type}
+                      data:
+                        entity_id: ${ac_climate_entity_id}
+                  - homeassistant.action:
+                      action: ${ac_set_fan_mode_action_type}
+                      data:
+                        entity_id: ${ac_climate_entity_id}
+                        fan_mode: ${ac_fan_mode_high}
+                widgets:
+                  - label:
+                      text: "HIGH"
+                      text_color: $label_spinbtn_color
+                      align: CENTER

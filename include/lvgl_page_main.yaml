@@ -70,39 +70,42 @@ lvgl:
                 pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_rooms.yaml
 
-              # TODO:
-              # HVAC mode tab
-              # mdi_tune icon
-
               # index:1
+              - name: "${mdi_air_conditioner}"
+                id: tab_ac_floor
+                scrollable: false
+                pad_all: 10 # default padding would be 16px
+                widgets: !include lvgl_tab_ac_floor.yaml
+
+              # index:2
               - name: "${mdi_home_thermometer}"
                 id: tab_heating_set_temp
                 scrollable: false
                 pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_heating_set_temp.yaml
 
-              # index:2
+              # index:3
               - name: "${mdi_radiator}"
                 id: tab_heating_details
                 scrollable: false
                 pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_heating_details.yaml
 
-              # index:3
+              # index:4
               - name: "${mdi_window_shutter}"
                 id: tab_covers
                 scrollable: false
                 pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_covers.yaml
 
-              # index:4
+              # index:5
               - name: "${mdi_cog}"
                 id: tab_scenes
                 scrollable: false
                 pad_all: 10 # default padding would be 16px
                 widgets: !include lvgl_tab_scenes_or_scripts.yaml
 
-              # index:5
+              # index:6
               - name: "${mdi_information}"
                 id: tab_info
                 scrollable: true

@@ -34,11 +34,24 @@ substitutions:
   # --------------------------------------------------------------------------
 
   tab_rooms_enabled: "1"
+  tab_ac_enabled: "0"
   tab_heating_set_temp_enabled: "1"
   tab_heating_details_enabled: "1"
   tab_cover_enabled: "1"
   tab_scenes_enabled: "1"
   tab_info_enabled: "1"
+
+  # --------------------------------------------------------------------------
+  # AC configuration (whole-floor AC control tab)
+  # --------------------------------------------------------------------------
+
+  ac_climate_entity_id: "climate.floor_ac"
+  ac_turn_on_action_type: "climate.turn_on"
+  ac_turn_off_action_type: "climate.turn_off"
+  ac_set_fan_mode_action_type: "climate.set_fan_mode"
+  ac_fan_mode_low: "low"
+  ac_fan_mode_medium: "medium"
+  ac_fan_mode_high: "high"
  
 
   # --------------------------------------------------------------------------

@@ -56,6 +56,7 @@ script:
           ESP_LOGI("script", "Running hide_unwanted_tabs script");
 
           std::string tab_rooms_enabled_str = to_string(${tab_rooms_enabled});
+          std::string tab_ac_enabled_str = to_string(${tab_ac_enabled});
           std::string tab_heating_set_temp_enabled_str = to_string(${tab_heating_set_temp_enabled});
           std::string tab_heating_details_enabled_str = to_string(${tab_heating_details_enabled});
           std::string tab_cover_enabled_str = to_string(${tab_cover_enabled});
@@ -64,13 +65,15 @@ script:
 
           // if the order of the tabs is changed, please also update the index values below!
           const int idx_tab_rooms = 0;
-          const int idx_tab_heating_set_temp = 1;
-          const int idx_tab_heating_details = 2;
-          const int idx_tab_covers = 3;
-          const int idx_tab_scenes = 4;
-          const int idx_tab_info = 5;
+          const int idx_tab_ac = 1;
+          const int idx_tab_heating_set_temp = 2;
+          const int idx_tab_heating_details = 3;
+          const int idx_tab_covers = 4;
+          const int idx_tab_scenes = 5;
+          const int idx_tab_info = 6;
 
           auto* button_tab_rooms = lv_tabview_get_tab_button(id(tabview_main), idx_tab_rooms);
+          auto* button_tab_ac = lv_tabview_get_tab_button(id(tabview_main), idx_tab_ac);
           auto* button_tab_heating_set_temp = lv_tabview_get_tab_button(id(tabview_main), idx_tab_heating_set_temp);
           auto* button_tab_heating_details = lv_tabview_get_tab_button(id(tabview_main), idx_tab_heating_details);
           auto* button_tab_covers = lv_tabview_get_tab_button(id(tabview_main), idx_tab_covers);
@@ -87,6 +90,10 @@ script:
           if (tab_rooms_enabled_str == "0") {
             ESP_LOGI("script", "Hiding the 'Rooms' tab since tab_rooms_enabled is set to %s", tab_rooms_enabled_str.c_str());
             lv_obj_add_flag(button_tab_rooms, LV_OBJ_FLAG_HIDDEN);
+          }
+          if (tab_ac_enabled_str == "0") {
+            ESP_LOGI("script", "Hiding the 'AC' tab since tab_ac_enabled is set to %s", tab_ac_enabled_str.c_str());
+            lv_obj_add_flag(button_tab_ac, LV_OBJ_FLAG_HIDDEN);
           }
           if (tab_heating_set_temp_enabled_str == "0") {
             ESP_LOGI("script", "Hiding the 'Heating Set Temp' tab since tab_heating_set_temp_enabled is set to %s", tab_heating_set_temp_enabled_str.c_str());
