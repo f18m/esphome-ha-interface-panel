@@ -2,11 +2,8 @@
 # Purpose: Controls whole-floor AC power and fan speed presets.
 # List of substitutions:
 #   - ac_climate_entity_id
-#   - ac_turn_on_action_type
 #   - ac_turn_off_action_type
-#   - ac_set_mode_action_type
-#   - ac_set_mode_action_value
-#   - ac_set_fan_mode_action_type
+#   - ac_script_type
 #   - ac_fan_mode_low
 #   - ac_fan_mode_medium
 #   - ac_fan_mode_high
@@ -72,34 +69,14 @@
                   - logger.log:
                       format: "AC selector: LOW (${ac_climate_entity_id})"
 
-
-                  # OPTIONAL turn on action:
-                  - if:
-                      condition:
-                        lambda: 'return strlen("${ac_turn_on_action_type}") > 0;'
-                      then:
-                        - homeassistant.action:
-                            action: ${ac_turn_on_action_type}
-                            data:
-                              entity_id: ${ac_climate_entity_id}
-
-                  # OPTIONAL set mode action:
-                  - if:
-                      condition:
-                        lambda: 'return strlen("${ac_set_mode_action_type}") > 0;'
-                      then:
-                        - homeassistant.action:
-                            action: ${ac_set_mode_action_type}
-                            data:
-                              entity_id: ${ac_climate_entity_id}
-                              hvac_mode: ${ac_set_mode_action_value}   # cool, heat, heat_cool, fan_only, dry, auto, "off"
-
-                  # MANDATORY SET FAN MODE action:
+                  # execute a script defined on HomeAssistant to turn on the AC and set the fan to LOW
+                  # the script must take a parameter named "speed"
                   - homeassistant.action:
-                      action: ${ac_set_fan_mode_action_type}
+                      action: ${ac_script_type}
                       data:
                         entity_id: ${ac_climate_entity_id}
-                        fan_mode: ${ac_fan_mode_low}
+                        speed: ${ac_fan_mode_low}
+
                 widgets:
                   - label:
                       text: "LOW"
@@ -117,32 +94,13 @@
                   - logger.log:
                       format: "AC selector: MEDIUM (${ac_climate_entity_id})"
 
-                  # OPTIONAL turn on action:
-                  - if:
-                      condition:
-                        lambda: 'return strlen("${ac_turn_on_action_type}") > 0;'
-                      then:
-                        - homeassistant.action:
-                            action: ${ac_turn_on_action_type}
-                            data:
-                              entity_id: ${ac_climate_entity_id}
-                  # OPTIONAL set mode action:
-                  - if:
-                      condition:
-                        lambda: 'return strlen("${ac_set_mode_action_type}") > 0;'
-                      then:
-                        - homeassistant.action:
-                            action: ${ac_set_mode_action_type}
-                            data:
-                              entity_id: ${ac_climate_entity_id}
-                              hvac_mode: ${ac_set_mode_action_value}   # cool, heat, heat_cool, fan_only, dry, auto, "off"
-
-                  # MANDATORY SET FAN MODE action:
+                  # execute a script defined on HomeAssistant to turn on the AC and set the fan to MEDIUM
+                  # the script must take a parameter named "speed"
                   - homeassistant.action:
-                      action: ${ac_set_fan_mode_action_type}
+                      action: ${ac_script_type}
                       data:
                         entity_id: ${ac_climate_entity_id}
-                        fan_mode: ${ac_fan_mode_medium}
+                        speed: ${ac_fan_mode_medium}
                 widgets:
                   - label:
                       text: "MEDIUM"
@@ -160,34 +118,18 @@
                   - logger.log:
                       format: "AC selector: HIGH (${ac_climate_entity_id})"
 
-                  # OPTIONAL turn on action:
-                  - if:
-                      condition:
-                        lambda: 'return strlen("${ac_turn_on_action_type}") > 0;'
-                      then:
-                        - homeassistant.action:
-                            action: ${ac_turn_on_action_type}
-                            data:
-                              entity_id: ${ac_climate_entity_id}
-                  # OPTIONAL set mode action:
-                  - if:
-                      condition:
-                        lambda: 'return strlen("${ac_set_mode_action_type}") > 0;'
-                      then:
-                        - homeassistant.action:
-                            action: ${ac_set_mode_action_type}
-                            data:
-                              entity_id: ${ac_climate_entity_id}
-                              hvac_mode: ${ac_set_mode_action_value}   # cool, heat, heat_cool, fan_only, dry, auto, "off"
-
-                  # MANDATORY SET FAN MODE action:
+                  # execute a script defined on HomeAssistant to turn on the AC and set the fan to HIGH
+                  # the script must take a parameter named "speed"
                   - homeassistant.action:
-                      action: ${ac_set_fan_mode_action_type}
+                      action: ${ac_script_type}
                       data:
                         entity_id: ${ac_climate_entity_id}
-                        fan_mode: ${ac_fan_mode_high}
+                        speed: ${ac_fan_mode_high}
                 widgets:
                   - label:
                       text: "HIGH"
                       text_color: $label_spinbtn_color
                       align: CENTER
+
+
+script.ac_p2_set_speed
