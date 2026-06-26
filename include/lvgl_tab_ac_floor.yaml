@@ -3,7 +3,6 @@
 # List of substitutions:
 #   - ac_climate_entity_id
 #   - ac_turn_off_action_type
-#   - ac_script_type
 #   - ac_script_entity_id
 #   - ac_fan_mode_low
 #   - ac_fan_mode_medium
@@ -73,11 +72,9 @@
                   # execute a script defined on HomeAssistant to turn on the AC and set the fan to LOW
                   # the script must take a parameter named "speed"
                   - homeassistant.action:
-                      action: ${ac_script_type}
+                      action: ${ac_script_entity_id}
                       data:
-                        entity_id: ${ac_script_entity_id}
-                        variables:
-                          speed: ${ac_fan_mode_low}
+                        speed: ${ac_fan_mode_low}
 
                 widgets:
                   - label:
@@ -99,11 +96,9 @@
                   # execute a script defined on HomeAssistant to turn on the AC and set the fan to MEDIUM
                   # the script must take a parameter named "speed"
                   - homeassistant.action:
-                      action: ${ac_script_type}
+                      action: ${ac_script_entity_id}
                       data:
-                        entity_id: ${ac_script_entity_id}
-                        variables:
-                          speed: ${ac_fan_mode_medium}
+                        speed: ${ac_fan_mode_medium}
                 widgets:
                   - label:
                       text: "MEDIUM"
@@ -124,11 +119,9 @@
                   # execute a script defined on HomeAssistant to turn on the AC and set the fan to HIGH
                   # the script must take a parameter named "speed"
                   - homeassistant.action:
-                      action: ${ac_script_type}
+                      action: ${ac_script_entity_id}
                       data:
-                        entity_id: ${ac_script_entity_id}
-                        variables:
-                          speed: ${ac_fan_mode_high}
+                        speed: ${ac_fan_mode_high}
                 widgets:
                   - label:
                       text: "HIGH"
