@@ -4,6 +4,8 @@
 #   - ac_climate_entity_id
 #   - ac_turn_on_action_type
 #   - ac_turn_off_action_type
+#   - ac_set_mode_action_type
+#   - ac_set_mode_action_value
 #   - ac_set_fan_mode_action_type
 #   - ac_fan_mode_low
 #   - ac_fan_mode_medium
@@ -69,10 +71,30 @@
                 on_click:
                   - logger.log:
                       format: "AC selector: LOW (${ac_climate_entity_id})"
-                  - homeassistant.action:
-                      action: ${ac_turn_on_action_type}
-                      data:
-                        entity_id: ${ac_climate_entity_id}
+
+
+                  # OPTIONAL turn on action:
+                  - if:
+                      condition:
+                        lambda: 'return strlen("${ac_turn_on_action_type}") > 0;'
+                      then:
+                        - homeassistant.action:
+                            action: ${ac_turn_on_action_type}
+                            data:
+                              entity_id: ${ac_climate_entity_id}
+
+                  # OPTIONAL set mode action:
+                  - if:
+                      condition:
+                        lambda: 'return strlen("${ac_set_mode_action_type}") > 0;'
+                      then:
+                        - homeassistant.action:
+                            action: ${ac_set_mode_action_type}
+                            data:
+                              entity_id: ${ac_climate_entity_id}
+                              hvac_mode: ${ac_set_mode_action_value}   # cool, heat, heat_cool, fan_only, dry, auto, "off"
+
+                  # MANDATORY SET FAN MODE action:
                   - homeassistant.action:
                       action: ${ac_set_fan_mode_action_type}
                       data:
@@ -94,10 +116,28 @@
                 on_click:
                   - logger.log:
                       format: "AC selector: MEDIUM (${ac_climate_entity_id})"
-                  - homeassistant.action:
-                      action: ${ac_turn_on_action_type}
-                      data:
-                        entity_id: ${ac_climate_entity_id}
+
+                  # OPTIONAL turn on action:
+                  - if:
+                      condition:
+                        lambda: 'return strlen("${ac_turn_on_action_type}") > 0;'
+                      then:
+                        - homeassistant.action:
+                            action: ${ac_turn_on_action_type}
+                            data:
+                              entity_id: ${ac_climate_entity_id}
+                  # OPTIONAL set mode action:
+                  - if:
+                      condition:
+                        lambda: 'return strlen("${ac_set_mode_action_type}") > 0;'
+                      then:
+                        - homeassistant.action:
+                            action: ${ac_set_mode_action_type}
+                            data:
+                              entity_id: ${ac_climate_entity_id}
+                              hvac_mode: ${ac_set_mode_action_value}   # cool, heat, heat_cool, fan_only, dry, auto, "off"
+
+                  # MANDATORY SET FAN MODE action:
                   - homeassistant.action:
                       action: ${ac_set_fan_mode_action_type}
                       data:
@@ -119,10 +159,28 @@
                 on_click:
                   - logger.log:
                       format: "AC selector: HIGH (${ac_climate_entity_id})"
-                  - homeassistant.action:
-                      action: ${ac_turn_on_action_type}
-                      data:
-                        entity_id: ${ac_climate_entity_id}
+
+                  # OPTIONAL turn on action:
+                  - if:
+                      condition:
+                        lambda: 'return strlen("${ac_turn_on_action_type}") > 0;'
+                      then:
+                        - homeassistant.action:
+                            action: ${ac_turn_on_action_type}
+                            data:
+                              entity_id: ${ac_climate_entity_id}
+                  # OPTIONAL set mode action:
+                  - if:
+                      condition:
+                        lambda: 'return strlen("${ac_set_mode_action_type}") > 0;'
+                      then:
+                        - homeassistant.action:
+                            action: ${ac_set_mode_action_type}
+                            data:
+                              entity_id: ${ac_climate_entity_id}
+                              hvac_mode: ${ac_set_mode_action_value}   # cool, heat, heat_cool, fan_only, dry, auto, "off"
+
+                  # MANDATORY SET FAN MODE action:
                   - homeassistant.action:
                       action: ${ac_set_fan_mode_action_type}
                       data:
