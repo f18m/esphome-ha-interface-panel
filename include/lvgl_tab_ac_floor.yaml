@@ -68,7 +68,7 @@
                   bg_color: darkorange
                 on_click:
                   - logger.log:
-                      format: "AC selector: LOW (${ac_script_entity_id})"
+                      format: "AC selector: LOW (${ac_script_entity_id} with speed=${ac_fan_mode_low})"
 
                   # execute a script defined on HomeAssistant to turn on the AC and set the fan to LOW
                   # the script must take a parameter named "speed"
@@ -76,7 +76,8 @@
                       action: ${ac_script_type}
                       data:
                         entity_id: ${ac_script_entity_id}
-                        speed: ${ac_fan_mode_low}
+                        variables:
+                          speed: ${ac_fan_mode_low}
 
                 widgets:
                   - label:
@@ -93,7 +94,7 @@
                   bg_color: darkorange
                 on_click:
                   - logger.log:
-                      format: "AC selector: MEDIUM (${ac_script_entity_id})"
+                      format: "AC selector: MEDIUM (${ac_script_entity_id} with speed=${ac_fan_mode_medium})"
 
                   # execute a script defined on HomeAssistant to turn on the AC and set the fan to MEDIUM
                   # the script must take a parameter named "speed"
@@ -101,7 +102,8 @@
                       action: ${ac_script_type}
                       data:
                         entity_id: ${ac_script_entity_id}
-                        speed: ${ac_fan_mode_medium}
+                        variables:
+                          speed: ${ac_fan_mode_medium}
                 widgets:
                   - label:
                       text: "MEDIUM"
@@ -117,7 +119,7 @@
                   bg_color: darkorange
                 on_click:
                   - logger.log:
-                      format: "AC selector: HIGH (${ac_script_entity_id})"
+                      format: "AC selector: HIGH (${ac_script_entity_id} with speed=${ac_fan_mode_high})"
 
                   # execute a script defined on HomeAssistant to turn on the AC and set the fan to HIGH
                   # the script must take a parameter named "speed"
@@ -125,7 +127,8 @@
                       action: ${ac_script_type}
                       data:
                         entity_id: ${ac_script_entity_id}
-                        speed: ${ac_fan_mode_high}
+                        variables:
+                          speed: ${ac_fan_mode_high}
                 widgets:
                   - label:
                       text: "HIGH"
