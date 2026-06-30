@@ -12,12 +12,13 @@ lvgl:
         - label:
             id: lbl_time
             x: 5
-            y: 8
+            y: 3
             width: 200
             height: 30
             text: "10/03/2026 12:00"
             text_color: ${label_title_color}
-            text_font: visuelt_20
+            #text_font: visuelt_20
+            text_font: nunito_20
 
         - label:
             id: lbl_wifi

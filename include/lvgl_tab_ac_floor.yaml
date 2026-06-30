@@ -1,6 +1,7 @@
 # File: lvgl_tab_ac_floor.yaml
 # Purpose: Controls whole-floor AC power and fan speed presets.
 # List of substitutions:
+#   - ac_speed_text
 #   - ac_climate_entity_id
 #   - ac_turn_off_action_type
 #   - ac_script_entity_id
@@ -19,13 +20,17 @@
       flex_align_main: center
       flex_align_cross: center
       flex_align_track: center
-      pad_row: 16
+      pad_row: 5
     widgets:
       - label:
-          text: "Floor AC"
+          text: "Air Conditioning Control"
           text_color: $label_title_color
           text_font: visuelt_20
 
+      # SPACER
+      - obj:
+          height: 20
+          
       # Row showing the currently selected state: a static "Current speed:"
       # label followed by a dynamic label that gets updated at runtime.
       # The dynamic label's initial text is set via substitution; it is then
@@ -45,14 +50,14 @@
             pad_column: 6
           widgets:
             - label:
-                text: "Current speed:"
-                text_color: $label_title_color
+                text: "${ac_speed_text}"
+                text_color: $label_description_color
                 text_font: visuelt_20
 
             - label:
                 id: ac_floor_status_label_id
                 text: ${ac_floor_initial_status}
-                text_color: $label_spinbtn_color
+                text_color: $label_description_color
                 text_font: visuelt_20
 
       - obj:
