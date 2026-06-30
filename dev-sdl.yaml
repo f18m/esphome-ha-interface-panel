@@ -52,6 +52,8 @@ substitutions:
   ac_fan_mode_low: "low"
   ac_fan_mode_medium: "medium"
   ac_fan_mode_high: "high"
+  ac_floor_initial_status: "Unknown"
+  ac_script_entity_id: "script.ac_set_speed"
 
   # --------------------------------------------------------------------------
   # Room configuration

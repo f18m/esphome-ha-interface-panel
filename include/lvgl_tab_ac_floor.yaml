@@ -7,6 +7,7 @@
 #   - ac_fan_mode_low
 #   - ac_fan_mode_medium
 #   - ac_fan_mode_high
+#   - ac_floor_initial_status    # text shown on boot, before the user presses any button
 
 - obj:
     width: 100%
@@ -24,6 +25,35 @@
           text: "Floor AC"
           text_color: $label_title_color
           text_font: visuelt_20
+
+      # Row showing the currently selected state: a static "Current speed:"
+      # label followed by a dynamic label that gets updated at runtime.
+      # The dynamic label's initial text is set via substitution; it is then
+      # updated at runtime (lvgl.label.update) from each button's on_click,
+      # since ESPHome substitutions are only resolved at compile time.
+      - obj:
+          width: 100%
+          height: SIZE_CONTENT
+          scrollable: false
+          bg_opa: TRANSP
+          layout:
+            type: flex
+            flex_flow: row
+            flex_align_main: center
+            flex_align_cross: center
+            flex_align_track: center
+            pad_column: 6
+          widgets:
+            - label:
+                text: "Current speed:"
+                text_color: $label_title_color
+                text_font: visuelt_20
+
+            - label:
+                id: ac_floor_status_label_id
+                text: ${ac_floor_initial_status}
+                text_color: $label_spinbtn_color
+                text_font: visuelt_20
 
       - obj:
           width: 100%
@@ -52,6 +82,9 @@
                       action: ${ac_turn_off_action_type}
                       data:
                         entity_id: ${ac_climate_entity_id}
+                  - lvgl.label.update:
+                      id: ac_floor_status_label_id
+                      text: "OFF"
                 widgets:
                   - label:
                       text: "OFF"
@@ -75,6 +108,9 @@
                       action: ${ac_script_entity_id}
                       data:
                         speed: ${ac_fan_mode_low}
+                  - lvgl.label.update:
+                      id: ac_floor_status_label_id
+                      text: "LOW"
 
                 widgets:
                   - label:
@@ -99,6 +135,9 @@
                       action: ${ac_script_entity_id}
                       data:
                         speed: ${ac_fan_mode_medium}
+                  - lvgl.label.update:
+                      id: ac_floor_status_label_id
+                      text: "MEDIUM"
                 widgets:
                   - label:
                       text: "MEDIUM"
@@ -122,9 +161,11 @@
                       action: ${ac_script_entity_id}
                       data:
                         speed: ${ac_fan_mode_high}
+                  - lvgl.label.update:
+                      id: ac_floor_status_label_id
+                      text: "HIGH"
                 widgets:
                   - label:
                       text: "HIGH"
                       text_color: $label_spinbtn_color
                       align: CENTER
-
