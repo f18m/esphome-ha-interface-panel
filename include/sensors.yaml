@@ -29,6 +29,9 @@ packages:
   # import sensors used in the info tab
   info_tab: !include sensors_info_tab.yaml
 
+  # import sensors used in the AC tab
+  ac_tab: !include sensors_ac_tab.yaml
+
   # helper to troubleshoot misconfigurations:
   import_health: !include sensors_import_health.yaml
 

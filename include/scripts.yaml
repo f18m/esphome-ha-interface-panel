@@ -172,3 +172,17 @@ script:
           then:
             - script.execute: sync_window_contact_ui_${room4_id}
 
+  - id: ac_update_status
+    then:
+      - lvgl.label.update:
+          id: ac_floor_status_label_id
+          # Source of truth for the label: if Home Assistant reports the
+          # climate entity as not actively running (hvac_action == "off"),
+          # always show "OFF", regardless of the last known fan_mode value.
+          # Otherwise, show the current fan_mode.
+          text: !lambda |-
+            if (id(ac_fan_mode).state == "off") {
+              return "OFF";
+            }
+            return id(ac_fan_mode).state;
+ 

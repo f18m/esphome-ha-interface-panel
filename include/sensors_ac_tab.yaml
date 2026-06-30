@@ -1,0 +1,38 @@
+# File: sensors_ac_tab.yaml
+# Purpose: Declares base sensors/text sensors for AC mode and links values
+# to AC page widgets.
+# List of subtitutions:
+#   - none
+
+---
+
+text_sensor:
+  - platform: homeassistant
+    id: ac_fan_mode
+    entity_id: ${ac_climate_entity_id}
+    attribute: fan_mode
+    internal: true
+    # Fires whenever Home Assistant reports a new value for the fan_mode
+    # attribute of the climate entity (e.g. another integration or the HA
+    # UI changed it, not just this dashboard's buttons), keeping the LVGL
+    # label in sync with the real state.
+    on_value:
+      then:
+        - logger.log:
+            format: "AC floor fan_mode updated from Home Assistant: %s"
+            args: ["x.c_str()"]
+        - script.execute: ac_update_status
+ 
+  - platform: homeassistant
+    id: ac_hvac_mode
+    entity_id: ${ac_climate_entity_id}
+    attribute: hvac_action
+    internal: true
+    # Any change to hvac_action may affect the label (e.g. unit turns off),
+    # so recompute it.
+    on_value:
+      then:
+        - logger.log:
+            format: "AC floor hvac_action updated from Home Assistant: %s"
+            args: ["x.c_str()"]
+        - script.execute: ac_update_status
