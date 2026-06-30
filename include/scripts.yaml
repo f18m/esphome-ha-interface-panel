@@ -181,8 +181,8 @@ script:
           # always show "OFF", regardless of the last known fan_mode value.
           # Otherwise, show the current fan_mode.
           text: !lambda |-
-            if (id(ac_fan_mode).state == "off") {
-              return "OFF";
-            }
-            return id(ac_fan_mode).state;
- 
+            std::string result = (id(ac_hvac_mode).state == "off")
+                ? "off"
+                : id(ac_fan_mode).state;
+            std::transform(result.begin(), result.end(), result.begin(), ::toupper);
+            return result;
