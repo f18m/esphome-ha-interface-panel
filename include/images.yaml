@@ -4,11 +4,10 @@
 #   - none
 
 image:
-  rgb565:
-    alpha_channel:
-      # - file: 'assets/images/homeassistant.png'
-      #   id: ha_img
-      #   resize: 400x82
-      - file: 'https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/images/esphome.png'
-        id: esphome_img
-        resize: 204x60
+  - platform: file
+    type: rgb565
+    transparency: alpha_channel
+    file: https://github.com/f18m/esphome-ha-interface-panel/raw/refs/heads/main/assets/images/esphome.png
+    id: esphome_img
+    resize: 204x60
+
