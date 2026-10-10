@@ -211,7 +211,7 @@ substitutions:
 # Wireless Connectivity:
 ota:
   - platform: esphome
-    #password: ${ota_password}
+    password: ${ota_password}
     # Enable encrypted OTA updates
     #encryption:
 wifi:
