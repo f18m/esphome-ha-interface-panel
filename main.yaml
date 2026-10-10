@@ -213,7 +213,7 @@ ota:
   - platform: esphome
     #password: ${ota_password}
     # Enable encrypted OTA updates
-    encryption:
+    #encryption:
 wifi:
   ssid: ${wifi_ssid}
   password: ${wifi_password}
