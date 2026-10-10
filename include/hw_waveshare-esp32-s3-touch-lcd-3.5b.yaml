@@ -30,6 +30,9 @@ esp32:
   flash_size: 16MB
   framework:
     type: esp-idf
+    advanced:
+      # try to fix issue #10 (ESP32-S3 crash after activating an LVGL scene button)
+      loop_task_stack_size: 16384
 
 psram:
   mode: octal

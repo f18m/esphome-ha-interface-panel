@@ -11,3 +11,6 @@ interface-panel*.yaml
 
 # the esphome venv
 venv
+
+# vscode
+.vscode/
