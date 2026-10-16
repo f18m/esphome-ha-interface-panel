@@ -41,3 +41,5 @@ designed to cover all the rounded box and requires no screw (press fitted).
 Here's an actual picture of the adapter plate after 3D printing and mounting within the wall box:
 
 <img src="./installation-photo1.jpeg">
+
+This model is also available on [Makerworld](https://makerworld.com/it/models/3426459-waveshare-touch-lcd-3-5b-adapter-for-503-wall-box#profileId-3905620).
