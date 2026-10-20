@@ -36,7 +36,7 @@ jobs:
           ha_long_lived_token: "Bearer dummy-token"
           EOF
       - name: ESPHome
-        uses: esphome/build-action@v7
+        uses: esphome/build-action@v8.1.0
         with:
           yaml-file: example-instance.yaml
           version: stable
